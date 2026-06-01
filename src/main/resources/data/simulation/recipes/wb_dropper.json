@@ -1,0 +1,16 @@
+{
+  "type": "simulation:workbench_crafting",
+  "blueprint_group": 1,
+  "pattern": [
+    "cgc",
+    " d ",
+    "cpc"
+  ],
+  "key": {
+    "d": { "item": "minecraft:dropper" },
+    "g": { "tag": "forge:storage_blocks/cobblestone" },
+    "c": { "tag": "forge:nuggets/copper" },
+    "p": { "tag": "forge:ingots/iron" }
+  },
+  "result": { "item": "cyclic:dropper", "count": 1 }
+}

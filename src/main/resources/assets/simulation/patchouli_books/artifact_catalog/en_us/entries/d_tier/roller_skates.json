@@ -1,0 +1,14 @@
+{
+  "name": "Роликовые коньки",
+  "category": "simulation:d_tier",
+  "icon": "relics:roller_skates",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:roller_skates",
+      "title": "Роликовые коньки",
+      "text": "Набирает скорость при движении. Чем дольше едешь — тем быстрее. Полезно на открытой местности."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "simulation:workbench_crafting",
+  "blueprint_group": 3,
+  "pattern": [
+    "rlr",
+    "gqg",
+    "hhh"
+  ],
+  "key": {
+    "l": { "item": "minecraft:quartz" },
+    "g": { "item": "minecraft:dropper" },
+    "r": { "item": "minecraft:redstone_block" },
+    "h": { "item": "minecraft:observer" },
+    "q": { "item": "cyclic:gem_amber" }
+  },
+  "result": { "item": "cyclic:structure", "count": 1 }
+}

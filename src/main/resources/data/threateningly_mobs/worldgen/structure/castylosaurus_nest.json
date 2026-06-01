@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:jigsaw",
+  "start_pool": "threateningly_mobs:castylosaurus_nest",
+  "size": 1,
+  "max_distance_from_center": 64,
+  "spawn_overrides": {},
+  "step": "underground_structures",
+  "terrain_adaptation": "beard_box",
+  "start_height": {
+    "type": "minecraft:biased_to_bottom",
+    "min_inclusive": {
+      "absolute": -12
+    },
+    "max_inclusive": {
+      "absolute": 40
+    }
+  },
+  "biomes": [],
+  "use_expansion_hack": false
+}

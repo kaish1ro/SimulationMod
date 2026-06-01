@@ -1,0 +1,14 @@
+{
+  "name": "Снегоступы",
+  "category": "simulation:d_tier",
+  "icon": "artifacts:snowshoes",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:snowshoes",
+      "title": "Снегоступы",
+      "text": "Ходьба по рыхлому снегу без замедления. Иногда это единственное что нужно."
+    }
+  ]
+}

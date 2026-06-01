@@ -1,0 +1,14 @@
+{
+  "name": "Амфибийный сапог",
+  "category": "simulation:d_tier",
+  "icon": "relics:amphibian_boot",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:amphibian_boot",
+      "title": "Амфибийный сапог",
+      "text": "Ускоряет плавание. В дождь — увеличивает скорость движения. Воздух под водой расходуется медленнее."
+    }
+  ]
+}

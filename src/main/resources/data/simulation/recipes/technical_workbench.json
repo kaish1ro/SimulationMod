@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DDD",
+    "GWG",
+    "CBC"
+  ],
+  "key": {
+    "D": { "item": "minecraft:diamond_block" },
+    "G": { "item": "hammerlib:gears/diamond" },
+    "W": { "item": "minecraft:crafting_table" },
+    "C": { "item": "simulation:quadro_compressed_cobblestone" },
+    "B": { "item": "create:brass_casing" }
+  },
+  "result": { "item": "simulation:technical_workbench", "count": 1 }
+}

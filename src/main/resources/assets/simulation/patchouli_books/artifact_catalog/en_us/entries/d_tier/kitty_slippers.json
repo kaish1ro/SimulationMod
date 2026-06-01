@@ -1,0 +1,14 @@
+{
+  "name": "Котячьи тапки",
+  "category": "simulation:d_tier",
+  "icon": "artifacts:kitty_slippers",
+  "sortnum": 12,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:kitty_slippers",
+      "title": "Котячьи тапки",
+      "text": "В них кошки не убегают, а криперы не взрываются при приближении. Иногда это меняет всё."
+    }
+  ]
+}

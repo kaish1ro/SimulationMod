@@ -1,0 +1,14 @@
+{
+  "name": "Рыбацкая шляпа",
+  "category": "simulation:d_tier",
+  "icon": "artifacts:anglers_hat",
+  "sortnum": 13,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:anglers_hat",
+      "title": "Рыбацкая шляпа",
+      "text": "Рыбалка приносит больше. Редкие предметы попадаются чаще."
+    }
+  ]
+}

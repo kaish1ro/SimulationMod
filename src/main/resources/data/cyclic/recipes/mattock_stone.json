@@ -1,0 +1,14 @@
+{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+"DDD",
+"DWD",
+" C "
+],
+"key": {
+"D": { "item": "simulation:quadro_compressed_cobblestone" },
+"W": { "item": "minecraft:diamond_pickaxe" },
+"C": { "item": "minecraft:diamond_shovel" }
+},
+"result": { "item": "cyclic:mattock_stone", "count": 1 }
+}

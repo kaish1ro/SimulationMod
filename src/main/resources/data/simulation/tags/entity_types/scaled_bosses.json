@@ -1,0 +1,46 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:ender_dragon",
+    "minecraft:wither",
+    "minecraft:elder_guardian",
+
+    "twilightforest:naga",
+    "twilightforest:lich",
+    "twilightforest:minoshroom",
+    "twilightforest:hydra",
+    "twilightforest:knight_phantom",
+    "twilightforest:ur_ghast",
+    "twilightforest:alpha_yeti",
+    "twilightforest:snow_queen",
+
+    "bosses_of_mass_destruction:lich",
+    "bosses_of_mass_destruction:void_blossom",
+    "bosses_of_mass_destruction:gauntlet",
+    "bosses_of_mass_destruction:obsidilith",
+
+    "divinerpg:ancient_entity",
+    "divinerpg:ayeraco",
+    "divinerpg:behemoth",
+    "divinerpg:demon_of_darkness",
+    "divinerpg:dolossal",
+    "divinerpg:dreamwrecker",
+    "divinerpg:hastreus",
+    "divinerpg:hive_queen",
+    "divinerpg:karos",
+    "divinerpg:king_crab",
+    "divinerpg:raglok",
+    "divinerpg:the_eye",
+    "divinerpg:the_grue",
+    "divinerpg:the_watcher",
+    "divinerpg:tocaxin",
+    "divinerpg:twins",
+    "divinerpg:vamacheron",
+    "divinerpg:zoragon",
+
+    "block_factorys_bosses:infernal_dragon",
+    "block_factorys_bosses:kraken",
+    "block_factorys_bosses:underworld_knight",
+    "block_factorys_bosses:yeti"
+  ]
+}

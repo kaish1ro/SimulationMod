@@ -1,0 +1,14 @@
+{
+  "name": "Водоход",
+  "category": "simulation:d_tier",
+  "icon": "relics:aqua_walker",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:aqua_walker",
+      "title": "Водоход",
+      "text": "Позволяет ходить по поверхности воды в течение ограниченного времени. Полезно у берегов."
+    }
+  ]
+}

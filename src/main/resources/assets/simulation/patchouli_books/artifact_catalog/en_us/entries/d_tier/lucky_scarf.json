@@ -1,0 +1,14 @@
+{
+  "name": "Шарф удачи",
+  "category": "simulation:d_tier",
+  "icon": "artifacts:lucky_scarf",
+  "sortnum": 20,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:lucky_scarf",
+      "title": "Шарф удачи",
+      "text": "+удача при ношении. Дроп улучшается. Мелочь — а приятно."
+    }
+  ]
+}

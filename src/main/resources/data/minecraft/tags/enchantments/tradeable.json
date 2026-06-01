@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "remove": [
+    "cyclic:laststand",
+    "cyclic:excavate",
+    "cyclic:multishot",
+    "cyclic:beheading",
+    "cyclic:experience_boost",
+    "cyclic:growth",
+    "cyclic:launch",
+    "cyclic:life_leech",
+    "cyclic:magnet",
+    "cyclic:quickshot",
+    "cyclic:reach",
+    "cyclic:step",
+    "cyclic:traveler",
+    "cyclic:venom",
+    "cyclic:steady",
+    "cyclic:auto_smelt",
+    "cyclic:disarm",
+    "cyclic:curse",
+    "cyclic:ender",
+    "cyclic:beekeeper"
+  ]
+}

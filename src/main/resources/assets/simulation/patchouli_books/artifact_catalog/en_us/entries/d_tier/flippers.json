@@ -1,0 +1,14 @@
+{
+  "name": "Ласты",
+  "category": "simulation:d_tier",
+  "icon": "artifacts:flippers",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:flippers",
+      "title": "Ласты",
+      "text": "Значительно ускоряет плавание. Под водой чувствуешь себя рыбой."
+    }
+  ]
+}

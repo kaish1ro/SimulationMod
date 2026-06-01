@@ -1,0 +1,14 @@
+{
+  "name": "Лавоход",
+  "category": "simulation:d_tier",
+  "icon": "relics:magma_walker",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:magma_walker",
+      "title": "Лавоход",
+      "text": "Подавляет урон от горячих блоков. На короткое время — можно ходить по лаве."
+    }
+  ]
+}

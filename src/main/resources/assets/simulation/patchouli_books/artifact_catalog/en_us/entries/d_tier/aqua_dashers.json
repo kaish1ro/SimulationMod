@@ -1,0 +1,14 @@
+{
+  "name": "Акважигатели",
+  "category": "simulation:d_tier",
+  "icon": "artifacts:aqua_dashers",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:aqua_dashers",
+      "title": "Акважигатели",
+      "text": "Позволяет бегать по воде. Медленно, но стабильно."
+    }
+  ]
+}

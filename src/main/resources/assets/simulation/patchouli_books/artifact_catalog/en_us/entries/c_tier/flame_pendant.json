@@ -1,0 +1,14 @@
+{
+  "name": "Огненный кулон",
+  "category": "simulation:c_tier",
+  "icon": "artifacts:flame_pendant",
+  "sortnum": 29,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:flame_pendant",
+      "title": "Огненный кулон",
+      "text": "Поджигает существ, которые атакуют тебя."
+    }
+  ]
+}

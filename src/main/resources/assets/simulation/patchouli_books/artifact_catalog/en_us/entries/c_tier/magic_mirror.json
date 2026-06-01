@@ -1,0 +1,14 @@
+{
+  "name": "Волшебное зеркало",
+  "category": "simulation:c_tier",
+  "icon": "relics:magic_mirror",
+  "sortnum": 35,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:magic_mirror",
+      "title": "Волшебное зеркало",
+      "text": "Телепортирует к точке возрождения. Перезарядка — несколько минут. Незаменимо когда застрял далеко."
+    }
+  ]
+}

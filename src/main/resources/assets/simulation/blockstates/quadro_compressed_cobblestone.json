@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "simulation:block/quadro_compressed_cobblestone"
+    }
+  }
+}

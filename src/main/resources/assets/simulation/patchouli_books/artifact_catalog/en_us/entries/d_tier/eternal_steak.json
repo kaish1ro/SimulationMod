@@ -1,0 +1,14 @@
+{
+  "name": "Вечный стейк",
+  "category": "simulation:d_tier",
+  "icon": "artifacts:eternal_steak",
+  "sortnum": 11,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:eternal_steak",
+      "title": "Вечный стейк",
+      "text": "Никогда не заканчивается. Всегда под рукой. Голод больше не проблема."
+    }
+  ]
+}

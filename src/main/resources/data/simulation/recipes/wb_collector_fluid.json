@@ -1,0 +1,17 @@
+{
+  "type": "simulation:workbench_crafting",
+  "blueprint_group": 1,
+  "pattern": [
+    "rlr",
+    "gqg",
+    "hhh"
+  ],
+  "key": {
+    "l": { "tag": "forge:storage_blocks/lapis" },
+    "g": { "item": "minecraft:bucket" },
+    "r": { "tag": "forge:storage_blocks/iron" },
+    "h": { "item": "minecraft:hopper" },
+    "q": { "item": "minecraft:comparator" }
+  },
+  "result": { "item": "cyclic:collector_fluid", "count": 1 }
+}

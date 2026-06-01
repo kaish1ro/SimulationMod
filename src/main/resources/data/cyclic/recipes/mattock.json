@@ -1,0 +1,15 @@
+{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+"DDD",
+"GWG",
+"CCC"
+],
+"key": {
+"D": { "item": "minecraft:obsidian" },
+"G": { "item": "aether:enchanted_gravitite" },
+"W": { "item": "cyclic:mattock_stone" },
+"C": { "item": "blue_skies:falsite_ingot" }
+},
+"result": { "item": "cyclic:mattock", "count": 1 }
+}

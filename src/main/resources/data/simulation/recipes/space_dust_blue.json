@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["###", "###", "###"],
+  "key": { "#": { "item": "simulation:space_shard_blue" } },
+  "result": { "item": "simulation:space_dust_blue", "count": 1 }
+}

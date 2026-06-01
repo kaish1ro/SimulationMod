@@ -1,0 +1,14 @@
+{
+  "name": "Копательные когти",
+  "category": "simulation:c_tier",
+  "icon": "artifacts:digging_claws",
+  "sortnum": 42,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:digging_claws",
+      "title": "Копательные когти",
+      "text": "Значительно увеличивает скорость добычи блоков."
+    }
+  ]
+}

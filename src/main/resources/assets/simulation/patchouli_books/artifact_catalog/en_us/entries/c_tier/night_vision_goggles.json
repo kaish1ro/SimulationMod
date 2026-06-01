@@ -1,0 +1,14 @@
+{
+  "name": "Очки ночного видения",
+  "category": "simulation:c_tier",
+  "icon": "artifacts:night_vision_goggles",
+  "sortnum": 41,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:night_vision_goggles",
+      "title": "Очки ночного видения",
+      "text": "Постоянное ночное зрение. Никакой темноты."
+    }
+  ]
+}

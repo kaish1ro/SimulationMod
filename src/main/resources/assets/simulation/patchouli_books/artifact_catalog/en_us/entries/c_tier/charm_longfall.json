@@ -1,0 +1,14 @@
+{
+  "name": "Чары долгого падения",
+  "category": "simulation:c_tier",
+  "icon": "cyclic:charm_longfall",
+  "sortnum": 33,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_longfall",
+      "title": "Чары долгого падения",
+      "text": "Медленное падение. Урон от высоты не наносится."
+    }
+  ]
+}

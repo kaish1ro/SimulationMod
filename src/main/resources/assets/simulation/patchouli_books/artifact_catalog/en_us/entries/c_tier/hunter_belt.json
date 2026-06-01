@@ -1,0 +1,14 @@
+{
+  "name": "Охотничий пояс",
+  "category": "simulation:c_tier",
+  "icon": "relics:hunter_belt",
+  "sortnum": 24,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:hunter_belt",
+      "title": "Охотничий пояс",
+      "text": "Питомцы наносят увеличенный урон. +слоты для реликвий. Для тех кто воюет вместе с волками."
+    }
+  ]
+}

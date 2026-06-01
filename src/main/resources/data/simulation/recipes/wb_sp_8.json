@@ -1,0 +1,18 @@
+{
+  "type": "simulation:workbench_crafting",
+  "blueprint_group": 3,
+  "pattern": [
+    "CGC",
+    "DPD",
+    "NRN"
+  ],
+  "key": {
+    "C": { "item": "solarflux:photovoltaic_cell_6" },
+    "G": { "item": "solarflux:ender_glass" },
+    "P": { "item": "solarflux:sp_7" },
+    "D": { "item": "minecraft:diamond_block" },
+    "N": { "item": "minecraft:netherite_ingot" },
+    "R": { "item": "minecraft:beacon" }
+  },
+  "result": { "item": "solarflux:sp_8", "count": 1 }
+}

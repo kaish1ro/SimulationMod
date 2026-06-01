@@ -1,0 +1,14 @@
+{
+  "name": "Кожаный пояс",
+  "category": "simulation:d_tier",
+  "icon": "relics:leather_belt",
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:leather_belt",
+      "title": "Кожаный пояс",
+      "text": "Добавляет дополнительные слоты для ношения реликвий. Незаменимая основа любой сборки."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "simulation:workbench_crafting",
+  "blueprint_group": 3,
+  "pattern": [
+    "DED",
+    "EBE",
+    "DED"
+  ],
+  "key": {
+    "D": { "item": "minecraft:diamond_block" },
+    "E": { "item": "minecraft:enchanting_table" },
+    "B": { "item": "minecraft:bookshelf" }
+  },
+  "result": { "item": "cyclic:enchanter", "count": 1 }
+}

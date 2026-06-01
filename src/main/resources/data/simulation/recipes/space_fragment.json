@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [" N ", "NLN", " N "],
+  "key": {
+    "L": { "item": "simulation:space_crystal_large" },
+    "N": { "item": "minecraft:nether_star" }
+  },
+  "result": { "item": "simulation:space_fragment", "count": 1 }
+}

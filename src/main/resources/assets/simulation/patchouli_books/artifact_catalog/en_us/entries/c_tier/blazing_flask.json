@@ -1,0 +1,14 @@
+{
+  "name": "Пылающая фляга",
+  "category": "simulation:c_tier",
+  "icon": "relics:blazing_flask",
+  "sortnum": 37,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:blazing_flask",
+      "title": "Пылающая фляга",
+      "text": "Использование на блоке создаёт зону, в которой можно летать. Требует открытый огонь поблизости."
+    }
+  ]
+}

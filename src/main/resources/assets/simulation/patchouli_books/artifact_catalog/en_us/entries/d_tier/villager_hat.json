@@ -1,0 +1,14 @@
+{
+  "name": "Шляпа жителя",
+  "category": "simulation:d_tier",
+  "icon": "artifacts:villager_hat",
+  "sortnum": 18,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:villager_hat",
+      "title": "Шляпа жителя",
+      "text": "Жители воспринимают тебя благосклоннее. Цены чуть лучше."
+    }
+  ]
+}

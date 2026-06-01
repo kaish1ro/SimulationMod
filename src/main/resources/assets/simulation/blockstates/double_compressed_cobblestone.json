@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "simulation:block/double_compressed_cobblestone"
+    }
+  }
+}

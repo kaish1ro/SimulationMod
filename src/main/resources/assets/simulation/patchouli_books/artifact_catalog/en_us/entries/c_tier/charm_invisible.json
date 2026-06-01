@@ -1,0 +1,14 @@
+{
+  "name": "Чары невидимости",
+  "category": "simulation:c_tier",
+  "icon": "cyclic:charm_invisible",
+  "sortnum": 45,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_invisible",
+      "title": "Чары невидимости",
+      "text": "Невидимость при ношении. Мобы не замечают тебя."
+    }
+  ]
+}

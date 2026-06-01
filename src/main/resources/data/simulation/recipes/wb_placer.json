@@ -1,0 +1,16 @@
+{
+  "type": "simulation:workbench_crafting",
+  "blueprint_group": 1,
+  "pattern": [
+    "rsr",
+    "g g",
+    "ooo"
+  ],
+  "key": {
+    "o": { "item": "minecraft:cobblestone_slab" },
+    "g": { "tag": "forge:nuggets/copper" },
+    "s": { "item": "minecraft:dropper" },
+    "r": { "item": "minecraft:andesite" }
+  },
+  "result": { "item": "cyclic:placer", "count": 1 }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Кулон шипов",
+  "category": "simulation:c_tier",
+  "icon": "artifacts:thorn_pendant",
+  "sortnum": 28,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:thorn_pendant",
+      "title": "Кулон шипов",
+      "text": "Часть полученного урона отражается обратно атакующему."
+    }
+  ]
+}

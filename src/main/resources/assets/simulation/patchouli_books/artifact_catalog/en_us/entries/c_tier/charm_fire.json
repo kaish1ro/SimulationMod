@@ -1,0 +1,14 @@
+{
+  "name": "Чары огня",
+  "category": "simulation:c_tier",
+  "icon": "cyclic:charm_fire",
+  "sortnum": 31,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_fire",
+      "title": "Чары огня",
+      "text": "Постоянная огнестойкость. Лава и огонь больше не угроза."
+    }
+  ]
+}

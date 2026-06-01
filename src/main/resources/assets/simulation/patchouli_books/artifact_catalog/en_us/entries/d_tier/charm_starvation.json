@@ -1,0 +1,14 @@
+{
+  "name": "Чары голода",
+  "category": "simulation:d_tier",
+  "icon": "cyclic:charm_starvation",
+  "sortnum": 14,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_starvation",
+      "title": "Чары голода",
+      "text": "Защищает от потери насыщения. Голод замедляется."
+    }
+  ]
+}

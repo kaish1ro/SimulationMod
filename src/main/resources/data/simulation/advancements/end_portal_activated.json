@@ -1,0 +1,16 @@
+{
+  "display": {
+    "icon": { "item": "minecraft:ender_eye" },
+    "title": { "text": "Портал активирован" },
+    "description": { "text": "Все глаза установлены." },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "activate": {
+      "trigger": "endrem:make_portal"
+    }
+  }
+}

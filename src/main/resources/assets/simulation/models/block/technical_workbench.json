@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "particle": "simulation:block/technical_workbench_side",
+    "top":      "simulation:block/technical_workbench_top",
+    "bottom":   "simulation:block/technical_workbench_bottom",
+    "side":     "simulation:block/technical_workbench_side"
+  }
+}

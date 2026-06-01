@@ -1,0 +1,40 @@
+{
+  "item.simulation.simulation_shard": "Simulation Shard",
+
+  "item.simulation.space_shard_red":    "Space Shard (Red)",
+  "item.simulation.space_shard_purple": "Space Shard (Purple)",
+  "item.simulation.space_shard_blue":   "Space Shard (Blue)",
+  "item.simulation.space_shard_elite":  "Space Shard (Orange)",
+
+  "item.simulation.space_dust_red":    "Space Dust (Red)",
+  "item.simulation.space_dust_blue":   "Space Dust (Blue)",
+  "item.simulation.space_dust_purple": "Space Dust (Purple)",
+  "item.simulation.space_dust_orange": "Space Dust (Orange)",
+
+  "item.simulation.space_crystal_red":    "Space Crystal (Red)",
+  "item.simulation.space_crystal_blue":   "Space Crystal (Blue)",
+  "item.simulation.space_crystal_purple": "Space Crystal (Purple)",
+  "item.simulation.space_crystal_orange": "Space Crystal (Orange)",
+
+  "item.simulation.space_cluster_red":    "Space Cluster (Red)",
+  "item.simulation.space_cluster_blue":   "Space Cluster (Blue)",
+  "item.simulation.space_cluster_purple": "Space Cluster (Purple)",
+  "item.simulation.space_cluster_orange": "Space Cluster (Orange)",
+
+  "item.simulation.space_crystal_large": "Large Space Crystal",
+  "item.simulation.space_fragment":      "Space Fragment",
+
+  "item.simulation.awakened_eternal_crystal": "Awakened Eternal Crystal",
+
+  "item.simulation.blueprint_group1": "Strange Blueprint",
+  "item.simulation.blueprint_group2": "Blueprint: Group II",
+  "item.simulation.blueprint_group3": "Blueprint: Group III",
+
+  "block.simulation.technical_workbench": "Technical Workbench",
+  "block.simulation.double_compressed_cobblestone": "Double Compressed Cobblestone",
+  "block.simulation.triple_compressed_cobblestone": "Triple Compressed Cobblestone",
+  "block.simulation.quadro_compressed_cobblestone": "Quadruple Compressed Cobblestone",
+  "container.simulation.workbench": "Technical Workbench",
+  "container.simulation.blueprint_slot": "Blueprint",
+  "itemGroup.simulation.simulation_tab": "Simulation"
+}

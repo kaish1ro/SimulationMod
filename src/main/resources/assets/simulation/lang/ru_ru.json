@@ -1,0 +1,40 @@
+{
+  "item.simulation.simulation_shard": "Осколок симуляции",
+
+  "item.simulation.space_shard_red":    "Осколок пространства (красный)",
+  "item.simulation.space_shard_purple": "Осколок пространства (фиолетовый)",
+  "item.simulation.space_shard_blue":   "Осколок пространства (синий)",
+  "item.simulation.space_shard_elite":  "Осколок пространства (оранжевый)",
+
+  "item.simulation.space_dust_red":    "Пыль пространства (красная)",
+  "item.simulation.space_dust_blue":   "Пыль пространства (синяя)",
+  "item.simulation.space_dust_purple": "Пыль пространства (фиолетовая)",
+  "item.simulation.space_dust_orange": "Пыль пространства (оранжевая)",
+
+  "item.simulation.space_crystal_red":    "Кристалл пространства (красный)",
+  "item.simulation.space_crystal_blue":   "Кристалл пространства (синий)",
+  "item.simulation.space_crystal_purple": "Кристалл пространства (фиолетовый)",
+  "item.simulation.space_crystal_orange": "Кристалл пространства (оранжевый)",
+
+  "item.simulation.space_cluster_red":    "Кластер пространства (красный)",
+  "item.simulation.space_cluster_blue":   "Кластер пространства (синий)",
+  "item.simulation.space_cluster_purple": "Кластер пространства (фиолетовый)",
+  "item.simulation.space_cluster_orange": "Кластер пространства (оранжевый)",
+
+  "item.simulation.space_crystal_large": "Большой кристалл пространства",
+  "item.simulation.space_fragment":      "Фрагмент пространства",
+
+  "item.simulation.awakened_eternal_crystal": "Пробуждённый вечный кристалл",
+
+  "item.simulation.blueprint_group1": "Странная схема",
+  "item.simulation.blueprint_group2": "Схема: Группа II",
+  "item.simulation.blueprint_group3": "Схема: Группа III",
+
+  "block.simulation.technical_workbench": "Технический верстак",
+  "block.simulation.double_compressed_cobblestone": "Двойной спрессованный булыжник",
+  "block.simulation.triple_compressed_cobblestone": "Тройной спрессованный булыжник",
+  "block.simulation.quadro_compressed_cobblestone": "Четверной спрессованный булыжник",
+  "container.simulation.workbench": "Технический верстак",
+  "container.simulation.blueprint_slot": "Схема",
+  "itemGroup.simulation.simulation_tab": "Симуляция"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Чары сопротивления",
+  "category": "simulation:c_tier",
+  "icon": "cyclic:charm_knockback_resistance",
+  "sortnum": 34,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_knockback_resistance",
+      "title": "Чары сопротивления",
+      "text": "Сопротивление отбрасыванию. Хаотичные враги становятся менее опасными."
+    }
+  ]
+}

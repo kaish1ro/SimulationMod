@@ -1,0 +1,14 @@
+{
+  "name": "Чары факела",
+  "category": "simulation:d_tier",
+  "icon": "cyclic:charm_torch",
+  "sortnum": 16,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_torch",
+      "title": "Чары факела",
+      "text": "Автоматически размещает факелы при движении по тёмным местам."
+    }
+  ]
+}

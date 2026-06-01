@@ -1,0 +1,14 @@
+{
+  "name": "Чары усиления зелий",
+  "category": "simulation:c_tier",
+  "icon": "cyclic:charm_boostpotion",
+  "sortnum": 46,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_boostpotion",
+      "title": "Чары усиления зелий",
+      "text": "Зелья действуют эффективнее и/или дольше."
+    }
+  ]
+}

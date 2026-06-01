@@ -1,0 +1,17 @@
+{
+  "type": "simulation:workbench_crafting",
+  "blueprint_group": 2,
+  "pattern": [
+    "CGC",
+    "CPC",
+    "IRI"
+  ],
+  "key": {
+    "C": { "item": "solarflux:photovoltaic_cell_5" },
+    "G": { "item": "solarflux:ender_glass" },
+    "P": { "item": "solarflux:sp_4" },
+    "I": { "tag": "forge:gems/diamond" },
+    "R": { "item": "minecraft:observer" }
+  },
+  "result": { "item": "solarflux:sp_5", "count": 1 }
+}

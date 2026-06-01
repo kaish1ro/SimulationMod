@@ -1,0 +1,17 @@
+{
+  "type": "simulation:workbench_crafting",
+  "blueprint_group": 2,
+  "pattern": [
+    "CGC",
+    "CPC",
+    "IRI"
+  ],
+  "key": {
+    "C": { "item": "solarflux:photovoltaic_cell_3" },
+    "G": { "item": "solarflux:emerald_glass" },
+    "P": { "item": "solarflux:sp_2" },
+    "I": { "tag": "forge:ingots/iron" },
+    "R": { "item": "minecraft:comparator" }
+  },
+  "result": { "item": "solarflux:sp_3", "count": 1 }
+}

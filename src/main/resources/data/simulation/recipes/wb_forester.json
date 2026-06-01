@@ -1,0 +1,16 @@
+{
+  "type": "simulation:workbench_crafting",
+  "blueprint_group": 1,
+  "pattern": [
+    "r r",
+    "xax",
+    "ooo"
+  ],
+  "key": {
+    "a": { "item": "cyclic:gem_amber" },
+    "o": { "tag": "forge:ingots/copper" },
+    "x": { "tag": "minecraft:logs" },
+    "r": { "item": "minecraft:observer" }
+  },
+  "result": { "item": "cyclic:forester", "count": 1 }
+}

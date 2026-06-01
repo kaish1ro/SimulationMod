@@ -1,0 +1,14 @@
+{
+  "name": "Ледяные коньки",
+  "category": "simulation:d_tier",
+  "icon": "relics:ice_skates",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:ice_skates",
+      "title": "Ледяные коньки",
+      "text": "Скольжение по льду превращается в управляемый разгон. При столкновении с мобом — наносит урон."
+    }
+  ]
+}

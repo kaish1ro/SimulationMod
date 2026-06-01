@@ -1,0 +1,14 @@
+{
+  "name": "Чары противоядия",
+  "category": "simulation:c_tier",
+  "icon": "cyclic:charm_antidote",
+  "sortnum": 44,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_antidote",
+      "title": "Чары противоядия",
+      "text": "Иммунитет к яду и другим негативным эффектам."
+    }
+  ]
+}

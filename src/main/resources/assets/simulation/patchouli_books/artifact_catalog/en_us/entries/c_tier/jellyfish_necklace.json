@@ -1,0 +1,14 @@
+{
+  "name": "Ожерелье медузы",
+  "category": "simulation:c_tier",
+  "icon": "relics:jellyfish_necklace",
+  "sortnum": 25,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:jellyfish_necklace",
+      "title": "Ожерелье медузы",
+      "text": "Электрошок при столкновении с мобом. Второй заряд — паралич цели на несколько секунд."
+    }
+  ]
+}

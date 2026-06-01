@@ -1,0 +1,14 @@
+{
+  "name": "Чары удачи",
+  "category": "simulation:d_tier",
+  "icon": "cyclic:charm_luck",
+  "sortnum": 21,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_luck",
+      "title": "Чары удачи",
+      "text": "Пассивный бонус к удаче. Работает всегда, пока надет."
+    }
+  ]
+}

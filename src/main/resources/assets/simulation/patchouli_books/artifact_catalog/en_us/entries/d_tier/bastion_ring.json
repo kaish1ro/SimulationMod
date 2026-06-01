@@ -1,0 +1,14 @@
+{
+  "name": "Кольцо бастиона",
+  "category": "simulation:d_tier",
+  "icon": "relics:bastion_ring",
+  "sortnum": 17,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:bastion_ring",
+      "title": "Кольцо бастиона",
+      "text": "Пиглины нейтральны. Ближайший пиглин указывает путь к сокровищу. Торговля с пиглинами выгоднее."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Облако в бутылке",
+  "category": "simulation:c_tier",
+  "icon": "artifacts:cloud_in_a_bottle",
+  "sortnum": 30,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:cloud_in_a_bottle",
+      "title": "Облако в бутылке",
+      "text": "Двойной прыжок в воздухе. Стандарт любого мобильного билда."
+    }
+  ]
+}

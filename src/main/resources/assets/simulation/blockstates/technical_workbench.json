@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "simulation:block/technical_workbench" }
+  }
+}

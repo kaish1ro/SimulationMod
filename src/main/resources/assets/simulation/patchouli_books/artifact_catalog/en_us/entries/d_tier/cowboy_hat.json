@@ -1,0 +1,14 @@
+{
+  "name": "Ковбойская шляпа",
+  "category": "simulation:d_tier",
+  "icon": "artifacts:cowboy_hat",
+  "sortnum": 19,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:cowboy_hat",
+      "title": "Ковбойская шляпа",
+      "text": "Делает приручение животных немного проще. Лошади и волки относятся мягче."
+    }
+  ]
+}

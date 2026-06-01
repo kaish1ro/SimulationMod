@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "entries": [
+    "simulation:endrem_desert_pharaoh_hidden",
+    "simulation:endrem_desert_tomb_pharaoh",
+    "simulation:endrem_desert_tomb",
+    "simulation:endrem_desert_storage",
+    "simulation:endrem_fortress_keep",
+    "simulation:endrem_fortress_puzzle",
+    "simulation:endrem_fortress_beacon",
+    "simulation:endrem_fortress_obsidian",
+    "simulation:endrem_fortress_hall"
+  ]
+}

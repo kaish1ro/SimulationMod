@@ -1,0 +1,14 @@
+{
+  "name": "Чары защиты от магии",
+  "category": "simulation:c_tier",
+  "icon": "cyclic:charm_magicdefense",
+  "sortnum": 32,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_magicdefense",
+      "title": "Чары защиты от магии",
+      "text": "Снижает урон от магических атак."
+    }
+  ]
+}

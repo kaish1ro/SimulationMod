@@ -1,0 +1,14 @@
+{
+  "name": "Мешок со спорами",
+  "category": "simulation:c_tier",
+  "icon": "relics:spore_sack",
+  "sortnum": 26,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:spore_sack",
+      "title": "Мешок со спорами",
+      "text": "При получении урона выпускает ядовитые споры. Споры делятся. Активное использование — AoE-взрыв из спор."
+    }
+  ]
+}

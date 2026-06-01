@@ -1,0 +1,17 @@
+{
+  "type": "simulation:workbench_crafting",
+  "blueprint_group": 1,
+  "pattern": [
+    "CGC",
+    "CPC",
+    "IRI"
+  ],
+  "key": {
+    "C": { "item": "solarflux:photovoltaic_cell_1" },
+    "G": { "item": "minecraft:glass" },
+    "P": { "item": "minecraft:daylight_detector" },
+    "I": { "tag": "forge:ingots/iron" },
+    "R": { "item": "minecraft:redstone" }
+  },
+  "result": { "item": "solarflux:sp_1", "count": 1 }
+}

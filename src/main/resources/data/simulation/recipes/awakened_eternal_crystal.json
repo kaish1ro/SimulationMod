@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "FEF",
+    "FFF"
+  ],
+  "key": {
+    "F": { "item": "phantasm:fallen_star" },
+    "E": { "item": "betterend:eternal_crystal" }
+  },
+  "result": {
+    "item": "simulation:awakened_eternal_crystal",
+    "count": 1
+  }
+}

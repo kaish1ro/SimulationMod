@@ -1,0 +1,14 @@
+{
+  "name": "Чары воды",
+  "category": "simulation:d_tier",
+  "icon": "cyclic:charm_water",
+  "sortnum": 15,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_water",
+      "title": "Чары воды",
+      "text": "Постоянное дыхание под водой. Воздух больше не расходуется."
+    }
+  ]
+}

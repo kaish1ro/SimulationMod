@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["C", "C", "C"],
+  "key": { "C": { "item": "simulation:space_crystal_red" } },
+  "result": { "item": "simulation:space_cluster_red", "count": 1 }
+}

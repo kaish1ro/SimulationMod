@@ -1,0 +1,14 @@
+{
+  "name": "Чары опыта",
+  "category": "simulation:c_tier",
+  "icon": "cyclic:charm_xp_speed",
+  "sortnum": 43,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "cyclic:charm_xp_speed",
+      "title": "Чары опыта",
+      "text": "Опыт накапливается быстрее. Полезно при гринде."
+    }
+  ]
+}

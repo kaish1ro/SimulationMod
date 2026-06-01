@@ -1,0 +1,5 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [{ "item": "simulation:triple_compressed_cobblestone" }],
+  "result": { "item": "simulation:double_compressed_cobblestone", "count": 4 }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Пояс утопленника",
+  "category": "simulation:c_tier",
+  "icon": "relics:drowned_belt",
+  "sortnum": 23,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:drowned_belt",
+      "title": "Пояс утопленника",
+      "text": "Увеличивает урон под водой. Позволяет использовать трезубец «Порыв» без воды. +слоты для реликвий."
+    }
+  ]
+}

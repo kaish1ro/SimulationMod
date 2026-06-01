@@ -1,0 +1,4 @@
+{
+  "type": "simulation:remove_threateningly",
+  "biomes": "#minecraft:is_nether"
+}

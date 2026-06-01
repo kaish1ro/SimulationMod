@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "simulation:double_compressed_cobblestone",
+    "simulation:triple_compressed_cobblestone",
+    "simulation:quadro_compressed_cobblestone"
+  ]
+}

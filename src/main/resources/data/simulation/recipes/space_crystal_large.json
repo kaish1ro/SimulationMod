@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["BR", "OP"],
+  "key": {
+    "B": { "item": "simulation:space_cluster_blue" },
+    "R": { "item": "simulation:space_cluster_red" },
+    "O": { "item": "simulation:space_cluster_orange" },
+    "P": { "item": "simulation:space_cluster_purple" }
+  },
+  "result": { "item": "simulation:space_crystal_large", "count": 1 }
+}

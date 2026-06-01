@@ -1,0 +1,4 @@
+{
+  "type": "simulation:remove_divinerpg",
+  "biomes": "#minecraft:is_nether"
+}

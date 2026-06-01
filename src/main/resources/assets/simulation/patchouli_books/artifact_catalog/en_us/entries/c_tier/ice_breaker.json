@@ -1,0 +1,14 @@
+{
+  "name": "Ледокол",
+  "category": "simulation:c_tier",
+  "icon": "relics:ice_breaker",
+  "sortnum": 22,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:ice_breaker",
+      "title": "Ледокол",
+      "text": "При падении с высоты создаёт ударную волну. Урон и радиус зависят от высоты падения. Урон от самого падения не наносится."
+    }
+  ]
+}

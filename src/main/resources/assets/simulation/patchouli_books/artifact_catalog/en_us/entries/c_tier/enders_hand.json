@@ -1,0 +1,14 @@
+{
+  "name": "Рука эндера",
+  "category": "simulation:c_tier",
+  "icon": "relics:enders_hand",
+  "sortnum": 36,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:enders_hand",
+      "title": "Рука эндера",
+      "text": "Эндермены нейтральны. Активное использование — своп местами с целью по взгляду."
+    }
+  ]
+}

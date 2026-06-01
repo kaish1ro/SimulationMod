@@ -1,0 +1,14 @@
+{
+  "name": "Хорус-ингибитор",
+  "category": "simulation:c_tier",
+  "icon": "relics:chorus_inhibitor",
+  "sortnum": 38,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:chorus_inhibitor",
+      "title": "Хорус-ингибитор",
+      "text": "Использование плода хоруса телепортирует точно к блоку в прицеле. Расстояние ограничено."
+    }
+  ]
+}

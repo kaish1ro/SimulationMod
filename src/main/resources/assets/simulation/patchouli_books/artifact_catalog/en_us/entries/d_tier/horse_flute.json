@@ -1,0 +1,14 @@
+{
+  "name": "Лошадиная флейта",
+  "category": "simulation:d_tier",
+  "icon": "relics:horse_flute",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:horse_flute",
+      "title": "Лошадиная флейта",
+      "text": "Помещает лошадь во внутреннее хранилище. Лошадь медленно восстанавливает здоровье внутри."
+    }
+  ]
+}

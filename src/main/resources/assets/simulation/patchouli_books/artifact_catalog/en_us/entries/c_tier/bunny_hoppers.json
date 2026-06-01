@@ -1,0 +1,14 @@
+{
+  "name": "Заячьи прыгуны",
+  "category": "simulation:c_tier",
+  "icon": "artifacts:bunny_hoppers",
+  "sortnum": 39,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:bunny_hoppers",
+      "title": "Заячьи прыгуны",
+      "text": "+прыжок. Высота и дальность прыжка заметно возрастают."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "type": "crafting_shaped",
+  "group": "tools",
+  "pattern": [
+    "WSW",
+    "SCS",
+    "WSW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "S": {
+      "item": "simulation:triple_compressed_cobblestone"
+    },
+    "C": {
+      "item": "minecraft:compass"
+    }
+  },
+  "result": {
+    "item": "explorerscompass:explorerscompass"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Корневые сапоги",
+  "category": "simulation:c_tier",
+  "icon": "artifacts:rooted_boots",
+  "sortnum": 27,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "artifacts:rooted_boots",
+      "title": "Корневые сапоги",
+      "text": "Полный иммунитет к отбрасыванию. Ни один удар не сдвинет тебя с места."
+    }
+  ]
+}

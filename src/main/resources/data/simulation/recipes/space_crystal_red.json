@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["DDD", "DAD", "DDD"],
+  "key": {
+    "D": { "item": "simulation:space_dust_red" },
+    "A": { "item": "minecraft:amethyst_shard" }
+  },
+  "result": { "item": "simulation:space_crystal_red", "count": 1 }
+}

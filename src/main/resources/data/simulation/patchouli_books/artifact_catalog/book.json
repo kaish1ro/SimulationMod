@@ -1,0 +1,9 @@
+{
+  "name": "Каталог артефактов",
+  "landing_text": "Артефакты существуют. Большинство из них спрятаны там, куда никто не смотрит. Остальные можно получить — если знать у кого просить.",
+  "creative_tab": "simulation:simulation_tab",
+  "model": "patchouli:book_gray",
+  "show_progress": false,
+  "use_resource_pack": true,
+  "version": "1"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Шерстяная рукавица",
+  "category": "simulation:d_tier",
+  "icon": "relics:wool_mitten",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "relics:wool_mitten",
+      "title": "Шерстяная рукавица",
+      "text": "Собирает снег и формирует снежки. Размер снежка зависит от количества собранного снега. Снежок — оружие."
+    }
+  ]
+}

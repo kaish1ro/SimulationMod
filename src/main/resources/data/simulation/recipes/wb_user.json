@@ -1,0 +1,17 @@
+{
+  "type": "simulation:workbench_crafting",
+  "blueprint_group": 2,
+  "pattern": [
+    "rsr",
+    "lml",
+    "ooo"
+  ],
+  "key": {
+    "o": { "tag": "forge:storage_blocks/flint" },
+    "s": { "item": "minecraft:dispenser" },
+    "l": { "item": "minecraft:tripwire_hook" },
+    "m": { "tag": "forge:storage_blocks/cobblestone" },
+    "r": { "tag": "forge:ingots/gold" }
+  },
+  "result": { "item": "cyclic:user", "count": 1 }
+}

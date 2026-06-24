@@ -1,0 +1,27 @@
+{
+  "name": "Древняя Фабрика",
+  "category": "simulation:dungeons",
+  "icon": "minecraft:nether_star",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Древняя Фабрика",
+      "text": "Измерение: Оверворлд$(br)Местонахождение: под землёй$(br2)Редкая подземная структура. Для поиска используется Eye of Mech — он указывает направление, как Глаз Эндера указывает на крепость. Внутри — Deeplings разных типов."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "cataclysm:the_harbinger",
+      "scale": 0.4,
+      "offset": 1.5,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Предвестник"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Активация",
+      "text": "Предвестник спит в центре структуры. Чтобы разбудить его — вставить Nether Star в его грудь. После пробуждения отступать некуда."
+    }
+  ]
+}

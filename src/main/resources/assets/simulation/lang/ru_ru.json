@@ -30,11 +30,23 @@
   "item.simulation.blueprint_group2": "Схема: Группа II",
   "item.simulation.blueprint_group3": "Схема: Группа III",
 
+  "block.simulation.castle_key_door": "Дверь замка",
+  "item.simulation.castle_key":      "Ключ от двери замка",
+
   "block.simulation.technical_workbench": "Технический верстак",
   "block.simulation.double_compressed_cobblestone": "Двойной спрессованный булыжник",
   "block.simulation.triple_compressed_cobblestone": "Тройной спрессованный булыжник",
   "block.simulation.quadro_compressed_cobblestone": "Четверной спрессованный булыжник",
   "container.simulation.workbench": "Технический верстак",
   "container.simulation.blueprint_slot": "Схема",
-  "itemGroup.simulation.simulation_tab": "Симуляция"
+  "itemGroup.simulation.simulation_tab": "Симуляция",
+
+  "death.attack.simulation.divine_punishment": "%1$s был покаран свыше",
+
+  "block.simulation.herbalists_table": "Стол травника",
+  "item.simulation.ferox_map_fragment_1": "Фрагмент карты Ферокса",
+  "item.simulation.ferox_map_fragment_2": "Фрагмент карты Ферокса",
+  "item.simulation.ferox_map_fragment_3": "Фрагмент карты Ферокса",
+  "item.simulation.ferox_map_fragment_4": "Фрагмент карты Ферокса",
+  "entity.minecraft.villager.simulation.strange_herbalist": "Странный травник"
 }

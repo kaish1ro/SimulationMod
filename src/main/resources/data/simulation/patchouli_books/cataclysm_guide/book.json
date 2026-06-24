@@ -1,0 +1,13 @@
+{
+  "name": "Атлас Катастроф",
+  "landing_text": "Полевые записки об аномальных структурах, обнаруженных в этом мире. Здесь — местонахождение, описание угроз и способы активации обитателей.",
+  "creative_tab": "simulation",
+  "model": "patchouli:book_brown",
+  "use_resource_pack": true,
+  "book_texture": "patchouli:textures/gui/book_brown.png",
+  "filler_texture": "patchouli:textures/gui/page_filler.png",
+  "crafting_texture": "patchouli:textures/gui/crafting.png",
+  "index_icon": "minecraft:nether_star",
+  "show_progress": false,
+  "version": "1"
+}

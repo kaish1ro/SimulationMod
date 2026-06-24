@@ -1,6 +1,6 @@
 {
   "type": "minecraft:jigsaw",
-  "start_pool": "threateningly_mobs:forestpalace",
+  "start_pool": "minecraft:empty",
   "size": 6,
   "max_distance_from_center": 116,
   "spawn_overrides": {},

@@ -42,5 +42,17 @@ public class NetworkHandler {
             CloseNpcDialogPacket::encode,
             CloseNpcDialogPacket::decode,
             CloseNpcDialogPacket::handle);
+
+        CHANNEL.registerMessage(nextId++,
+            CameraShakePacket.class,
+            CameraShakePacket::encode,
+            CameraShakePacket::decode,
+            CameraShakePacket::handle);
+
+        CHANNEL.registerMessage(nextId++,
+            CinematicLookPacket.class,
+            CinematicLookPacket::encode,
+            CinematicLookPacket::decode,
+            CinematicLookPacket::handle);
     }
 }

@@ -1,0 +1,27 @@
+{
+  "name": "Разрушенная Цитадель",
+  "category": "simulation:dungeons",
+  "icon": "minecraft:end_stone_bricks",
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Разрушенная Цитадель",
+      "text": "Измерение: Энд$(br)Местонахождение: внешние острова$(br2)Доступна только после убийства Дракона. Для поиска — Eye of Void. Цитадель стоит на внешних островах Энда. Охраняют её Ender Golem и Endermaptera."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "cataclysm:ender_guardian",
+      "scale": 0.45,
+      "offset": 1.5,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Страж Энда"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Активация",
+      "text": "Спуститься на нижний уровень цитадели. Там находится центральный пьедестал. Подойти к нему — Страж Энда будет призван автоматически."
+    }
+  ]
+}

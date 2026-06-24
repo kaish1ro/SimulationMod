@@ -1,13 +1,18 @@
 package com.eternity.simulation;
 
+import com.eternity.simulation.castle.CastleDataMarker;
+import com.eternity.simulation.castle.CastleSpawnDefinition;
 import com.eternity.simulation.ollama.OllamaMessage;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 
 import java.util.*;
+import java.util.Arrays;
 
 public class SimulationSavedData extends SavedData {
 
@@ -218,6 +223,207 @@ public class SimulationSavedData extends SavedData {
         setDirty();
     }
 
+    // ── Якорь финального замка TF ────────────────────────────────────────────
+
+    /**
+     * Позиция WIP-стенда "Final Castle WIP." (см. ModEvents.onEntityJoinLevel) —
+     * единственная точка центрального корпуса замка, фиксированная по форме
+     * и ориентации (всегда SOUTH) независимо от рандома боковых башен/лабиринтов.
+     * Захватывается один раз при первой загрузке соответствующего чанка.
+     */
+    private boolean castleAnchorSet = false;
+    private BlockPos castleAnchorPos = BlockPos.ZERO;
+
+    public boolean hasCastleAnchor() { return castleAnchorSet; }
+    public BlockPos getCastleAnchorPos() { return castleAnchorPos; }
+
+    /** Сохраняет якорь, если он ещё не был сохранён (первый раз — побеждает). */
+    public void setCastleAnchorPos(BlockPos pos) {
+        if (castleAnchorSet) return;
+        this.castleAnchorPos = pos.immutable();
+        this.castleAnchorSet = true;
+        setDirty();
+    }
+
+    /** Флаг: страж замка побеждён (финальный бой завершён). */
+    private boolean castleGuardianDefeated = false;
+
+    public boolean isCastleGuardianDefeated()      { return castleGuardianDefeated; }
+    public void    setCastleGuardianDefeated(boolean v) { castleGuardianDefeated = v; setDirty(); }
+
+    /** Флаг: головоломка с пьедесталами синей башни решена (статуи/лестницы открыты, blue_tower заспавнен). */
+    private boolean blueTowerPuzzleSolved = false;
+
+    public boolean isBlueTowerPuzzleSolved()      { return blueTowerPuzzleSolved; }
+    public void    setBlueTowerPuzzleSolved(boolean v) { blueTowerPuzzleSolved = v; setDirty(); }
+
+    // ── Битва с главным боссом 2-го этажа (CastleBossFightTask) ──────────────
+
+    /**
+     * Стадия босс-файта:
+     * 0 — ждём гибели группы floor2;
+     * 1 — вступление (молнии, спавн босса);
+     * 2 — ждём падения HP до 25% (волна 1);
+     * 3 — волна 1 активна, босс неуязвим;
+     * 4 — HP восстановлено, ждём падения до 50% (волна 2);
+     * 5 — волна 2 активна, босс неуязвим;
+     * 6 — финал, босс уязвим до смерти;
+     * 7 — босс побеждён, лут выдан.
+     */
+    private int bossFightStage = 0;
+
+    /** UUID заспавненного главного босса (block_factorys_bosses:underworld_knight), или {@code null}. */
+    private UUID bossEntityUuid = null;
+
+    public int     getBossFightStage()       { return bossFightStage; }
+    public void    setBossFightStage(int v)  { bossFightStage = v; setDirty(); }
+
+    public UUID    getBossEntityUuid()       { return bossEntityUuid; }
+    public void    setBossEntityUuid(UUID v) { bossEntityUuid = v; setDirty(); }
+
+    // ── Блокировка строительства (замковая арена) ────────────────────────────
+
+    /**
+     * UUID игроков, которым временно запрещено ломать/ставить блоки —
+     * пока они находятся в арене замкового стража.
+     */
+    private final Set<UUID> buildLockedPlayers = new HashSet<>();
+
+    public boolean isBuildLocked(UUID playerUUID) {
+        return buildLockedPlayers.contains(playerUUID);
+    }
+
+    /** Устанавливает или снимает блокировку строительства для игрока. */
+    public void setBuildLocked(UUID playerUUID, boolean locked) {
+        boolean changed = locked ? buildLockedPlayers.add(playerUUID)
+                                  : buildLockedPlayers.remove(playerUUID);
+        if (changed) setDirty();
+    }
+
+    // ── Запечатывание силового поля крыши (CastleRoofSealTask) ───────────────
+
+    private boolean roofSealActive = false;
+    /** 0=нет, 1=частицы, 2=луч маяка, 3=крышки, 4=кольца, 5=ожидание волны, 6=периметр, 7=очистка */
+    private int roofSealPhase = 0;
+    private int roofSealCap = 0;
+    private int roofSealRing = 7;
+    private int roofWaveWaiting = 0;
+    private int roofPhaseAfterWave = 0;
+    private boolean roofWave1Triggered = false;
+    private boolean roofWave2Triggered = false;
+    private boolean roofWave3Triggered = false;
+
+    public boolean isRoofSealActive()           { return roofSealActive; }
+    public void    setRoofSealActive(boolean v) { roofSealActive = v; setDirty(); }
+    public int  getRoofSealPhase()            { return roofSealPhase; }
+    public void setRoofSealPhase(int v)       { roofSealPhase = v; setDirty(); }
+    public int  getRoofSealCap()              { return roofSealCap; }
+    public void setRoofSealCap(int v)         { roofSealCap = v; setDirty(); }
+    public int  getRoofSealRing()             { return roofSealRing; }
+    public void setRoofSealRing(int v)        { roofSealRing = v; setDirty(); }
+    public int  getRoofWaveWaiting()          { return roofWaveWaiting; }
+    public void setRoofWaveWaiting(int v)     { roofWaveWaiting = v; setDirty(); }
+    public int  getRoofPhaseAfterWave()       { return roofPhaseAfterWave; }
+    public void setRoofPhaseAfterWave(int v)  { roofPhaseAfterWave = v; setDirty(); }
+    public boolean isRoofWave1Triggered()     { return roofWave1Triggered; }
+    public void setRoofWave1Triggered(boolean v) { roofWave1Triggered = v; setDirty(); }
+    public boolean isRoofWave2Triggered()     { return roofWave2Triggered; }
+    public void setRoofWave2Triggered(boolean v) { roofWave2Triggered = v; setDirty(); }
+    public boolean isRoofWave3Triggered()     { return roofWave3Triggered; }
+    public void setRoofWave3Triggered(boolean v) { roofWave3Triggered = v; setDirty(); }
+
+    /**
+     * Расширяет массивы спавн-системы для новых точек спавна (добавляются маркеры крыши).
+     * Сохраняет всё существующее состояние; новые записи инициализируются счётчиком из def.
+     */
+    public void extendCastleSpawnSystem(List<CastleSpawnDefinition> allDefs) {
+        if (!castleSpawnSystemInit) return;
+        int newSize = allDefs.size();
+        if (newSize <= castleSpawnTriggered.length) return;
+        int oldSize = castleSpawnTriggered.length;
+        castleSpawnTriggered = Arrays.copyOf(castleSpawnTriggered, newSize);
+        castleSpawnAlive     = Arrays.copyOf(castleSpawnAlive,     newSize);
+        for (CastleSpawnDefinition def : allDefs) {
+            if (def.index() >= oldSize) {
+                castleSpawnAlive[def.index()] = def.count();
+            }
+        }
+        setDirty();
+    }
+
+    // ── Маркеры замка (DATA-блоки из castle.nbt/labyrinth.nbt) ───────────────
+
+    /**
+     * DATA-маркеры (мобы/лут/двери), собранные при установке castle.nbt и labyrinth.nbt
+     * через {@code /simcastle build}. Заполняется один раз.
+     */
+    private final List<CastleDataMarker> castleMarkers = new ArrayList<>();
+
+    public List<CastleDataMarker> getCastleMarkers() {
+        return Collections.unmodifiableList(castleMarkers);
+    }
+
+    public void setCastleMarkers(List<CastleDataMarker> markers) {
+        castleMarkers.clear();
+        castleMarkers.addAll(markers);
+        setDirty();
+    }
+
+    // ── Спавн-система замка (мобы по триггерам, ключи с keyid) ────────────────
+
+    /** Флаг: спавн-система инициализирована (после успешного {@code /simcastle build}). */
+    private boolean castleSpawnSystemInit = false;
+
+    /** Триггер уже сработал для точки спавна с данным index'ом. */
+    private boolean[] castleSpawnTriggered = new boolean[0];
+
+    /** Сколько мобов из точки спавна с данным index'ом ещё живы. */
+    private int[] castleSpawnAlive = new int[0];
+
+    public boolean isCastleSpawnSystemInit() { return castleSpawnSystemInit; }
+
+    /** Инициализирует состояние спавн-системы (один раз, после постройки замка). */
+    public void initCastleSpawnSystem(List<CastleSpawnDefinition> defs) {
+        castleSpawnTriggered = new boolean[defs.size()];
+        castleSpawnAlive = new int[defs.size()];
+        for (CastleSpawnDefinition def : defs) {
+            castleSpawnAlive[def.index()] = def.count();
+        }
+        castleSpawnSystemInit = true;
+        setDirty();
+    }
+
+    public boolean isSpawnTriggered(int index) {
+        return index >= 0 && index < castleSpawnTriggered.length && castleSpawnTriggered[index];
+    }
+
+    public void setSpawnTriggered(int index) {
+        if (index >= 0 && index < castleSpawnTriggered.length) {
+            castleSpawnTriggered[index] = true;
+            setDirty();
+        }
+    }
+
+    public int getSpawnAlive(int index) {
+        return (index >= 0 && index < castleSpawnAlive.length) ? castleSpawnAlive[index] : 0;
+    }
+
+    /** Принудительно выставляет счётчик живых мобов (сверка с реальными сущностями). */
+    public void setSpawnAlive(int index, int value) {
+        if (index >= 0 && index < castleSpawnAlive.length && castleSpawnAlive[index] != value) {
+            castleSpawnAlive[index] = Math.max(0, value);
+            setDirty();
+        }
+    }
+
+    /** Уменьшает счётчик живых мобов точки спавна, возвращает новое значение (минимум 0). */
+    public int decrementSpawnAlive(int index) {
+        if (index < 0 || index >= castleSpawnAlive.length) return 0;
+        castleSpawnAlive[index] = Math.max(0, castleSpawnAlive[index] - 1);
+        setDirty();
+        return castleSpawnAlive[index];
+    }
+
     // ── Сериализация ─────────────────────────────────────────────────────────
 
     @Override
@@ -243,6 +449,38 @@ public class SimulationSavedData extends SavedData {
         tag.put("wandererHistories",  serializeHistories(wandererHistory));
         tag.put("wandererEncounters", serializeCounters(wandererEncounterCount));
         tag.put("playerLastSeen",     serializeLastSeen(playerLastSeen));
+        tag.put("buildLockedPlayers", serializeUuidSet(buildLockedPlayers));
+
+        tag.putBoolean("castleAnchorSet", castleAnchorSet);
+        if (castleAnchorSet) {
+            tag.putInt("castleAnchorX", castleAnchorPos.getX());
+            tag.putInt("castleAnchorY", castleAnchorPos.getY());
+            tag.putInt("castleAnchorZ", castleAnchorPos.getZ());
+        }
+        tag.putBoolean("castleGuardianDefeated", castleGuardianDefeated);
+        tag.putBoolean("blueTowerPuzzleSolved", blueTowerPuzzleSolved);
+        tag.put("castleMarkers", serializeCastleMarkers(castleMarkers));
+
+        tag.putInt("bossFightStage", bossFightStage);
+        if (bossEntityUuid != null) {
+            tag.putUUID("bossEntityUuid", bossEntityUuid);
+        }
+
+        tag.putBoolean("castleSpawnSystemInit", castleSpawnSystemInit);
+        if (castleSpawnSystemInit) {
+            tag.putByteArray("castleSpawnTriggered", boolArrayToByteArray(castleSpawnTriggered));
+            tag.putIntArray("castleSpawnAlive", castleSpawnAlive);
+        }
+
+        tag.putBoolean("roofSealActive",      roofSealActive);
+        tag.putInt("roofSealPhase",           roofSealPhase);
+        tag.putInt("roofSealCap",             roofSealCap);
+        tag.putInt("roofSealRing",            roofSealRing);
+        tag.putInt("roofWaveWaiting",         roofWaveWaiting);
+        tag.putInt("roofPhaseAfterWave",      roofPhaseAfterWave);
+        tag.putBoolean("roofWave1Triggered",  roofWave1Triggered);
+        tag.putBoolean("roofWave2Triggered",  roofWave2Triggered);
+        tag.putBoolean("roofWave3Triggered",  roofWave3Triggered);
 
         return tag;
     }
@@ -272,6 +510,39 @@ public class SimulationSavedData extends SavedData {
         deserializeHistories(tag.getCompound("wandererHistories"),  data.wandererHistory);
         deserializeCounters(tag.getCompound("wandererEncounters"),  data.wandererEncounterCount);
         deserializeLastSeen(tag.getCompound("playerLastSeen"),      data.playerLastSeen);
+        deserializeUuidSet(tag.getList("buildLockedPlayers", Tag.TAG_STRING), data.buildLockedPlayers);
+
+        data.castleAnchorSet = tag.getBoolean("castleAnchorSet");
+        if (data.castleAnchorSet) {
+            data.castleAnchorPos = new BlockPos(
+                    tag.getInt("castleAnchorX"),
+                    tag.getInt("castleAnchorY"),
+                    tag.getInt("castleAnchorZ"));
+        }
+        data.castleGuardianDefeated = tag.getBoolean("castleGuardianDefeated");
+        data.blueTowerPuzzleSolved = tag.getBoolean("blueTowerPuzzleSolved");
+        deserializeCastleMarkers(tag.getList("castleMarkers", Tag.TAG_COMPOUND), data.castleMarkers);
+
+        data.bossFightStage = tag.getInt("bossFightStage");
+        if (tag.hasUUID("bossEntityUuid")) {
+            data.bossEntityUuid = tag.getUUID("bossEntityUuid");
+        }
+
+        data.castleSpawnSystemInit = tag.getBoolean("castleSpawnSystemInit");
+        if (data.castleSpawnSystemInit) {
+            data.castleSpawnTriggered = byteArrayToBoolArray(tag.getByteArray("castleSpawnTriggered"));
+            data.castleSpawnAlive = tag.getIntArray("castleSpawnAlive");
+        }
+
+        data.roofSealActive      = tag.getBoolean("roofSealActive");
+        data.roofSealPhase       = tag.getInt("roofSealPhase");
+        data.roofSealCap         = tag.getInt("roofSealCap");
+        data.roofSealRing        = tag.contains("roofSealRing") ? tag.getInt("roofSealRing") : 7;
+        data.roofWaveWaiting     = tag.getInt("roofWaveWaiting");
+        data.roofPhaseAfterWave  = tag.getInt("roofPhaseAfterWave");
+        data.roofWave1Triggered  = tag.getBoolean("roofWave1Triggered");
+        data.roofWave2Triggered  = tag.getBoolean("roofWave2Triggered");
+        data.roofWave3Triggered  = tag.getBoolean("roofWave3Triggered");
 
         return data;
     }
@@ -338,6 +609,59 @@ public class SimulationSavedData extends SavedData {
                 target.put(UUID.fromString(key), root.getLong(key));
             } catch (IllegalArgumentException ignored) {}
         }
+    }
+
+    private static ListTag serializeUuidSet(Set<UUID> set) {
+        ListTag list = new ListTag();
+        for (UUID id : set) {
+            list.add(StringTag.valueOf(id.toString()));
+        }
+        return list;
+    }
+
+    private static void deserializeUuidSet(ListTag list, Set<UUID> target) {
+        for (int i = 0; i < list.size(); i++) {
+            try {
+                target.add(UUID.fromString(list.getString(i)));
+            } catch (IllegalArgumentException ignored) {}
+        }
+    }
+
+    private static ListTag serializeCastleMarkers(List<CastleDataMarker> markers) {
+        ListTag list = new ListTag();
+        for (CastleDataMarker marker : markers) {
+            CompoundTag m = new CompoundTag();
+            m.putInt("x", marker.pos().getX());
+            m.putInt("y", marker.pos().getY());
+            m.putInt("z", marker.pos().getZ());
+            m.putString("meta", marker.rawMetadata());
+            list.add(m);
+        }
+        return list;
+    }
+
+    private static void deserializeCastleMarkers(ListTag list, List<CastleDataMarker> target) {
+        for (int i = 0; i < list.size(); i++) {
+            CompoundTag m = list.getCompound(i);
+            BlockPos pos = new BlockPos(m.getInt("x"), m.getInt("y"), m.getInt("z"));
+            target.add(new CastleDataMarker(pos, m.getString("meta")));
+        }
+    }
+
+    private static byte[] boolArrayToByteArray(boolean[] arr) {
+        byte[] out = new byte[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            out[i] = arr[i] ? (byte) 1 : (byte) 0;
+        }
+        return out;
+    }
+
+    private static boolean[] byteArrayToBoolArray(byte[] arr) {
+        boolean[] out = new boolean[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            out[i] = arr[i] != 0;
+        }
+        return out;
     }
 
     // ── Точка доступа ─────────────────────────────────────────────────────────

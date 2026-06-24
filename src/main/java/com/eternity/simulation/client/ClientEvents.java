@@ -2,12 +2,14 @@ package com.eternity.simulation.client;
 
 import com.eternity.simulation.ModEntities;
 import com.eternity.simulation.SimulationMod;
+import com.eternity.simulation.client.model.CastleKeyDoorModelLoader;
 import com.eternity.simulation.menu.ModMenuTypes;
 import com.eternity.simulation.screen.SimulationWorkbenchScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.VillagerRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -23,6 +25,11 @@ public class ClientEvents {
             MenuScreens.register(ModMenuTypes.SIMULATION_WORKBENCH.get(),
                     SimulationWorkbenchScreen::new)
         );
+    }
+
+    @SubscribeEvent
+    public static void onRegisterGeometryLoaders(ModelEvent.RegisterGeometryLoaders event) {
+        event.register("castle_key_door", CastleKeyDoorModelLoader.INSTANCE);
     }
 
     @SubscribeEvent

@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "simulation:castle_key_door",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "base":             "simulation:block/castle_key_door_base",
+    "overlay":          "simulation:block/castle_key_door_overlay",
+    "overlay_connected": "simulation:block/castle_key_door_ctm",
+    "particle":         "simulation:block/castle_key_door_base"
+  }
+}

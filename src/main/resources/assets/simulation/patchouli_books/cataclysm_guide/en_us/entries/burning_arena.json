@@ -1,0 +1,27 @@
+{
+  "name": "Горящая Арена",
+  "category": "simulation:dungeons",
+  "icon": "minecraft:magma_block",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Горящая Арена",
+      "text": "Измерение: Нижний мир$(br)Биом: Nether Wastes$(br2)Массивная арена в пустых землях Незера. Здесь обитают Ignited Berserker и Ignited Revenant — огненные существа, пробудившиеся после гибели обитателей крепостей."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "cataclysm:ignis",
+      "scale": 0.35,
+      "offset": 2.0,
+      "rotate": true,
+      "default_rotation": -15,
+      "name": "Игнис"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Активация",
+      "text": "1. Убить Ignited Revenants внутри арены — они роняют Burning Ashes.$(br2)2. Подняться на верхний этаж.$(br2)3. Положить Burning Ashes на Altar of Fire.$(br2)Игнис будет призван."
+    }
+  ]
+}

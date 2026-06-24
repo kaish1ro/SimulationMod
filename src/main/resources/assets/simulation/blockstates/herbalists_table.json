@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "simulation:block/herbalists_table" }
+  }
+}

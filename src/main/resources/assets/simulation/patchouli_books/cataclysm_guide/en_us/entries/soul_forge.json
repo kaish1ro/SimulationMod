@@ -1,0 +1,27 @@
+{
+  "name": "Кузница Душ",
+  "category": "simulation:dungeons",
+  "icon": "minecraft:netherite_ingot",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Кузница Душ",
+      "text": "Измерение: Нижний мир$(br)Биомы: любые$(br2)Структура разбросана по всему Незеру. Найти несложно — достаточно исследовать его достаточно долго. Внутри работают Koboleton и Kobolediator — небольшие, но многочисленные."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "cataclysm:netherite_monstrosity",
+      "scale": 0.5,
+      "offset": 1.5,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Незеритовое Чудовище"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Активация",
+      "text": "Босс, как правило, уже активен внутри структуры — это первый и наиболее доступный противник. Для призыва миниатюрной версии используется предмет Netherite Effigy, который можно скрафтить или найти в данже."
+    }
+  ]
+}

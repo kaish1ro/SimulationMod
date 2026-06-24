@@ -30,11 +30,23 @@
   "item.simulation.blueprint_group2": "Blueprint: Group II",
   "item.simulation.blueprint_group3": "Blueprint: Group III",
 
+  "block.simulation.castle_key_door": "Castle Door",
+  "item.simulation.castle_key":      "Castle Door Key",
+
   "block.simulation.technical_workbench": "Technical Workbench",
   "block.simulation.double_compressed_cobblestone": "Double Compressed Cobblestone",
   "block.simulation.triple_compressed_cobblestone": "Triple Compressed Cobblestone",
   "block.simulation.quadro_compressed_cobblestone": "Quadruple Compressed Cobblestone",
   "container.simulation.workbench": "Technical Workbench",
   "container.simulation.blueprint_slot": "Blueprint",
-  "itemGroup.simulation.simulation_tab": "Simulation"
+  "itemGroup.simulation.simulation_tab": "Simulation",
+
+  "death.attack.simulation.divine_punishment": "%1$s was struck down from above",
+
+  "block.simulation.herbalists_table": "Herbalist's Table",
+  "item.simulation.ferox_map_fragment_1": "Ferox Map Fragment",
+  "item.simulation.ferox_map_fragment_2": "Ferox Map Fragment",
+  "item.simulation.ferox_map_fragment_3": "Ferox Map Fragment",
+  "item.simulation.ferox_map_fragment_4": "Ferox Map Fragment",
+  "entity.minecraft.villager.simulation.strange_herbalist": "Strange Herbalist"
 }

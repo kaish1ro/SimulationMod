@@ -24,4 +24,12 @@ public class ModStructures {
     public static final RegistryObject<StructurePieceType> STRANGE_WAREHOUSE_PIECE =
             STRUCTURE_PIECE_TYPES.register("strange_warehouse_piece",
                     () -> StrangeWarehousePiece::new);
+
+    public static final RegistryObject<StructureType<HerbalistsHouseStructure>> HERBALISTS_HOUSE =
+            STRUCTURE_TYPES.register("herbalists_house",
+                    () -> () -> HerbalistsHouseStructure.CODEC);
+
+    public static final RegistryObject<StructurePieceType> HERBALISTS_HOUSE_PIECE =
+            STRUCTURE_PIECE_TYPES.register("herbalists_house_piece",
+                    () -> HerbalistsHousePiece::new);
 }

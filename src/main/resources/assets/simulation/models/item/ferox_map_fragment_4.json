@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "simulation:item/ferox_map_fragment_4"
+  }
+}

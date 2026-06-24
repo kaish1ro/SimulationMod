@@ -1,0 +1,27 @@
+{
+  "name": "Проклятая Пирамида",
+  "category": "simulation:dungeons",
+  "icon": "minecraft:suspicious_sand",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Проклятая Пирамида",
+      "text": "Измерение: Оверворлд$(br)Биом: Пустыня$(br2)Заменяет ванильную пирамиду. Внешне похожа, но внутри — совсем другое. Охраняют её Wadjet — змееподобные стражи, агрессивные и быстрые."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "cataclysm:ancient_remnant",
+      "scale": 0.5,
+      "offset": 1.5,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Древний Остаток"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Активация",
+      "text": "1. Найти Suspicious Sand внутри пирамиды и раскопать его.$(br2)2. Среди находок окажется Desert Necklace.$(br2)3. Правый клик предметом по останкам динозавра внутри.$(br2)Остаток пробудится."
+    }
+  ]
+}

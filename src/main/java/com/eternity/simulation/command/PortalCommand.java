@@ -19,8 +19,9 @@ public class PortalCommand {
                         var src = ctx.getSource();
                         SimulationSavedData data = SimulationSavedData.get(src.getServer().overworld());
                         data.setPortalWipUnlocked(true);
+                        data.setDragonDefeated(true);
                         src.sendSuccess(() -> Component.literal(
-                            "§a[SimPortal] §fWIP-блокировка снята. Все измерения открыты."), true);
+                            "§a[SimPortal] §fWIP-блокировка снята, дракон отмечен как убитый. Все измерения открыты."), true);
                         return 1;
                     }))
 

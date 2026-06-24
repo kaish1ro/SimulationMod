@@ -25,6 +25,7 @@ public class SimulationMod {
         ModItems.ITEMS.register(modBus);
         ModBlocks.BLOCKS.register(modBus);
         ModBlocks.BLOCK_ITEMS.register(modBus);
+        ModBlocks.BLOCK_ENTITY_TYPES.register(modBus);
         ModMenuTypes.MENU_TYPES.register(modBus);
         ModBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(modBus);
         ModStructures.STRUCTURE_TYPES.register(modBus);
@@ -32,6 +33,8 @@ public class SimulationMod {
         ModRecipeTypes.RECIPE_TYPES.register(modBus);
         ModRecipeTypes.RECIPE_SERIALIZERS.register(modBus);
         ModCreativeTabs.CREATIVE_TABS.register(modBus);
+        ModVillagers.POI_TYPES.register(modBus);
+        ModVillagers.PROFESSIONS.register(modBus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SimulationConfig.SPEC, "simulation.toml");
 

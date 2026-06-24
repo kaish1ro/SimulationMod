@@ -1,6 +1,6 @@
 {
   "type": "minecraft:jigsaw",
-  "start_pool": "threateningly_mobs:titan_summon_altar",
+  "start_pool": "minecraft:empty",
   "size": 1,
   "max_distance_from_center": 64,
   "spawn_overrides": {},

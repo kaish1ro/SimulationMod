@@ -1,0 +1,7 @@
+{
+  "type": "simulation:herbalists_house",
+  "biomes": "#simulation:herbalists_house",
+  "step": "underground_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}

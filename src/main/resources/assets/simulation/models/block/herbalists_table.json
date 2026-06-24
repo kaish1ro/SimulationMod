@@ -1,0 +1,19 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "all": "simulation:block/herbalists_table",
+    "particle": "simulation:block/herbalists_table"
+  },
+  "elements": [{
+    "from": [0, 0, 0],
+    "to": [16, 16, 16],
+    "faces": {
+      "up":    {"uv": [4,      0,      8,      5.3333], "texture": "#all", "cullface": "up"},
+      "down":  {"uv": [4,      10.6667, 8,     16    ], "texture": "#all", "cullface": "down"},
+      "west":  {"uv": [0,      5.3333, 4,      10.6667], "texture": "#all", "cullface": "west"},
+      "north": {"uv": [4,      5.3333, 8,      10.6667], "texture": "#all", "cullface": "north"},
+      "east":  {"uv": [8,      5.3333, 12,     10.6667], "texture": "#all", "cullface": "east"},
+      "south": {"uv": [12,     5.3333, 16,     10.6667], "texture": "#all", "cullface": "south"}
+    }
+  }]
+}

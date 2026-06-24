@@ -1,10 +1,12 @@
 package com.eternity.simulation;
 
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModCreativeTabs {
@@ -60,7 +62,35 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.DOUBLE_COMPRESSED_COBBLESTONE.get());
                         output.accept(ModBlocks.TRIPLE_COMPRESSED_COBBLESTONE.get());
                         output.accept(ModBlocks.QUADRO_COMPRESSED_COBBLESTONE.get());
+
+                        // ── Дверь замка ───────────────────────────────────────
+                        output.accept(ModBlocks.CASTLE_KEY_DOOR.get());
+                        output.accept(ModItems.CASTLE_KEY.get());
+
+                        // ── Undergarden: стол травника и фрагменты карты ─────
+                        output.accept(ModBlocks.HERBALISTS_TABLE.get());
+                        output.accept(ModItems.FEROX_MAP_FRAGMENT_1.get());
+                        output.accept(ModItems.FEROX_MAP_FRAGMENT_2.get());
+                        output.accept(ModItems.FEROX_MAP_FRAGMENT_3.get());
+                        output.accept(ModItems.FEROX_MAP_FRAGMENT_4.get());
+
+                        // ── Книги Patchouli ───────────────────────────────────
+                        addPatchouliBook(output, "simulation:wanderers_journal");
+                        addPatchouliBook(output, "simulation:artifact_catalog");
+                        addPatchouliBook(output, "simulation:cataclysm_guide");
                     })
                     .build()
     );
+
+    /** Создаёт ItemStack для Patchouli-книги с нужным NBT и добавляет в вкладку. */
+    private static void addPatchouliBook(CreativeModeTab.Output output, String bookId) {
+        var item = ForgeRegistries.ITEMS.getValue(
+                new net.minecraft.resources.ResourceLocation("patchouli", "guide_book"));
+        if (item == null) return;
+        ItemStack stack = new ItemStack(item);
+        CompoundTag tag = new CompoundTag();
+        tag.putString("patchouli:book", bookId);
+        stack.setTag(tag);
+        output.accept(stack);
+    }
 }

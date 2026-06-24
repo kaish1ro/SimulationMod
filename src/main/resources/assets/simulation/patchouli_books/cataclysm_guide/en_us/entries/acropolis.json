@@ -1,0 +1,27 @@
+{
+  "name": "Акрополь",
+  "category": "simulation:dungeons",
+  "icon": "minecraft:prismarine",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Акрополь",
+      "text": "Измерение: Оверворлд$(br)Местонахождение: тёплый океан$(br2)Подводная структура. Для поиска используется Eye of Storm. Охраняют её Clawdian, Cindaria и Urchinkin — морские создания, адаптированные к бою в воде."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "cataclysm:scylla",
+      "scale": 0.35,
+      "offset": 2.0,
+      "rotate": true,
+      "default_rotation": -15,
+      "name": "Сцилла"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Активация",
+      "text": "Добраться до верхней камеры внутри структуры. Там находится Anchor — активировать его. Сцилла, Повелительница Бури, появится и атакует."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": { "type": "minecraft:uniform", "min": 1, "max": 2 },
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:diamond_block", "weight": 2,
+          "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 2 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:emerald_block", "weight": 2,
+          "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 2 } } ] },
+        { "type": "minecraft:item", "name": "twilightforest:fiery_block", "weight": 2,
+          "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:gold_block", "weight": 1,
+          "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 3 } } ] }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:netherite_ingot",
+          "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 2 } } ] }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:enchanted_golden_apple",
+          "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 1, "max": 2 } } ] }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:enchanted_book",
+          "functions": [ { "function": "minecraft:set_enchantments", "enchantments": { "minecraft:mending": 1 } } ] }
+      ]
+    },
+    {
+      "rolls": 2,
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:enchanted_book", "weight": 3,
+          "functions": [ { "function": "minecraft:set_enchantments", "enchantments": { "minecraft:sharpness": 5 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:enchanted_book", "weight": 3,
+          "functions": [ { "function": "minecraft:set_enchantments", "enchantments": { "minecraft:protection": 4 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:enchanted_book", "weight": 3,
+          "functions": [ { "function": "minecraft:set_enchantments", "enchantments": { "minecraft:efficiency": 5 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:enchanted_book", "weight": 2,
+          "functions": [ { "function": "minecraft:set_enchantments", "enchantments": { "minecraft:unbreaking": 3 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:enchanted_book", "weight": 2,
+          "functions": [ { "function": "minecraft:set_enchantments", "enchantments": { "minecraft:looting": 3 } } ] },
+        { "type": "minecraft:item", "name": "minecraft:enchanted_book", "weight": 2,
+          "functions": [ { "function": "minecraft:set_enchantments", "enchantments": { "minecraft:power": 5 } } ] }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:diamond",
+          "functions": [ { "function": "minecraft:set_count", "count": { "type": "minecraft:uniform", "min": 4, "max": 8 } } ] }
+      ]
+    }
+  ]
+}

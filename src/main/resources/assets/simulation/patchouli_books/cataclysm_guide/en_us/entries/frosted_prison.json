@@ -1,0 +1,27 @@
+{
+  "name": "Ледяная Тюрьма",
+  "category": "simulation:dungeons",
+  "icon": "cataclysm:frosted_stone_bricks",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Ледяная Тюрьма",
+      "text": "Измерение: Оверворлд$(br)Биом: снежные равнины$(br2)Для поиска — Eye of Curse. Тюрьма из промёрзшего камня. Внутри — Draugr, Elite Draugr и их командир. Прежде чем добраться до цели, придётся пройти через них всех."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Аптрганг и Малединтус",
+      "text": "Аптрганг — мини-босс тюрьмы. После победы над ним выпадает Strange Key.$(br2)Ключ открывает печать в босс-комнате. За печатью — Cursed Tombstone.$(br2)Правый клик по Cursed Tombstone призывает Малединтуса — настоящего хозяина этого места."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "cataclysm:maledictus",
+      "scale": 0.45,
+      "offset": 1.5,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Малединтус"
+    }
+  ]
+}

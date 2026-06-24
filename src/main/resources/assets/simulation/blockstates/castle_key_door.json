@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "open=false,vanishing=false": { "model": "simulation:block/castle_key_door" },
+    "open=false,vanishing=true":  { "model": "simulation:block/castle_key_door_open" },
+    "open=true,vanishing=false":  { "model": "simulation:block/castle_key_door_open" },
+    "open=true,vanishing=true":   { "model": "simulation:block/castle_key_door_open" }
+  }
+}

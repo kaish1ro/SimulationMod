@@ -1,5 +1,19 @@
 package com.eternity.simulation;
 
+import com.eternity.simulation.castle.CastleClearTask;
+import com.eternity.simulation.castle.CastleForceFieldTask;
+import com.eternity.simulation.castle.CastleTerrainTask;
+import com.eternity.simulation.castle.CastleTerrainFillTask;
+import com.eternity.simulation.castle.CastleTowerFixTask;
+import com.eternity.simulation.castle.CastleSpawnManager;
+import com.eternity.simulation.castle.CastleRevealTask;
+import com.eternity.simulation.castle.CastlePedestalPuzzleTask;
+import com.eternity.simulation.castle.CastleSpawnPointTask;
+import com.eternity.simulation.castle.CastleBossFightTask;
+import com.eternity.simulation.castle.CastleConstants;
+import com.eternity.simulation.castle.CastleRoofSealTask;
+import com.eternity.simulation.castle.CastlePaintingRestoreTask;
+import com.eternity.simulation.command.CastleCommand;
 import com.eternity.simulation.command.PortalCommand;
 import com.eternity.simulation.command.RiftCommand;
 import com.eternity.simulation.villager.VillagerTradeModifier;
@@ -19,6 +33,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -40,11 +56,14 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
+import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -92,6 +111,13 @@ public class ModEvents {
         if (SimulationSavedData.get(overworld).isDragonDefeated()) {
             RiftManager.INSTANCE.adoptOrphanedRift(overworld);
         }
+
+        // Восстановление реестра кастомных картин Immersive Paintings на каждом старте
+        // сервера — реестр живёт в памяти и не переживает перезапуск без /simcastle build.
+        ServerLevel tfLevel = server.getLevel(CastleConstants.TWILIGHT_FOREST_DIM);
+        if (tfLevel != null) {
+            CastlePaintingRestoreTask.restore(tfLevel);
+        }
     }
 
     /**
@@ -107,6 +133,109 @@ public class ModEvents {
                     Component.empty(), ObjectiveCriteria.RenderType.INTEGER);
         }
         sb.getOrCreatePlayerScore("#world", obj).setScore(unlocked ? 1 : 0);
+    }
+
+    /**
+     * Смещение точки приземления относительно якоря (стенда "Final Castle WIP.").
+     * Сам Страж спавнится в {@code anchor + (0, -20, 0)} (см. spawnTFCastleLich) —
+     * сдвигаем игрока в сторону по X, чтобы не приземлиться прямо на босса.
+     * Колонна расчищена в диапазоне dx,dz ∈ [-2, 2], dy ∈ [-5, -21] от якоря.
+     * TODO: подогнать офсет по месту после первого визита.
+     */
+    private static final BlockPos CASTLE_LANDING_OFFSET = new BlockPos(2, -19, 0);
+
+    /**
+     * Телепортирует игрока в Финальный замок TF.
+     *
+     * <p>Если якорь ({@code SimulationSavedData.castleAnchorPos}) уже захвачен
+     * (см. {@code onEntityJoinLevel} — захватывается при первой загрузке чанка
+     * со стендом "Final Castle WIP."), телепортируем сразу на кэшированные
+     * координаты — без поиска структуры.
+     *
+     * <p>Если якоря ещё нет — ищем структуру через ChunkGenerator (эвристика,
+     * сработает только если нужный чанк уже когда-то полностью прогружался —
+     * иначе стенд ещё не заспавнился и якорь не захвачен).
+     */
+    private static void teleportToCastle(ServerPlayer player) {
+        // Откладываем на 20 тиков — к тому моменту игрок уже в измерении
+        player.getServer().execute(() -> {
+            var server = player.getServer();
+            if (server == null) return;
+
+            var tfLevel = server.getLevel(TWILIGHT_FOREST_DIM);
+            if (tfLevel == null) return;
+
+            SimulationSavedData data = SimulationSavedData.get(server.overworld());
+
+            if (data.hasCastleAnchor()) {
+                BlockPos target = data.getCastleAnchorPos().offset(CASTLE_LANDING_OFFSET);
+                player.teleportTo(tfLevel,
+                    target.getX() + 0.5,
+                    target.getY(),
+                    target.getZ() + 0.5,
+                    player.getYRot(), player.getXRot()
+                );
+                applyCastleArrivalEffects(player, data, target);
+                TF_LOGGER.info("[TF Castle] Teleported {} to cached castle anchor {}", player.getName().getString(), target);
+                return;
+            }
+
+            // ── Якорь ещё не захвачен — ищем структуру (старая эвристика) ──────
+            var structureRegistry = tfLevel.registryAccess()
+                .registry(net.minecraft.core.registries.Registries.STRUCTURE)
+                .orElse(null);
+            if (structureRegistry == null) return;
+
+            var castleHolder = structureRegistry.getHolder(TF_CASTLE_KEY).orElse(null);
+            if (castleHolder == null) {
+                TF_LOGGER.warn("[TF Castle] structure holder not found for {}", TF_CASTLE_KEY.location());
+                return;
+            }
+
+            var result = tfLevel.getChunkSource().getGenerator()
+                .findNearestMapStructure(
+                    tfLevel,
+                    net.minecraft.core.HolderSet.direct(castleHolder),
+                    player.blockPosition(),
+                    200,
+                    false
+                );
+
+            if (result == null) {
+                TF_LOGGER.warn("[TF Castle] No final_castle found near {}", player.blockPosition());
+                player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
+                    "§8[Система] §7Замок не найден в радиусе поиска."
+                ));
+                return;
+            }
+
+            var castlePos = result.getFirst();
+            // Телепортируем на вершину структуры + небольшой офсет чтобы не застрять
+            int y = tfLevel.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE,
+                castlePos.getX(), castlePos.getZ());
+            player.teleportTo(tfLevel,
+                castlePos.getX() + 0.5,
+                y + 2,
+                castlePos.getZ() + 0.5,
+                player.getYRot(), player.getXRot()
+            );
+
+            // Якорь ещё не захвачен (чанк со стендом не прогружен) — печать пока не ставим,
+            // её выставит applyCastleArrivalEffects при следующем телепорте на якорь.
+            TF_LOGGER.info("[TF Castle] Teleported {} near castle (no anchor yet) at {}", player.getName().getString(), castlePos);
+        });
+    }
+
+    /** Печать строительства + сообщение игроку при прибытии в арену стража. */
+    private static void applyCastleArrivalEffects(ServerPlayer player, SimulationSavedData data, BlockPos target) {
+        if (data.isCastleGuardianDefeated()) {
+            player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
+                "§8[Система] §7Зал стража пуст — древняя печать спала."));
+            return;
+        }
+        data.setBuildLocked(player.getUUID(), true);
+        player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
+            "§8[Система] §7Древняя печать запрещает что-либо строить или ломать здесь."));
     }
 
     private static boolean getBooleanSafe(GameRules rules, GameRules.Key<GameRules.BooleanValue> key) {
@@ -182,6 +311,17 @@ public class ModEvents {
 
     // ─── Переходы между измерениями ───────────────────────────────────────────
 
+    private static final ResourceKey<Level> TWILIGHT_FOREST_DIM = ResourceKey.create(
+        net.minecraft.core.registries.Registries.DIMENSION,
+        new ResourceLocation("twilightforest", "twilight_forest")
+    );
+
+    private static final ResourceKey<net.minecraft.world.level.levelgen.structure.Structure> TF_CASTLE_KEY =
+        ResourceKey.create(
+            net.minecraft.core.registries.Registries.STRUCTURE,
+            new ResourceLocation("twilightforest", "final_castle")
+        );
+
     @SubscribeEvent
     public static void onChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
@@ -190,6 +330,9 @@ public class ModEvents {
         if (event.getFrom().equals(Level.NETHER) && event.getTo().equals(Level.OVERWORLD)) {
             EncounterManager.INSTANCE.onPlayerExitedNether(player);
         }
+
+        // Телепорт в замок TF при входе — отключён (замок ещё в разработке)
+        // if (event.getTo().equals(TWILIGHT_FOREST_DIM)) { teleportToCastle(player); }
 
         // ВАЖНО: выход из Края НЕ обрабатывается здесь.
         // ServerPlayer.changeDimension для End→Overworld делает ранний return
@@ -261,6 +404,7 @@ public class ModEvents {
         WandererCommand.register(event.getDispatcher());
         RiftCommand.register(event.getDispatcher());
         PortalCommand.register(event.getDispatcher());
+        CastleCommand.register(event.getDispatcher());
     }
 
     // ─── Блокировка Midnight разломов в Обычном мире ─────────────────────────────
@@ -544,6 +688,24 @@ public class ModEvents {
         "follow development of the mod"
     };
 
+    /** Запрещает использование эндерперл в замке (пока роофсил активен). */
+    @SubscribeEvent
+    public static void onEnderpearlThrown(EntityJoinLevelEvent event) {
+        if (event.getLevel().isClientSide()) return;
+        if (!(event.getEntity() instanceof net.minecraft.world.entity.projectile.ThrownEnderpearl pearl)) return;
+        if (!event.getLevel().dimension().equals(TF_DIMENSION)) return;
+        if (!(event.getLevel() instanceof ServerLevel sl)) return;
+
+        SimulationSavedData epData = SimulationSavedData.get(sl.getServer().overworld());
+        if (!epData.isRoofSealActive()) return;
+
+        event.setCanceled(true);
+        if (pearl.getOwner() instanceof ServerPlayer player) {
+            player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
+                "§cВ замке нельзя использовать эндерперлы!"));
+        }
+    }
+
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
         if (event.getLevel().isClientSide()) return;
@@ -575,7 +737,17 @@ public class ModEvents {
                 serverLevel.getServer().getTickCount() + 1,
                 () -> {
                     clearColumnBelow(serverLevel, standPos);
-                    if (spawnLich) spawnTFCastleLich(serverLevel, x, y - 20, z);
+                    if (spawnLich) {
+                        // Страж замка (Underworld Knight) больше не спавнится — он только мешал.
+                        // "Final Castle WIP." стенд — единственная точка центрального
+                        // корпуса замка с фиксированной формой/ориентацией (всегда SOUTH).
+                        // Захватываем её как якорь для последующих телепортов.
+                        SimulationSavedData data = SimulationSavedData.get(serverLevel.getServer().overworld());
+                        if (!data.hasCastleAnchor()) {
+                            data.setCastleAnchorPos(standPos);
+                            TF_LOGGER.info("[TFCastle] Captured castle anchor at {}", standPos);
+                        }
+                    }
                 }
         ));
     }
@@ -695,12 +867,124 @@ public class ModEvents {
         event.setAmount(event.getAmount() / 2.3f);
     }
 
+    // ─── Битва с боссом замка: неуязвимость на волнах + удержание порога HP ──────
+
+    @SubscribeEvent
+    public static void onCastleBossHurt(LivingHurtEvent event) {
+        if (event.getEntity().level().isClientSide()) return;
+        CastleBossFightTask.onBossHurt(event);
+    }
+
+    /**
+     * Мобы замка с тегом {@link CastleSpawnManager#TEAM_TAG} (включая босса) не выбирают
+     * друг друга целью — иначе мобы волн агрятся на босса и помогают игроку его убить.
+     * Это корень проблемы: без отмены таргета они всё равно подбегают и бьют союзников,
+     * а отмена одного лишь урона ({@link #onCastleTeamDamage}) этого не лечит.
+     */
+    @SubscribeEvent
+    public static void onCastleTeamTarget(LivingChangeTargetEvent event) {
+        LivingEntity target = event.getNewTarget();
+        if (target == null) return;
+        if (!target.getTags().contains(CastleSpawnManager.TEAM_TAG)) return;
+        if (event.getEntity().getTags().contains(CastleSpawnManager.TEAM_TAG)) {
+            event.setCanceled(true);
+        }
+    }
+
+    /** Мобы замка с тегом {@link CastleSpawnManager#TEAM_TAG} (включая босса) не наносят урон друг другу. */
+    @SubscribeEvent
+    public static void onCastleTeamDamage(LivingHurtEvent event) {
+        LivingEntity victim = event.getEntity();
+        if (!victim.getTags().contains(CastleSpawnManager.TEAM_TAG)) return;
+
+        Entity attacker = event.getSource().getEntity();
+        if (attacker == null) attacker = event.getSource().getDirectEntity();
+        if (attacker != null && attacker.getTags().contains(CastleSpawnManager.TEAM_TAG)) {
+            event.setCanceled(true);
+        }
+    }
+
+    /** Запрещает главному боссу замка ломать блоки (лестницы и т.п.). */
+    @SubscribeEvent
+    public static void onCastleBossBlockBreak(LivingDestroyBlockEvent event) {
+        if (event.getEntity().getTags().contains(CastleBossFightTask.MAIN_BOSS_TAG)) {
+            event.setCanceled(true);
+        }
+    }
+
     // ─── Отмена дропа у специальных боссов (Страж замка, Inferno запечатывания) ──
+
+    // ─── Блокировка строительства в арене замкового стража ───────────────────
+
+    /** Запрещает ломать блоки игрокам с активной печатью замка. */
+    @SubscribeEvent
+    public static void onBuildLockBreak(BlockEvent.BreakEvent event) {
+        if (!(event.getPlayer() instanceof ServerPlayer player)) return;
+        if (!(event.getLevel() instanceof ServerLevel serverLevel)) return;
+
+        if (SimulationSavedData.get(serverLevel.getServer().overworld()).isBuildLocked(player.getUUID())) {
+            event.setCanceled(true);
+            player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
+                "§8[Система] §7Древняя печать не позволяет ломать блоки здесь."));
+        }
+    }
+
+    /** Запрещает ставить блоки игрокам с активной печатью замка. Маяк на позицию распечатывания — исключение. */
+    @SubscribeEvent
+    public static void onBuildLockPlace(BlockEvent.EntityPlaceEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (!(event.getLevel() instanceof ServerLevel serverLevel)) return;
+
+        SimulationSavedData data = SimulationSavedData.get(serverLevel.getServer().overworld());
+        if (!data.isBuildLocked(player.getUUID())) return;
+
+        // Разрешаем установку маяка на ожидаемую позицию (для распечатывания поля)
+        BlockPos expectedBeacon = CastleRoofSealTask.getExpectedBeaconPos();
+        if (event.getPlacedBlock().getBlock() == net.minecraft.world.level.block.Blocks.BEACON
+                && expectedBeacon != null && event.getPos().equals(expectedBeacon)) {
+            return; // не отменяем — маяк пройдёт, onBeaconPlaced поймает его
+        }
+
+        event.setCanceled(true);
+        player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
+            "§8[Система] §7Древняя печать не позволяет ставить блоки здесь."));
+    }
+
+    private static final org.apache.logging.log4j.Logger BEACON_LOGGER =
+            org.apache.logging.log4j.LogManager.getLogger("simulation.BeaconPlace");
+
+    /** Перехватывает установку маяка на позицию распечатывания и запускает следующую фазу. */
+    @SubscribeEvent
+    public static void onBeaconPlaced(BlockEvent.EntityPlaceEvent event) {
+        if (event.getLevel().isClientSide()) return;
+        if (event.getPlacedBlock().getBlock() != net.minecraft.world.level.block.Blocks.BEACON) return;
+        if (!(event.getLevel() instanceof ServerLevel serverLevel)) return;
+
+        BlockPos placed = event.getPos();
+        BlockPos expectedBeacon = CastleRoofSealTask.getExpectedBeaconPos();
+
+        BEACON_LOGGER.info("[BeaconPlace] Маяк поставлен на {} | ожидается {} | совпадение={}",
+                placed, expectedBeacon, placed.equals(expectedBeacon));
+
+        if (expectedBeacon == null || !placed.equals(expectedBeacon)) return;
+
+        SimulationSavedData data = SimulationSavedData.get(serverLevel.getServer().overworld());
+        CastleRoofSealTask.onBeaconPlaced(serverLevel, data);
+    }
+
+    /** Выпадение castle_key с мобов замка, у точки спавна которых есть keyid. */
+    @SubscribeEvent
+    public static void onCastleSpawnDeath(LivingDeathEvent event) {
+        CastleSpawnManager.onLivingDeath(event);
+    }
 
     @SubscribeEvent
     public static void onCastleGuardianDrops(LivingDropsEvent event) {
         var tags = event.getEntity().getTags();
-        if (tags.contains("tf_castle_guardian") || tags.contains("sealed_rift_boss")) {
+        // Стражи, боссы и все мобы замка (simulation_castle_team) не дропают лут — только ключи через onLivingDeath
+        if (tags.contains("tf_castle_guardian")
+                || tags.contains("sealed_rift_boss")
+                || tags.contains(com.eternity.simulation.castle.CastleSpawnManager.TEAM_TAG)) {
             event.setCanceled(true);
         }
     }
@@ -834,6 +1118,27 @@ public class ModEvents {
         serverLevel.addFreshEntity(shard);
     }
 
+    /** При гибели стража замка снимаем печать строительства с игроков рядом. */
+    @SubscribeEvent
+    public static void onCastleGuardianDeath(LivingDeathEvent event) {
+        if (!event.getEntity().getTags().contains("tf_castle_guardian")) return;
+        if (!(event.getEntity().level() instanceof ServerLevel serverLevel)) return;
+
+        SimulationSavedData data = SimulationSavedData.get(serverLevel.getServer().overworld());
+        data.setCastleGuardianDefeated(true);
+        BlockPos deathPos = event.getEntity().blockPosition();
+
+        for (ServerPlayer p : serverLevel.getServer().getPlayerList().getPlayers()) {
+            if (!data.isBuildLocked(p.getUUID())) continue;
+            if (p.level() != serverLevel) continue;
+            if (!p.blockPosition().closerThan(deathPos, 150)) continue;
+
+            data.setBuildLocked(p.getUUID(), false);
+            p.sendSystemMessage(net.minecraft.network.chat.Component.literal(
+                "§8[Система] §7Печать замка спадает — теперь здесь снова можно строить."));
+        }
+    }
+
     // ─── Блокировка порталов по прогрессии ──────────────────────────────────
 
     /** Сумеречный Лес — единственное открытое измерение после дракона (pre-alpha). */
@@ -890,10 +1195,83 @@ public class ModEvents {
 
     // Счётчик для EncounterManager (каждые 100 тиков = 5 сек)
     private static int encounterTickCounter = 0;
+    private static int fieldBoundaryTick    = 0;
+
+    /**
+     * Проверяет, не вышел ли кто-то за периметр силового поля.
+     * Пока {@link CastleRoofSealTask} активен (поле закрыто) — телепортирует нарушителя
+     * на маркер {@code 5spawnpoint}.
+     */
+    private static void tickFieldBoundary() {
+        var server = net.minecraftforge.server.ServerLifecycleHooks.getCurrentServer();
+        if (server == null) return;
+
+        SimulationSavedData data = SimulationSavedData.get(server.overworld());
+        if (!data.isRoofSealActive()) return;
+
+        net.minecraft.server.level.ServerLevel tfLevel = server.getLevel(com.eternity.simulation.castle.CastleConstants.TWILIGHT_FOREST_DIM);
+        if (tfLevel == null) return;
+
+        // Ищем маркер 5spawnpoint
+        net.minecraft.core.BlockPos spawnMarker = null;
+        for (com.eternity.simulation.castle.CastleDataMarker marker : data.getCastleMarkers()) {
+            if (marker.has("5spawnpoint")) { spawnMarker = marker.pos(); break; }
+        }
+        if (spawnMarker == null) return;
+
+        final net.minecraft.core.BlockPos tp = spawnMarker;
+        for (ServerPlayer player : tfLevel.players()) {
+            if (com.eternity.simulation.castle.CastleRoofSealTask.isOutsideField(player.blockPosition())) {
+                player.teleportTo(tp.getX() + 0.5, tp.getY(), tp.getZ() + 0.5);
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
+
+        // Батчевая зачистка замка (если запущена через /simcastle clear)
+        CastleClearTask.tick();
+
+        // Батчевое продление синего силового поля вниз (если запущено через /simcastle forcefield)
+        CastleForceFieldTask.tick();
+
+        // Батчевое выравнивание ландшафта вокруг замка (если запущено через /simcastle terrain)
+        CastleTerrainTask.tick();
+
+        // Батчевая засыпка ям от снесённых башен (если запущено через /simcastle terrainfill)
+        CastleTerrainFillTask.tick();
+
+        // Батчевое доделывание нижних частей башен (если запущено через /simcastle towers)
+        CastleTowerFixTask.tick();
+
+        // Спавн мобов замка по приближению + триггер floor1_boss
+        CastleSpawnManager.tick();
+
+        // Дымовые столбы и появление мобов с отложенным спавном (каждый тик, без интервала)
+        CastleSpawnManager.tickPendingSpawns();
+
+        // Батчевая стройка лестниц после remove_statue (если запущена через CastleRevealTask.start)
+        CastleRevealTask.tick();
+
+        // Проверка пьедесталов головоломки синей башни (раз в 20 тиков)
+        CastlePedestalPuzzleTask.tick();
+
+        // Точки возрождения замка (маркеры Nspawnpoint), раз в 20 тиков
+        CastleSpawnPointTask.tick();
+
+        // Битва с главным боссом 2-го этажа (underworld_knight, волны boss_fight)
+        CastleBossFightTask.tick();
+
+        // Распечатывание силового поля крыши замка (фиолетовые столбы, маяк, кольца)
+        CastleRoofSealTask.tick();
+
+        // Граница поля: если поле активно и игрок вышел за XZ-периметр — телепортируем на 5spawnpoint
+        if (++fieldBoundaryTick >= 40) {
+            fieldBoundaryTick = 0;
+            tickFieldBoundary();
+        }
 
         // Тикаем последовательность запечатывания (каждый тик, она сама отслеживает время)
         if (RiftSealingSequence.INSTANCE.needsTick()) {

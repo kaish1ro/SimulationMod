@@ -41,10 +41,29 @@ public class EquipmentBalanceManager {
 
     // ── UUID модификаторов ────────────────────────────────────────────────────
 
-    private static final UUID WEAPON_UUID    = UUID.fromString("a1b2c3d4-e5f6-7890-abcd-ef1234567890");
-    private static final UUID ARMOR_UUID     = UUID.fromString("b1c2d3e4-f5a6-7890-bcde-f01234567891");
-    private static final UUID TOUGHNESS_UUID = UUID.fromString("c1d2e3f4-a5b6-7890-cdef-012345678902");
-    private static final UUID KNOCKBACK_UUID = UUID.fromString("d1e2f3a4-b5c6-7890-def0-123456789013");
+    private static final UUID WEAPON_UUID           = UUID.fromString("a1b2c3d4-e5f6-7890-abcd-ef1234567890");
+    private static final UUID ARMOR_UUID            = UUID.fromString("b1c2d3e4-f5a6-7890-bcde-f01234567891");
+    private static final UUID TOUGHNESS_UUID        = UUID.fromString("c1d2e3f4-a5b6-7890-cdef-012345678902");
+    private static final UUID KNOCKBACK_UUID        = UUID.fromString("d1e2f3a4-b5c6-7890-def0-123456789013");
+    /** Базовый урон оружия Cataclysm (до дракона = 8, устанавливается в ItemAttributeModifierEvent). */
+    private static final UUID CATACLYSM_BASE_UUID    = UUID.fromString("e1f2a3b4-c5d6-7890-ef01-234567890124");
+    /** Бонус урона после убийства дракона (+1, итого 9). */
+    private static final UUID CATACLYSM_STAGE_UUID   = UUID.fromString("f1a2b3c4-d5e6-7890-f012-345678901235");
+    /** Корректирующий модификатор брони Cataclysm (только вниз до незеритового уровня). */
+    private static final UUID CATACLYSM_ARMOR_UUID   = UUID.fromString("a2b3c4d5-e6f7-8901-bcde-f12345678906");
+    private static final UUID CATACLYSM_TOUGH_UUID   = UUID.fromString("b3c4d5e6-f7a8-9012-cdef-012345678907");
+    private static final UUID CATACLYSM_KB_UUID      = UUID.fromString("c4d5e6f7-a8b9-0123-def0-123456789018");
+
+    /**
+     * Железно-тирные крафтовые предметы Cataclysm — оставляем оригинальные статы,
+     * не применяем stage-cap. Black Steel = ~6 урона, аналог железа.
+     */
+    private static final Set<String> CATACLYSM_IRON_TIER = Set.of(
+        "cataclysm:black_steel_sword",
+        "cataclysm:black_steel_axe",
+        "cataclysm:black_steel_pickaxe",
+        "cataclysm:black_steel_shovel"
+    );
 
     // ── Voidscape cooldown ────────────────────────────────────────────────────
 
@@ -107,11 +126,47 @@ public class EquipmentBalanceManager {
             }
         }
 
-        // ── Броня: только для родного слота предмета ──────────────────────────
-        // getArmorSlot возвращает слот по суффиксу пути, например _chestplate → CHEST.
-        // Это предотвращает дублирование «Когда обуто / на ноги / ...» в тултипе.
-        EquipmentSlot itemArmorSlot = getArmorSlot(path);
+        // ── Cataclysm: cap урона до 7 (= 8 отображаемых) для оружия из боссов ──
+        // Железно-тирные крафтовые предметы (black_steel_*) оставляем нетронутыми.
+        // Стейдж-бонус (+1 после дракона) добавляется через PlayerTickEvent.
+        if (slot == EquipmentSlot.MAINHAND && "cataclysm".equals(ns)
+                && event.getModifiers().containsKey(Attributes.ATTACK_DAMAGE)
+                && !CATACLYSM_IRON_TIER.contains(full)) {
+            // getModifiers() — unmodifiable multimap, removeModifier не работает надёжно.
+            // Вместо удаления считаем сумму существующих ADDITION-модификаторов
+            // и добавляем корректирующий, чтобы итог = 7 (= 8 отображаемых: 1 base + 7).
+            double currentSum = event.getModifiers().get(Attributes.ATTACK_DAMAGE).stream()
+                    .filter(m -> m.getOperation() == AttributeModifier.Operation.ADDITION)
+                    .mapToDouble(AttributeModifier::getAmount)
+                    .sum();
+            double correction = 7.0 - currentSum;
+            if (Math.abs(correction) > 0.001) {
+                event.addModifier(Attributes.ATTACK_DAMAGE,
+                        new AttributeModifier(CATACLYSM_BASE_UUID, "cataclysm_cap",
+                                correction, AttributeModifier.Operation.ADDITION));
+            }
+        }
 
+        // ── Cataclysm броня: кап до незеритового уровня (только вниз) ───────────
+        // Незерит: шлем/сапоги=3, нагрудник=8, поножи=6, вязкость=3, кб=0.1 за предмет.
+        // Correction добавляется только если currentSum > cap — никогда не баффаем слабую броню.
+        EquipmentSlot itemArmorSlot = getArmorSlot(path);
+        if ("cataclysm".equals(ns) && itemArmorSlot != null && itemArmorSlot == slot) {
+            double armorCap = switch (itemArmorSlot) {
+                case HEAD  -> 3.0;
+                case CHEST -> 8.0;
+                case LEGS  -> 6.0;
+                case FEET  -> 3.0;
+                default    -> -1.0;
+            };
+            if (armorCap > 0) {
+                capAttribute(event, Attributes.ARMOR,               armorCap, CATACLYSM_ARMOR_UUID, "cataclysm_armor_cap");
+                capAttribute(event, Attributes.ARMOR_TOUGHNESS,     3.0,      CATACLYSM_TOUGH_UUID, "cataclysm_tough_cap");
+                capAttribute(event, Attributes.KNOCKBACK_RESISTANCE, 0.1,     CATACLYSM_KB_UUID,    "cataclysm_kb_cap");
+            }
+        }
+
+        // ── Броня других измерений: бонусные статы ────────────────────────────
         if (itemArmorSlot != null && itemArmorSlot == slot) {
             double armorBonus    = 0;
             double toughBonus    = 0;
@@ -156,6 +211,7 @@ public class EquipmentBalanceManager {
 
         applySetEffects(player, level);
         tickVoidTrigger(player, level);
+        if (player.tickCount % 20 == 0) tickCataclysmWeaponStage(player, data);
     }
 
     private static void applySetEffects(ServerPlayer player, ServerLevel level) {
@@ -203,6 +259,39 @@ public class EquipmentBalanceManager {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 2, false, false));
     }
 
+    // ── CATACLYSM: стейдж-бонус урона ────────────────────────────────────────
+
+    /**
+     * Каждую секунду проверяет: держит ли игрок оружие Cataclysm, убит ли дракон.
+     * <ul>
+     *   <li>До дракона: базовое значение из ItemAttributeModifierEvent = 8 урона</li>
+     *   <li>После дракона: +1 трансиентный модификатор → 9 урона</li>
+     * </ul>
+     */
+    private static void tickCataclysmWeaponStage(ServerPlayer player, SimulationSavedData data) {
+        ItemStack held = player.getMainHandItem();
+        ResourceLocation heldKey = ForgeRegistries.ITEMS.getKey(held.getItem());
+        String heldFull = heldKey != null ? heldKey.toString() : "";
+        boolean holdingCataclysm = !held.isEmpty()
+                && "cataclysm".equals(heldKey != null ? heldKey.getNamespace() : "")
+                && !CATACLYSM_IRON_TIER.contains(heldFull)
+                && held.getItem().getDefaultAttributeModifiers(net.minecraft.world.entity.EquipmentSlot.MAINHAND)
+                        .containsKey(Attributes.ATTACK_DAMAGE);
+
+        var attackAttr = player.getAttribute(Attributes.ATTACK_DAMAGE);
+        if (attackAttr == null) return;
+
+        if (holdingCataclysm && data.isDragonDefeated()) {
+            if (attackAttr.getModifier(CATACLYSM_STAGE_UUID) == null) {
+                attackAttr.addTransientModifier(new AttributeModifier(
+                        CATACLYSM_STAGE_UUID, "cataclysm_stage_dmg",
+                        1.0, AttributeModifier.Operation.ADDITION));
+            }
+        } else {
+            attackAttr.removeModifier(CATACLYSM_STAGE_UUID);
+        }
+    }
+
     // ── БОЕВЫЕ ПАССИВКИ ───────────────────────────────────────────────────────
 
     /** Charoite / Diopside / Horizonite: +1.5 чистого урона в ближнем бою. */
@@ -226,6 +315,23 @@ public class EquipmentBalanceManager {
         if (event.getSource().getDirectEntity() != attacker) return;
 
         event.setAmount(event.getAmount() * 1.15f);
+    }
+
+    /**
+     * Меч из чёрной стали: 20% шанс восстановить 1 HP при попадании в ближнем бою.
+     * Срабатывает только на реальных существах (не на блоках и т.д.).
+     */
+    @SubscribeEvent
+    public static void onBlackSteelSwordHeal(LivingHurtEvent event) {
+        if (!(event.getSource().getEntity() instanceof ServerPlayer attacker)) return;
+        if (event.getSource().getDirectEntity() != attacker) return; // только ближний бой
+
+        ResourceLocation heldId = ForgeRegistries.ITEMS.getKey(attacker.getMainHandItem().getItem());
+        if (heldId == null || !"cataclysm:black_steel_sword".equals(heldId.toString())) return;
+
+        if (attacker.getRandom().nextFloat() < 0.20f) {
+            attacker.heal(2.0f); // 2 HP = 1 сердце
+        }
     }
 
     /** Gravitite: иммунитет к урону от падения. */
@@ -268,6 +374,13 @@ public class EquipmentBalanceManager {
             event.getToolTip().add(Component.empty());
             event.getToolTip().add(Component.literal("Бонус полного сета брони:").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
             event.getToolTip().add(Component.literal("◆ " + hint).withStyle(ChatFormatting.DARK_AQUA));
+        }
+
+        // Пассивка меча из чёрной стали
+        if ("cataclysm:black_steel_sword".equals(full)) {
+            event.getToolTip().add(Component.empty());
+            event.getToolTip().add(Component.literal("Пассивка:").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+            event.getToolTip().add(Component.literal("◆ При атаке: 20% шанс восстановить 1 сердце").withStyle(ChatFormatting.DARK_RED));
         }
     }
 
@@ -318,6 +431,24 @@ public class EquipmentBalanceManager {
             || path.equals("shovel")    || path.equals("hoe")     || path.equals("xbow")
             || path.equals("bow")       || path.endsWith("_bow")  || path.endsWith("_staff")
             || path.endsWith("_blade")  || path.endsWith("_wand") || path.endsWith("_crossbow");
+    }
+
+    /**
+     * Добавляет корректирующий модификатор чтобы снизить атрибут до cap.
+     * Если текущая сумма уже ≤ cap — ничего не делает (не баффает).
+     */
+    private static void capAttribute(ItemAttributeModifierEvent event,
+                                     net.minecraft.world.entity.ai.attributes.Attribute attr,
+                                     double cap, UUID uuid, String name) {
+        double current = event.getModifiers().get(attr).stream()
+                .filter(m -> m.getOperation() == AttributeModifier.Operation.ADDITION)
+                .mapToDouble(AttributeModifier::getAmount)
+                .sum();
+        double correction = cap - current;
+        if (correction < -0.001) { // только если превышает кап
+            event.addModifier(attr, new AttributeModifier(uuid, name,
+                    correction, AttributeModifier.Operation.ADDITION));
+        }
     }
 
     private static boolean isArmorPiece(String path) {

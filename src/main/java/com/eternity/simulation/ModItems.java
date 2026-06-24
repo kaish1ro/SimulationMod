@@ -1,6 +1,8 @@
 package com.eternity.simulation;
 
 import com.eternity.simulation.items.BlueprintItem;
+import com.eternity.simulation.items.CastleKeyItem;
+import com.eternity.simulation.items.FeroxMapFragmentItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.registries.DeferredRegister;
@@ -82,5 +84,37 @@ public class ModItems {
     public static final RegistryObject<Item> BLUEPRINT_GROUP3 = ITEMS.register(
         "blueprint_group3",
         () -> new BlueprintItem(new Item.Properties().stacksTo(16).rarity(Rarity.EPIC), 3)
+    );
+
+    // ── Undergarden: фрагменты карты Ферокса (4 штуки, собираются в карту) ──
+
+    public static final RegistryObject<Item> FEROX_MAP_FRAGMENT_1 = ITEMS.register(
+        "ferox_map_fragment_1",
+        () -> new FeroxMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
+    public static final RegistryObject<Item> FEROX_MAP_FRAGMENT_2 = ITEMS.register(
+        "ferox_map_fragment_2",
+        () -> new FeroxMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
+    public static final RegistryObject<Item> FEROX_MAP_FRAGMENT_3 = ITEMS.register(
+        "ferox_map_fragment_3",
+        () -> new FeroxMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
+    public static final RegistryObject<Item> FEROX_MAP_FRAGMENT_4 = ITEMS.register(
+        "ferox_map_fragment_4",
+        () -> new FeroxMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
+
+    // ── Ключ от замка TF ──────────────────────────────────────────────────────
+
+    /**
+     * Ключ от финального замка Twilight Forest.
+     * Используется на блоке {@link com.eternity.simulation.blocks.CastleKeyDoorBlock}
+     * для открытия дверного проёма. Потребляется при использовании.
+     * Нестакуется — один ключ = один проём.
+     */
+    public static final RegistryObject<Item> CASTLE_KEY = ITEMS.register(
+        "castle_key",
+        () -> new CastleKeyItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON))
     );
 }

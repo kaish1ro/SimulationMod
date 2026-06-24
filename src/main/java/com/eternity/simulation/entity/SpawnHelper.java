@@ -25,7 +25,7 @@ public class SpawnHelper {
     private static final int SURFACE_MAX = 60;
     private static final int UNDERGROUND_MIN = 15;
     private static final int UNDERGROUND_MAX = 25;
-    private static final int MAX_ATTEMPTS = 30;
+    private static final int MAX_ATTEMPTS = 60;
 
     /**
      * Угол конуса "поле зрения" игрока — точки внутри этого угла пропускаем.
@@ -85,13 +85,17 @@ public class SpawnHelper {
             if (!level.getBlockState(pos).isAir())                         continue;
             if (!level.getBlockState(pos.below()).isSolid())               continue;
             if (!level.canSeeSky(pos))                                     continue;
-            if (!isSafeArea(level, pos))                                   continue;
             // Не спавним если позиция сильно выше или ниже игрока
             if (Math.abs(y - player.blockPosition().getY()) > MAX_Y_DIFF) continue;
 
             return pos;
         }
-        return null;
+
+        // Гарантированный фоллбэк — прямо перед игроком, без проверок
+        int fx = (int)(player.getX() + lookH.x * SURFACE_MIN);
+        int fz = (int)(player.getZ() + lookH.z * SURFACE_MIN);
+        int fy = level.getHeight(Heightmap.Types.WORLD_SURFACE, fx, fz);
+        return new BlockPos(fx, fy, fz);
     }
 
     /**

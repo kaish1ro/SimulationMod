@@ -1,0 +1,27 @@
+{
+  "name": "Затонувший Город",
+  "category": "simulation:dungeons",
+  "icon": "minecraft:dark_prismarine",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Затонувший Город",
+      "text": "Измерение: Оверворлд$(br)Биом: глубокий океан$(br2)Целый город на дне. Здесь живут Deepling всех разновидностей — Brute, Angler, Priest, Warlock. Каждый опаснее предыдущего. Приходить сюда без зелий дыхания бессмысленно."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "cataclysm:the_leviathan",
+      "scale": 0.2,
+      "offset": 2.5,
+      "rotate": true,
+      "default_rotation": -15,
+      "name": "Левиафан"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Активация",
+      "text": "1. Скрафтить Abyssal Sacrifice — ингредиенты найдутся в городе.$(br2)2. Найти Altar of Abyss внутри структуры.$(br2)3. Активировать предмет на алтаре.$(br2)Важно: Левиафан неуязвим вне воды."
+    }
+  ]
+}

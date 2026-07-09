@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:void_worm_eye"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.void_worm_split.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.void_worm_split.desc"
+    },
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "simulation:end/alexsmobs/mysterious_worm",
+  "criteria": {
+    "ex": {
+      "trigger": "alexsmobs:void_worm_split"
+    }
+  },
+  "requirements": [
+    [
+      "ex"
+    ]
+  ]
+}

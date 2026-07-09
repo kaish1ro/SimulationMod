@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "midnight_madness:necropolis",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 31,
+    "separation": 27,
+    "salt": 1013413616
+  }
+}

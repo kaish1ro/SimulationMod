@@ -1,0 +1,43 @@
+{
+  "parent": "simulation:hunts/aquamirae/obtain_shell_horn",
+  "display": {
+    "icon": {
+      "item": "aquamirae:frozen_key"
+    },
+    "title": {
+      "text": "\u041f\u0440\u0438\u0437\u0440\u0430\u043a \u043a\u0430\u043f\u0438\u0442\u0430\u043d\u0430 \u041a\u043e\u0440\u043d\u0435\u043b\u0438\u0438"
+    },
+    "description": {
+      "text": "\u041f\u043e\u0431\u0435\u0434\u0438\u0442\u0435 \u041f\u0440\u0438\u0437\u0440\u0430\u043a \u043a\u0430\u043f\u0438\u0442\u0430\u043d\u0430 \u041a\u043e\u0440\u043d\u0435\u043b\u0438\u0438, \u043f\u0440\u0438\u0437\u0432\u0430\u043d\u043d\u044b\u0439 \u0413\u043e\u0440\u043d\u043e\u043c-\u0440\u0430\u043a\u0443\u0448\u043a\u043e\u0439."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_captain_cornelia": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "aquamirae:captain_cornelia"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_captain_cornelia"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": false
+}

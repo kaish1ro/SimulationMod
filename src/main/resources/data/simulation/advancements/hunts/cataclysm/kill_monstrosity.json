@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "cataclysm:infernal_forge"
+    },
+    "title": {
+      "text": "Монстр из незерита"
+    },
+    "description": {
+      "text": "Победите Netherite Monstrosity."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "cataclysm:netherite_monstrosity"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/cataclysm/find_soul_black_smith"
+}

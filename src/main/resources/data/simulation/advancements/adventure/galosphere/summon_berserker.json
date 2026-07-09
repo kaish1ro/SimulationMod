@@ -1,0 +1,40 @@
+{
+  "parent": "simulation:adventure/root",
+  "criteria": {
+    "summoned": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "galosphere:berserker"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Призовите берсерка."
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "galosphere:preserved_flesh"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Царство ужаса"
+    }
+  },
+  "requirements": [
+    [
+      "summoned"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

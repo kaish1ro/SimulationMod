@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "bygonenether:wither_waltz_music_disc"
+    },
+    "title": {
+      "text": "\u0412 \u0442\u0435\u043c\u043f\u0435 \u0432\u0430\u043b\u044c\u0441\u0430"
+    },
+    "description": {
+      "text": "\u0414\u043e\u0431\u0443\u0434\u044c\u0442\u0435 \u043f\u043b\u0430\u0441\u0442\u0438\u043d\u043a\u0443 Wither Waltz."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:nether/bygonenether/catacomb",
+  "criteria": {
+    "music_disc": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bygonenether:wither_waltz_music_disc"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "music_disc"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

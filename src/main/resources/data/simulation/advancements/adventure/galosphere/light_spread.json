@@ -1,0 +1,29 @@
+{
+  "parent": "simulation:adventure/root",
+  "display": {
+    "icon": {
+      "item": "galosphere:glow_flare"
+    },
+    "title": {
+      "text": "Свет разгорается"
+    },
+    "description": {
+      "text": "Запустите светящуюся сигнальную ракету."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "light_spread": {
+      "trigger": "galosphere:light_spread",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "light_spread"
+    ]
+  ]
+}

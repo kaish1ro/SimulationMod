@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "legendary_monsters:the_great_frost"
+    },
+    "title": {
+      "text": "Великий мороз"
+    },
+    "description": {
+      "text": "Победите Frostbitten Golem."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "legendary_monsters:frostbitten_golem"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/legendary/find_frostbitten_temple"
+}

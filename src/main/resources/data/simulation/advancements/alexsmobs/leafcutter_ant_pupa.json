@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:leafcutter_ant_pupa"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.leafcutter_ant_pupa.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.leafcutter_ant_pupa.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/gongylidia",
+  "criteria": {
+    "leafcutter_ant_pupa": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexsmobs:leafcutter_ant_pupa"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

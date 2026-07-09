@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "born_in_chaos_v1:krampuss_bag"
+    },
+    "title": {
+      "translate": "advancements.wrong_santa.title"
+    },
+    "description": {
+      "translate": "advancements.wrong_santa.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "wrong_santa_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 25
+  },
+  "parent": "simulation:dead_lands/born_in_chaos/naughty_child",
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "simulation:nether/root",
+  "criteria": {
+    "brew_blue": {
+      "conditions": {},
+      "trigger": "betternether:brew_blue"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betternether.blue_obsidian.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betternether:blue_obsidian"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.betternether.blue_obsidian.title"
+    }
+  },
+  "requirements": [
+    [
+      "brew_blue"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

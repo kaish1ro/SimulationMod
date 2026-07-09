@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:rotten_flesh"
+    },
+    "title": {
+      "text": "Комната мертвецов"
+    },
+    "description": {
+      "text": "Найдите зомби-подземелье."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:zombie_dungeon"
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

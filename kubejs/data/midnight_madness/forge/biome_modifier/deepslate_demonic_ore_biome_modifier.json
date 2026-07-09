@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:the_void",
+  "features": "midnight_madness:deepslate_demonic_ore",
+  "step": "underground_ores"
+}

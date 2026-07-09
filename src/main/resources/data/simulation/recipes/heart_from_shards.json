@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "simulation:heart_shard" },
+    { "item": "simulation:heart_shard" },
+    { "item": "simulation:heart_shard" },
+    { "item": "simulation:heart_shard" }
+  ],
+  "result": {
+    "item": "cyclic:heart",
+    "count": 1
+  }
+}

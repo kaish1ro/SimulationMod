@@ -1,0 +1,15 @@
+{
+  "type": "endrem:loot_injection",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "undergarden:chests/catacombs"
+    },
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.01
+    }
+  ],
+  "loot_table_id": "simulation:injections/void_blossom_map_fragment_1_catacombs",
+  "allow_recursive_glms": true
+}

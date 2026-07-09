@@ -1,0 +1,84 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:snow_block"
+    },
+    "title": {
+      "text": "Не только лед и снег"
+    },
+    "description": {
+      "text": "Найдите необычные варианты иглу."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "in_igloo_grassy": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:igloo_grassy"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_igloo_mangrove": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:igloo_mangrove"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_igloo_mushroom": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:igloo_mushroom"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_igloo_stone": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:igloo_stone"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

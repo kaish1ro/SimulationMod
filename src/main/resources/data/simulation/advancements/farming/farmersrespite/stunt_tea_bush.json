@@ -1,0 +1,29 @@
+{
+  "parent": "simulation:farming/farmersrespite/get_tea_seeds",
+  "criteria": {
+    "stunt_tea_bush": {
+      "conditions": {},
+      "trigger": "farmersrespite:stunt_tea_bush"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "text": "Остановите рост чайного куста топором, чтобы сохранить его как украшение."
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:stone_axe"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Декоративная стрижка"
+    }
+  },
+  "requirements": [
+    [
+      "stunt_tea_bush"
+    ]
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:oak_boat"
+    },
+    "title": {
+      "text": "Пираты между мирами"
+    },
+    "description": {
+      "text": "Найдите кораблекрушения вне обычных морей."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "in_shipwreck_crimson": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:shipwreck_crimson"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_shipwreck_end": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:shipwreck_end"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_shipwreck_nether_bricks": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:shipwreck_nether_bricks"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_shipwreck_warped": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:shipwreck_warped"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

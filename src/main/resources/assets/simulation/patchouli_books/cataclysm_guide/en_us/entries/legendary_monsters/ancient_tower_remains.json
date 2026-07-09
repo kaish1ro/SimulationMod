@@ -1,0 +1,27 @@
+{
+  "name": "Остатки древней башни",
+  "category": "simulation:legendary_monsters",
+  "icon": "legendary_monsters:eye_of_chorus",
+  "sortnum": 11,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Остатки древней башни",
+      "text": "На внешних островах Края башни ломаются иначе, чем везде - не оседают, а будто застревают на полпути к падению. Эта одна из немногих, где ещё можно подняться выше первого этажа."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "legendary_monsters:endersent",
+      "scale": 0.7,
+      "offset": 0.3,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Chorusent"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Посланник",
+      "text": "Chorusent (в записях встречается и как Эндер-посланник) сторожит верхние ярусы - не столько нападает, сколько не пускает дальше, пока не убедится, что вы не уйдёте с пустыми руками случайно.$(br2)Отсюда начинается хорусовая ветка: Eye of Chorus, Chorus Blade и всё, что к ним прилагается. Это ещё не Космическая Станция - но уже её порог."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .wrap {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 28px;
+  }
+  .spinner {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.12);
+    border-top-color: #c9a24b;
+    animation: spin 1.1s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .title {
+    color: #e7d9b5;
+    font-size: 26px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(201,162,75,0.5);
+  }
+  .hint {
+    color: #8a8272;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="spinner"></div>
+    <div class="title">ПЕРЕХОД...</div>
+    <div class="hint">Замок отстраивается</div>
+  </div>
+</body>
+</html>

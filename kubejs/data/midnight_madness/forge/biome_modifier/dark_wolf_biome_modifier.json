@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "minecraft:the_void",
+  "spawners": {
+    "type": "midnight_madness:dark_wolf",
+    "weight": 40,
+    "minCount": 2,
+    "maxCount": 5
+  }
+}

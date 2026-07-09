@@ -53,8 +53,21 @@ public final class CastleTowerFixTask {
         "twilightforest:green_thorns",
     };
 
+    /**
+     * Длинная наружная лестница из древнего дерева (Quark) — аварийный путь наверх,
+     * если игрок упал снаружи замка. Иногда висит в воздухе на 1-2 блока выше рельефа
+     * (замок стоит чуть выше земли) — при {@code towers} продлеваем её вниз тем же
+     * блоком (сохраняя facing), пока не упрёмся в твёрдую землю.
+     */
+    private static final String ANCIENT_LADDER_ID = "quark:ancient_ladder";
+    private static final int LADDER_SCAN_ABOVE = 60;
+    private static final int LADDER_SCAN_BELOW = 60;
+    private static final int LADDER_EXTEND_MAX = 30;
+
     private static Set<Block> forceFieldBlocks;
     private static Set<Block> thornBlocks;
+    private static Block ancientLadderBlock;
+    private static boolean ancientLadderResolved;
 
     private static ArrayDeque<ChunkPos> queue;
     private static ServerLevel activeLevel;
@@ -142,8 +155,53 @@ public final class CastleTowerFixTask {
         for (int x = xStart; x <= xEnd; x++) {
             for (int z = zStart; z <= zEnd; z++) {
                 processColumn(x, z);
+                processLadderColumn(x, z);
             }
         }
+    }
+
+    /**
+     * Находит самый нижний блок {@code quark:ancient_ladder} в столбце и, если под
+     * ним пустота (замок висит над рельефом), продлевает лестницу тем же blockstate
+     * (facing сохраняется автоматически, т.к. копируется весь state целиком) вниз до
+     * первого твёрдого блока — или до {@link #LADDER_EXTEND_MAX} блоков, чтобы не
+     * улететь в бесконечность, если под замком случайно оказался сквозной провал.
+     */
+    private static void processLadderColumn(int x, int z) {
+        Block ladder = getAncientLadder();
+        if (ladder == null) return;
+
+        int scanTop = topY + LADDER_SCAN_ABOVE;
+        int scanBottom = topY - LADDER_SCAN_BELOW;
+
+        int bottomY = Integer.MIN_VALUE;
+        BlockState ladderState = null;
+        for (int y = scanTop; y >= scanBottom; y--) {
+            BlockState state = activeLevel.getBlockState(new BlockPos(x, y, z));
+            if (state.getBlock() == ladder) {
+                bottomY = y;
+                ladderState = state;
+            }
+        }
+        if (ladderState == null) return;
+
+        int extendLimit = Math.max(scanBottom, bottomY - LADDER_EXTEND_MAX);
+        for (int y = bottomY - 1; y >= extendLimit; y--) {
+            BlockPos pos = new BlockPos(x, y, z);
+            if (!activeLevel.getBlockState(pos).isAir()) break; // упёрлись в землю — готово
+
+            activeLevel.setBlock(pos, ladderState, Block.UPDATE_CLIENTS | Block.UPDATE_SUPPRESS_DROPS);
+            filledCount++;
+        }
+    }
+
+    private static Block getAncientLadder() {
+        if (!ancientLadderResolved) {
+            ancientLadderBlock = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(ANCIENT_LADDER_ID));
+            if (ancientLadderBlock == Blocks.AIR) ancientLadderBlock = null;
+            ancientLadderResolved = true;
+        }
+        return ancientLadderBlock;
     }
 
     private static void processColumn(int x, int z) {

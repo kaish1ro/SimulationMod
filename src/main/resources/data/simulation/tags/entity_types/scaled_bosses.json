@@ -41,6 +41,30 @@
     "block_factorys_bosses:infernal_dragon",
     "block_factorys_bosses:kraken",
     "block_factorys_bosses:underworld_knight",
-    "block_factorys_bosses:yeti"
+    "block_factorys_bosses:yeti",
+
+    "cataclysm:ender_guardian",
+    "cataclysm:ignis",
+    "cataclysm:the_harbinger",
+    "cataclysm:the_leviathan",
+    "cataclysm:ancient_remnant",
+    "cataclysm:maledictus",
+    "cataclysm:netherite_monstrosity",
+    "cataclysm:scylla",
+
+    "legendary_monsters:the_obliterator",
+    "legendary_monsters:posessed_paladin",
+    "legendary_monsters:frostbitten_golem",
+    "legendary_monsters:overgrown_colossus",
+    "legendary_monsters:withered_abomination",
+    "legendary_monsters:ancient_guardian",
+    "legendary_monsters:dune_sentinel",
+
+    "alexscaves:luxtructosaurus",
+
+    "alexsmobs:void_worm",
+
+    "illagerinvasion:invoker",
+    "aquamirae:captain_cornelia"
   ]
 }

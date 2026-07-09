@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "darkerdepths:glowshroom"
+    },
+    "title": {
+      "text": "Светящийся лес"
+    },
+    "description": {
+      "text": "Найдите Glowshroom Forest в глубинах мира."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "darkerdepths:glowshroom_forest"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:biomes/root"
+}

@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "endergetic:booflo_hide"
+    },
+    "title": {
+      "text": "\u041d\u0430\u0434\u0443\u0432\u043d\u043e\u0439 \u0434\u0440\u0443\u0433"
+    },
+    "description": {
+      "text": "\u041f\u0440\u0438\u0440\u0443\u0447\u0438\u0442\u0435 \u0431\u0443\u0444\u043b\u043e: \u043d\u0430\u043a\u043e\u0440\u043c\u0438\u0442\u0435 \u0435\u0433\u043e \u043f\u043b\u043e\u0434\u0430\u043c\u0438 \u0431\u043e\u043b\u043b\u0443\u043c\u0430 \u0438 \u043e\u0442\u043e\u0439\u0434\u0438\u0442\u0435, \u0447\u0442\u043e\u0431\u044b \u043e\u043d \u043f\u043e\u0435\u043b."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:end/endergetic/find_poise_forest",
+  "criteria": {
+    "tamed_booflo": {
+      "trigger": "endergetic:tamed_booflo"
+    }
+  },
+  "requirements": [
+    [
+      "tamed_booflo"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

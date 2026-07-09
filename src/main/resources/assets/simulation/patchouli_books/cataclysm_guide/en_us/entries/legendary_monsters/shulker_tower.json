@@ -1,0 +1,27 @@
+{
+  "name": "Башня шалкера",
+  "category": "simulation:legendary_monsters",
+  "icon": "legendary_monsters:eye_of_shulker",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Башня шалкера",
+      "text": "Не путайте с обычным Городом Края - это отдельная башня, уже готовая уходить вверх, а не вширь. Первое время кажется, что здесь пусто. Это не так."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "legendary_monsters:shulker_mimic",
+      "scale": 0.7,
+      "offset": 0.3,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Подражатель Шалкера"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "То, что притворяется сундуком",
+      "text": "Подражатель Шалкера ждёт, пока вы решите, что это просто ящик с лутом. Бой в узкой вертикальной башне, да ещё с левитацией в арсенале противника, опаснее, чем можно судить по размеру самой структуры - берегите края платформ.$(br2)Награда - Shulker Shield и Eye of Shulker."
+    }
+  ]
+}

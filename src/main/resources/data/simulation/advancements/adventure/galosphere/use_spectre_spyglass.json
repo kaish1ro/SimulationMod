@@ -1,0 +1,29 @@
+{
+  "parent": "simulation:adventure/root",
+  "display": {
+    "icon": {
+      "item": "galosphere:spectre_bound_spyglass"
+    },
+    "title": {
+      "text": "Сторожевой пёс"
+    },
+    "description": {
+      "text": "Понаблюдайте за призраком через особую подзорную трубу."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "use_spectre_spyglass": {
+      "trigger": "galosphere:use_spectre_spyglass",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "use_spectre_spyglass"
+    ]
+  ]
+}

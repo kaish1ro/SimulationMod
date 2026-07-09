@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "legendary_monsters:eye_of_annihilation"
+    },
+    "title": {
+      "text": "Станция за пределом"
+    },
+    "description": {
+      "text": "Найдите Space Station."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "legendary_monsters:space_station"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/root"
+}

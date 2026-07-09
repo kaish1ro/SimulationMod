@@ -1,0 +1,35 @@
+{
+  "parent": "simulation:dead_lands/root",
+  "criteria": {
+    "freeze_potion": {
+      "conditions": {
+        "potion": "rottencreatures:freeze"
+      },
+      "trigger": "minecraft:brewed_potion"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.rottencreatures.mr_freeze.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "rottencreatures:frozen_rotten_flesh"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.rottencreatures.mr_freeze.title"
+    }
+  },
+  "requirements": [
+    [
+      "freeze_potion"
+    ]
+  ],
+  "rewards": {
+    "experience": 20
+  },
+  "sends_telemetry_event": false
+}

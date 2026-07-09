@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "cataclysm:remnant_skull"
+    },
+    "title": {
+      "text": "Память песков"
+    },
+    "description": {
+      "text": "Победите Ancient Remnant."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "cataclysm:ancient_remnant"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/cataclysm/find_cursed_pyramid"
+}

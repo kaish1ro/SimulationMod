@@ -7,6 +7,7 @@ import com.eternity.simulation.castle.CastleRoofSealTask;
 import com.eternity.simulation.castle.CastleConstants;
 import com.eternity.simulation.castle.CastleDataMarker;
 import com.eternity.simulation.castle.CastleForceFieldTask;
+import com.eternity.simulation.castle.CastleInterceptTask;
 import com.eternity.simulation.castle.CastlePlacementTask;
 import com.eternity.simulation.castle.CastleTerrainFillTask;
 import com.eternity.simulation.castle.CastleTerrainTask;
@@ -410,6 +411,30 @@ public class CastleCommand {
                     CastleRoofSealTask.stop(data);
                     src.sendSystemMessage(Component.literal(
                         "§a[simcastle] §7Процесс распечатывания остановлен. Мир не изменён."));
+                    return 1;
+                })
+            )
+
+            .then(Commands.literal("intercept")
+                .executes(ctx -> {
+                    CommandSourceStack src = ctx.getSource();
+                    ServerPlayer player = src.getPlayerOrException();
+
+                    if (CastleInterceptTask.isRunning()) {
+                        src.sendSystemMessage(Component.literal("§e[simcastle] §7Перехват уже идёт."));
+                        return 0;
+                    }
+
+                    SimulationSavedData data = SimulationSavedData.get(src.getServer().overworld());
+                    if (data.isCastleInterceptTriggered()) {
+                        src.sendSystemMessage(Component.literal(
+                            "§e[simcastle] §7Перехват уже был запущен ранее (флаг castleInterceptTriggered)."));
+                        return 0;
+                    }
+
+                    src.sendSystemMessage(Component.literal(
+                        "§e[simcastle] §7Тестовый запуск перехвата (имитация сжигания шипов)."));
+                    CastleInterceptTask.onThornBurned(player);
                     return 1;
                 })
             )

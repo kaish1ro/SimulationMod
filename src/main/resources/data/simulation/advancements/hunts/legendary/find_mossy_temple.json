@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "legendary_monsters:mossy_chestplate"
+    },
+    "title": {
+      "text": "Мшистый храм"
+    },
+    "description": {
+      "text": "Найдите Mossy Temple."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "legendary_monsters:mossy_temple"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/root"
+}

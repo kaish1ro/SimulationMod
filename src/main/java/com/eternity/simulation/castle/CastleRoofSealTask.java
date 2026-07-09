@@ -61,8 +61,8 @@ public final class CastleRoofSealTask {
     private static final int FIELD_WIDTH_Z = 142;
     /** Точечные поправки периметра: асимметричное расширение за пределы базового width. */
     private static final int FIELD_EXTRA_X_POS = 1; // +1 блок в сторону X+
-    private static final int FIELD_EXTRA_X_NEG = 0;
-    private static final int FIELD_EXTRA_Z_POS = 0;
+    private static final int FIELD_EXTRA_X_NEG = 1; // +1 блок в сторону X-
+    private static final int FIELD_EXTRA_Z_POS = 1; // +1 блок в сторону Z+
     private static final int FIELD_EXTRA_Z_NEG = 1; // +1 блок в сторону Z-
     /** Полуширина первоначального взрыва маяка (28×28 = ±14 с перекосом). */
     private static final int BEACON_BLAST_HALF_NEG = 14; // -14..+13 = 28 блоков
@@ -140,6 +140,19 @@ public final class CastleRoofSealTask {
         if (anchorPos == null) return false;
         return pos.getX() < fieldMinX() || pos.getX() > fieldMaxX()
             || pos.getZ() < fieldMinZ() || pos.getZ() > fieldMaxZ();
+    }
+
+    /**
+     * Гарантирует, что якорь для геометрии периметра (см. {@link #isOutsideField})
+     * установлен — geometry поля (FIELD_CENTER_DX/DZ/WIDTH) завязана только на
+     * anchorPos, а не на конкретные маркеры крыши, поэтому границу можно и нужно
+     * держать активной с момента постройки корпуса замка, а не только после
+     * {@code /simcastle roof}. Не запускает саму задачу распечатывания — только
+     * инициализирует геометрию для ModEvents.tickFieldBoundary. Дёшево, можно
+     * звать хоть каждый тик.
+     */
+    public static void ensureBoundaryAnchor(BlockPos anchor) {
+        anchorPos = anchor;
     }
 
     /** Сбрасывает задачу без изменения мира — для отладки через /simcastle roofstop. */
@@ -245,6 +258,10 @@ public final class CastleRoofSealTask {
             }
         }
 
+        // 0% прогресса HUD — точка отсчёта для проекции "снесено/всего" по крышке.
+        data.setRoofCapBlocksTotal(countFieldTopBlocks(level));
+        data.addRoofCapBlocksDestroyed(-data.getRoofCapBlocksDestroyed());
+
         // Взрыв произойдёт через 5 сек (BLAST_DELAY_TICKS) в tickBeaconBeam
         data.setRoofSealPhase(2); // BEACON_BEAM
         tickCounter = 0;
@@ -332,7 +349,7 @@ public final class CastleRoofSealTask {
 
         // Ровно через 5 секунд: взрыв + звуки + сильная тряска
         if (tickCounter == BLAST_DELAY_TICKS) {
-            destroyInitialBlast(activeLevel);
+            destroyInitialBlast(activeLevel, data);
             sendBlastEffectToAll();
         }
 
@@ -450,10 +467,8 @@ public final class CastleRoofSealTask {
             return;
         }
         if (currentRing > maxRing) {
-            // Верхний слой полностью разрушен — ставим наградной сундук на месте маяка
-            if (!data.isRoofWave3Triggered()) {
-                spawnRewardChest();
-            }
+            // Верхний слой полностью разрушен — запускаем волну 3, сундук появится
+            // позже, в startPerimeter() — когда реально начнётся снос стен по бокам.
             if (!data.isRoofWave3Triggered()) {
                 data.setRoofWave3Triggered(true);
                 triggerRoofWave(data, "roof_wave3");
@@ -467,7 +482,8 @@ public final class CastleRoofSealTask {
     // ── Фаза 5: ожидание волны ────────────────────────────────────────────────
 
     private static void tickWaveWait(SimulationSavedData data, boolean particleTick) {
-        if (particleTick) tickParticles();
+        // Пока волна жива — частицы аметистовых ламп (и любые другие) полностью убраны,
+        // чтобы не отвлекали от боя; возобновятся сами, когда фаза вернётся к кольцам.
 
         int waveNum = data.getRoofWaveWaiting();
         if (!isWaveCleared(data, waveNum)) return;
@@ -510,7 +526,19 @@ public final class CastleRoofSealTask {
     // ── Фаза 7: снятие барьеров ───────────────────────────────────────────────
 
     private static void tickCleanup(SimulationSavedData data) {
-        // Сканируем только Y=FIELD_TOP_Y (барьеры ставились только там)
+        clearTopBarriers(); // на случай если ещё остались — обычно уже пусто (см. startPerimeter)
+
+        data.setRoofSealPhase(0);
+        data.setRoofSealActive(false);
+        // Поле окончательно снято — все ограничения перехвата/перестройки замка
+        // (жемчуги, граница, ломание/установка блоков) снимаются абсолютно.
+        data.setCastleLockdownActive(false);
+        activeLevel  = null;
+        perimeterQueue = null;
+    }
+
+    /** Снимает барьеры (временная замена крышки на Y=FIELD_TOP_Y) во всех границах поля. */
+    private static void clearTopBarriers() {
         for (int x = fieldMinX(); x <= fieldMaxX(); x++) {
             for (int z = fieldMinZ(); z <= fieldMaxZ(); z++) {
                 BlockPos pos = new BlockPos(x, FIELD_TOP_Y, z);
@@ -520,11 +548,6 @@ public final class CastleRoofSealTask {
                 }
             }
         }
-
-        data.setRoofSealPhase(0);
-        data.setRoofSealActive(false);
-        activeLevel  = null;
-        perimeterQueue = null;
     }
 
     // ── Вспомогательные методы ────────────────────────────────────────────────
@@ -605,7 +628,7 @@ public final class CastleRoofSealTask {
     }
 
     /** Взрыв маяка: 28×28 на FIELD_TOP_Y, центр = позиция beacon_particle_effect по XZ. */
-    private static void destroyInitialBlast(ServerLevel level) {
+    private static void destroyInitialBlast(ServerLevel level, SimulationSavedData data) {
         Block ff = getBlueForceField();
         if (ff == null || beaconMarkerPos == null) {
             LOGGER.warn("[RoofSeal] destroyInitialBlast пропущен: ff={} beaconMarkerPos={}", ff != null, beaconMarkerPos);
@@ -616,15 +639,31 @@ public final class CastleRoofSealTask {
         int cz = beaconMarkerPos.getZ();
         LOGGER.info("[RoofSeal] destroyInitialBlast: центр X={} Z={} Y={}, радиус -{}/+{}", cx, cz, FIELD_TOP_Y, BEACON_BLAST_HALF_NEG, BEACON_BLAST_HALF_POS);
 
+        int destroyed = 0;
         for (int dx = -BEACON_BLAST_HALF_NEG; dx <= BEACON_BLAST_HALF_POS; dx++) {
             for (int dz = -BEACON_BLAST_HALF_NEG; dz <= BEACON_BLAST_HALF_POS; dz++) {
                 BlockPos pos = new BlockPos(cx + dx, FIELD_TOP_Y, cz + dz);
                 if (level.getBlockState(pos).getBlock() == ff) {
                     level.setBlock(pos, Blocks.BARRIER.defaultBlockState(),
                         Block.UPDATE_CLIENTS | Block.UPDATE_SUPPRESS_DROPS);
+                    destroyed++;
                 }
             }
         }
+        data.addRoofCapBlocksDestroyed(destroyed);
+    }
+
+    /** Считает блоки {@code blue_force_field} на Y=FIELD_TOP_Y в границах поля — точка отсчёта прогресса. */
+    private static int countFieldTopBlocks(ServerLevel level) {
+        Block ff = getBlueForceField();
+        if (ff == null) return 0;
+        int count = 0;
+        for (int x = fieldMinX(); x <= fieldMaxX(); x++) {
+            for (int z = fieldMinZ(); z <= fieldMaxZ(); z++) {
+                if (level.getBlockState(new BlockPos(x, FIELD_TOP_Y, z)).getBlock() == ff) count++;
+            }
+        }
+        return count;
     }
 
     /** Разрушает 5×5×5 блоков над маркером (Y+1 до Y+5). */
@@ -663,10 +702,10 @@ public final class CastleRoofSealTask {
             if (x < minX || x > maxX) continue;
 
             int z1 = cz - r;
-            if (z1 >= minZ && z1 <= maxZ) replaceWithBarrier(new BlockPos(x, FIELD_TOP_Y, z1), ff);
+            if (z1 >= minZ && z1 <= maxZ) replaceWithBarrier(new BlockPos(x, FIELD_TOP_Y, z1), ff, data);
 
             int z2 = cz + r;
-            if (z2 != z1 && z2 >= minZ && z2 <= maxZ) replaceWithBarrier(new BlockPos(x, FIELD_TOP_Y, z2), ff);
+            if (z2 != z1 && z2 >= minZ && z2 <= maxZ) replaceWithBarrier(new BlockPos(x, FIELD_TOP_Y, z2), ff, data);
         }
 
         // Левая и правая колонки (без угловых — уже покрыты выше)
@@ -675,17 +714,18 @@ public final class CastleRoofSealTask {
             if (z < minZ || z > maxZ) continue;
 
             int x1 = cx - r;
-            if (x1 >= minX && x1 <= maxX) replaceWithBarrier(new BlockPos(x1, FIELD_TOP_Y, z), ff);
+            if (x1 >= minX && x1 <= maxX) replaceWithBarrier(new BlockPos(x1, FIELD_TOP_Y, z), ff, data);
 
             int x2 = cx + r;
-            if (x2 != x1 && x2 >= minX && x2 <= maxX) replaceWithBarrier(new BlockPos(x2, FIELD_TOP_Y, z), ff);
+            if (x2 != x1 && x2 >= minX && x2 <= maxX) replaceWithBarrier(new BlockPos(x2, FIELD_TOP_Y, z), ff, data);
         }
     }
 
-    private static void replaceWithBarrier(BlockPos pos, Block ff) {
+    private static void replaceWithBarrier(BlockPos pos, Block ff, SimulationSavedData data) {
         if (activeLevel.getBlockState(pos).getBlock() == ff) {
             activeLevel.setBlock(pos, Blocks.BARRIER.defaultBlockState(),
                 Block.UPDATE_CLIENTS | Block.UPDATE_SUPPRESS_DROPS);
+            data.addRoofCapBlocksDestroyed(1);
         }
     }
 
@@ -757,6 +797,8 @@ public final class CastleRoofSealTask {
     }
 
     private static void startPerimeter(SimulationSavedData data) {
+        spawnRewardChest(); // именно тут поле реально начинает уходить по бокам
+        clearTopBarriers(); // крышки (барьеры вместо снесённого поля) убираем тоже сейчас, не ждём CLEANUP
         perimeterQueue = buildPerimeterQueue();
         data.setRoofSealPhase(6); // PERIMETER
         tickCounter = 0;

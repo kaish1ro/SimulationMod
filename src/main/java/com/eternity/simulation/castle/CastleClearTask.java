@@ -148,6 +148,16 @@ public final class CastleClearTask {
                 }
             }
         }
+
+        // Таблички и прочие вещи, уже лежавшие на земле (не блок-дропы — те и так гасятся
+        // UPDATE_SUPPRESS_DROPS выше) — иначе валяются в зоне зачистки и иногда даже
+        // ухитряются активировать нажимные плиты (было замечено в синей башне).
+        net.minecraft.world.phys.AABB box = new net.minecraft.world.phys.AABB(
+            chunkXStart, yMin, chunkZStart, chunkXEnd + 1, yMax + 1, chunkZEnd + 1);
+        for (net.minecraft.world.entity.item.ItemEntity item :
+                activeLevel.getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, box)) {
+            item.discard();
+        }
     }
 
     /**

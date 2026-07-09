@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:nether_bricks"
+    },
+    "title": {
+      "text": "Крепость перестроена"
+    },
+    "description": {
+      "text": "Найдите крепость Нижнего мира."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterfortresses:fortress"
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

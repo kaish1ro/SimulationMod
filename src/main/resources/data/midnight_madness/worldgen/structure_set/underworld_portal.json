@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "midnight_madness:underworld_portal",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 60,
+    "separation": 56,
+    "salt": 140429186
+  }
+}

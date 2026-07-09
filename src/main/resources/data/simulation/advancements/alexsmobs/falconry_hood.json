@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:falconry_hood"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.falconry_hood.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.falconry_hood.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/falconry_glove",
+  "criteria": {
+    "falconry_hood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexsmobs:falconry_hood"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

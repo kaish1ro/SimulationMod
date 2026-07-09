@@ -306,6 +306,9 @@ public final class CastleBossFightTask {
         data.setBossFightStage(8);
         data.setBossEntityUuid(null);
 
+        // Хелвар (underworld_knight_boss) — квест "Войдите в жёлтые башни" завершён
+        CastleSubQuestTask.onHelvarDefeated(level.getServer());
+
         // Размещаем крышу замка автоматически при победе над боссом
         if (data.hasCastleAnchor()) {
             LOGGER.info("[BossFight] Запускаем CastlePlacementTask.runRoof после победы над боссом");

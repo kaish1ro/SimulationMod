@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "legendary_monsters:infected_chorus_fruit"
+    },
+    "title": {
+      "text": "Древняя башня Энда"
+    },
+    "description": {
+      "text": "Найдите Ancient Tower Remains."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "legendary_monsters:ancient_tower_remains"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/root"
+}

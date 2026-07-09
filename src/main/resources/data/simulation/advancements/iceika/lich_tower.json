@@ -1,0 +1,23 @@
+{
+  "parent": "simulation:iceika/all_fragments",
+  "display": {
+    "icon": {
+      "item": "simulation:lich_map"
+    },
+    "title": {
+      "text": "Башня среди снега"
+    },
+    "description": {
+      "text": "Соберите карту и откройте путь к башне Лича."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "tower_found": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

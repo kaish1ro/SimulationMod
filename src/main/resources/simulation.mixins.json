@@ -4,9 +4,26 @@
   "package": "com.eternity.simulation.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "simulation.refmap.json",
+  "mixins": [
+    "IceBroodMotherHurtMixin",
+    "IceBroodMotherDeadsetMixin",
+    "EREnderEyeMixin",
+    "KitraHurtMixin",
+    "KitraAggressiveMixin",
+    "KitraBulletOwnerMixin",
+    "WorkshopMerchantTradeMixin",
+    "LampOfCindersMixin",
+    "DimensionalCarverMixin",
+    "CapsidRecipeManagerMixin",
+    "PlayerAdvancementsMixin",
+    "ProgressionEndChatMixin",
+    "RecipeManagerMixin"
+  ],
   "client": [
     "ScreenMixin",
-    "ExperimentsScreenMixin"
+    "ExperimentsScreenMixin",
+    "ItemInHandRendererMixin",
+    "CefUtilLogPathMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexscaves:metal_scaffolding"
+    },
+    "title": {
+      "translate": "advancements.alexscaves.discover_abyssal_ruins.title"
+    },
+    "description": {
+      "translate": "advancements.alexscaves.discover_abyssal_ruins.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexscaves/abyssal/discover_abyssal_chasm",
+  "criteria": {
+    "abyssal_ruins": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "alexscaves:abyssal_ruins"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  }
+}

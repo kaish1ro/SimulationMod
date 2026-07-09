@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:cauldron"
+    },
+    "title": {
+      "text": "Болотная ведьмина тропа"
+    },
+    "description": {
+      "text": "Найдите хижину ведьмы."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterwitchhuts:witch_hut"
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

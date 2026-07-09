@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:mysterious_worm"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.mysterious_worm.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.mysterious_worm.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:end/alexsmobs/capsid",
+  "criteria": {
+    "mysterious_worm": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexsmobs:mysterious_worm"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

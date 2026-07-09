@@ -1,0 +1,160 @@
+{
+  "display": {
+    "icon": {
+      "item": "aquamirae:shell_horn"
+    },
+    "title": {
+      "text": "\u041e\u043f\u0430\u0441\u043d\u044b\u0435 \u044d\u043a\u0441\u043f\u0435\u0434\u0438\u0446\u0438\u0438"
+    },
+    "description": {
+      "text": "\u041f\u0435\u0449\u0435\u0440\u044b, \u043b\u0435\u0434\u044f\u043d\u044b\u0435 \u043b\u0430\u0431\u0438\u0440\u0438\u043d\u0442\u044b \u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u0437\u043e\u043d\u044b, \u0433\u0434\u0435 \u043e\u0431\u044b\u0447\u043d\u0430\u044f \u043f\u0440\u043e\u0433\u0443\u043b\u043a\u0430 \u0431\u044b\u0441\u0442\u0440\u043e \u043f\u0440\u0435\u0432\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044f \u0432 \u0432\u044b\u043b\u0430\u0437\u043a\u0443 \u043d\u0430 \u0432\u044b\u0436\u0438\u0432\u0430\u043d\u0438\u0435."
+    },
+    "background": "minecraft:textures/block/packed_ice.png",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "cave_tablet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexscaves:cave_tablet"
+            ]
+          }
+        ]
+      }
+    },
+    "cave_codex": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexscaves:cave_codex"
+            ]
+          }
+        ]
+      }
+    },
+    "cave_book": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexscaves:cave_book"
+            ]
+          }
+        ]
+      }
+    },
+    "cave_map": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexscaves:cave_map"
+            ]
+          }
+        ]
+      }
+    },
+    "discover_abyssal_chasm": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "alexscaves:abyssal_chasm"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "discover_forlorn_hollows": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "alexscaves:forlorn_hollows"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "discover_primordial_caves": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "alexscaves:primordial_caves"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "discover_magnetic_caves": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "alexscaves:magnetic_caves"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "aquamirae_find_ice_maze": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "deep_frozen_ocean"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cave_tablet",
+      "cave_codex",
+      "cave_book",
+      "cave_map",
+      "discover_abyssal_chasm",
+      "discover_forlorn_hollows",
+      "discover_primordial_caves",
+      "discover_magnetic_caves",
+      "aquamirae_find_ice_maze"
+    ]
+  ]
+}

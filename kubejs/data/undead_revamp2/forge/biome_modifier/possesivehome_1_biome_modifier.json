@@ -1,0 +1,12 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:the_void",
+  "features": "undead_revamp2:possesivehome_1",
+  "step": "surface_structures",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "simulation:disabled"
+    }
+  ]
+}

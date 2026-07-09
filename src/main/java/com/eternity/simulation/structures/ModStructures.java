@@ -32,4 +32,24 @@ public class ModStructures {
     public static final RegistryObject<StructurePieceType> HERBALISTS_HOUSE_PIECE =
             STRUCTURE_PIECE_TYPES.register("herbalists_house_piece",
                     () -> HerbalistsHousePiece::new);
+
+    public static final RegistryObject<StructureType<AncientWellStructure>> ANCIENT_WELL =
+            STRUCTURE_TYPES.register("ancient_well",
+                    () -> () -> AncientWellStructure.CODEC);
+
+    public static final RegistryObject<StructurePieceType> ANCIENT_WELL_PIECE =
+            STRUCTURE_PIECE_TYPES.register("ancient_well_piece",
+                    () -> AncientWellPiece::new);
+
+    public static final RegistryObject<StructureType<FrozenBroodmotherStructure>> FROZEN_BROODMOTHER =
+            STRUCTURE_TYPES.register("frozen_broodmother",
+                    () -> () -> FrozenBroodmotherStructure.CODEC);
+
+    public static final RegistryObject<StructurePieceType> FROZEN_BROODMOTHER_PIECE =
+            STRUCTURE_PIECE_TYPES.register("frozen_broodmother_piece",
+                    () -> FrozenBroodmotherPiece::new);
+
+    // Цветок пустоты НЕ регистрируется как обычная worldgen-структура — она не должна
+    // встречаться при обычном исследовании мира. Появляется только по требованию,
+    // в момент крафта карты (см. VoidBlossomMapCraftListener/VoidBlossomSpawner).
 }

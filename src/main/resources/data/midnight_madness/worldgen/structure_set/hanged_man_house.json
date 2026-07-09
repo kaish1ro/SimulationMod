@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "midnight_madness:hanged_man_house",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 27,
+    "separation": 22,
+    "salt": 1382641642
+  }
+}

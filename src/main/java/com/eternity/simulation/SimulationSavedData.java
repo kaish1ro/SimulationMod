@@ -172,6 +172,37 @@ public class SimulationSavedData extends SavedData {
         setDirty();
     }
 
+    // ── Мировые тиры (см. com.eternity.simulation.balance.WorldTier) ──────────
+
+    /** Убит Wither — не гейтится измерениями, доступен с самого начала. */
+    private boolean witherDefeated = false;
+
+    public boolean isWitherDefeated()      { return witherDefeated; }
+    public void    setWitherDefeated(boolean v) { witherDefeated = v; setDirty(); }
+
+    /**
+     * Пройден хотя бы один "доп. мир" ПОСЛЕ дракона (Undergarden и т.п. —
+     * TF в этот флаг не считается, она открывается сразу после дракона).
+     * Пока не привязан ни к одному триггеру — выставляется вручную по мере
+     * того, как строятся соответствующие арки.
+     */
+    private boolean extraDimensionExplored = false;
+
+    public boolean isExtraDimensionExplored()      { return extraDimensionExplored; }
+    public void    setExtraDimensionExplored(boolean v) { extraDimensionExplored = v; setDirty(); }
+
+    private final Set<Long> decoratedEndIslandChunks = new HashSet<>();
+
+    public boolean isEndIslandChunkDecorated(long chunkKey) {
+        return decoratedEndIslandChunks.contains(chunkKey);
+    }
+
+    public boolean markEndIslandChunkDecorated(long chunkKey) {
+        boolean changed = decoratedEndIslandChunks.add(chunkKey);
+        if (changed) setDirty();
+        return changed;
+    }
+
     // ── Nether flag ──────────────────────────────────────────────────────────
 
     public boolean hasEnteredNether() { return hasEnteredNether; }
@@ -281,6 +312,39 @@ public class SimulationSavedData extends SavedData {
     public UUID    getBossEntityUuid()       { return bossEntityUuid; }
     public void    setBossEntityUuid(UUID v) { bossEntityUuid = v; setDirty(); }
 
+    // ── Перехват игрока у шипов + автоматическая перестройка Final Castle ────
+
+    /**
+     * Разовый флаг: перехват (заморозка + фейковый переход миров + автосборка замка)
+     * уже был запущен. Не даёт повторному сжиганию шипов запустить сборку ещё раз.
+     */
+    private boolean castleInterceptTriggered = false;
+
+    public boolean isCastleInterceptTriggered()      { return castleInterceptTriggered; }
+    public void    setCastleInterceptTriggered(boolean v) { castleInterceptTriggered = v; setDirty(); }
+
+    /**
+     * Активен с момента запуска перехвата и до полного снятия силового поля крыши
+     * (см. {@code CastleRoofSealTask.tickCleanup}) — расширяет запрет эндерперлов
+     * и телепорт-возврат за периметр ({@code ModEvents.tickFieldBoundary}) на весь
+     * период существования замка, а не только на финальную стадию roofSealActive.
+     * Также используется для блокировки ломания/установки блоков (кроме руд/маяка).
+     */
+    private boolean castleLockdownActive = false;
+
+    public boolean isCastleLockdownActive()      { return castleLockdownActive; }
+    public void    setCastleLockdownActive(boolean v) { castleLockdownActive = v; setDirty(); }
+
+    /**
+     * Разовый флаг: игрок хотя бы раз реально оказался внутри перестроенного замка
+     * (перехват завершён). До этого момента квестовое меню/HUD клиенту не показываются —
+     * иначе задание "labyrinth_exit" (без зависимостей) отображалось бы с самого начала игры.
+     */
+    private boolean castleEverEntered = false;
+
+    public boolean isCastleEverEntered()      { return castleEverEntered; }
+    public void    setCastleEverEntered(boolean v) { castleEverEntered = v; setDirty(); }
+
     // ── Блокировка строительства (замковая арена) ────────────────────────────
 
     /**
@@ -313,6 +377,14 @@ public class SimulationSavedData extends SavedData {
     private boolean roofWave2Triggered = false;
     private boolean roofWave3Triggered = false;
 
+    /**
+     * Прогресс "снятия поля" для HUD: сколько блоков верхнего слоя (crышки) всего
+     * и сколько уже снесено (взрыв маяка + кольца) — от 0% (маяк поставлен) до
+     * 100% (крышка полностью снесена, начинается снос стен по бокам).
+     */
+    private int roofCapBlocksTotal = 0;
+    private int roofCapBlocksDestroyed = 0;
+
     public boolean isRoofSealActive()           { return roofSealActive; }
     public void    setRoofSealActive(boolean v) { roofSealActive = v; setDirty(); }
     public int  getRoofSealPhase()            { return roofSealPhase; }
@@ -331,6 +403,21 @@ public class SimulationSavedData extends SavedData {
     public void setRoofWave2Triggered(boolean v) { roofWave2Triggered = v; setDirty(); }
     public boolean isRoofWave3Triggered()     { return roofWave3Triggered; }
     public void setRoofWave3Triggered(boolean v) { roofWave3Triggered = v; setDirty(); }
+
+    public int getRoofCapBlocksTotal()        { return roofCapBlocksTotal; }
+    public void setRoofCapBlocksTotal(int v)  { roofCapBlocksTotal = v; setDirty(); }
+    public int getRoofCapBlocksDestroyed()    { return roofCapBlocksDestroyed; }
+    public void addRoofCapBlocksDestroyed(int delta) {
+        if (delta == 0) return;
+        roofCapBlocksDestroyed += delta;
+        setDirty();
+    }
+
+    /** @return 0..100, или -1 если задача не активна / total ещё не посчитан. */
+    public int getRoofCapProgressPercent() {
+        if (!roofSealActive || roofCapBlocksTotal <= 0) return -1;
+        return (int) Math.min(100, Math.round(100.0 * roofCapBlocksDestroyed / roofCapBlocksTotal));
+    }
 
     /**
      * Расширяет массивы спавн-системы для новых точек спавна (добавляются маркеры крыши).
@@ -380,7 +467,37 @@ public class SimulationSavedData extends SavedData {
     /** Сколько мобов из точки спавна с данным index'ом ещё живы. */
     private int[] castleSpawnAlive = new int[0];
 
+    /**
+     * Поколение постройки замка — увеличивается при каждом {@code /simcastle build}.
+     * Нужен, чтобы per-player состояние, завязанное на координаты маркеров
+     * (активированные чек-пойнты в persistentData игрока), сбрасывалось при
+     * перестройке замка: координаты маркеров при том же якоре не меняются,
+     * и без этого счётчика чек-пойнты после ребилда молча не срабатывали бы.
+     */
+    private int castleBuildGeneration = 0;
+
+    /**
+     * Номера чек-пойнтов (Nspawnpoint), у которых несколько физических маркеров
+     * с одним и тем же N (10spawnpoint, 11spawnpoint — по 3 штуки каждый) должны
+     * сработать глобально только один раз: как только любой игрок активирует
+     * любой из них, остальные с тем же номером перестают активироваться для всех.
+     */
+    private final Set<Integer> globallyTriggeredSpawnpoints = new HashSet<>();
+
     public boolean isCastleSpawnSystemInit() { return castleSpawnSystemInit; }
+
+    public int getCastleBuildGeneration() { return castleBuildGeneration; }
+
+    public boolean isSpawnpointGloballyTriggered(int number) {
+        return globallyTriggeredSpawnpoints.contains(number);
+    }
+
+    /** @return true если реально пометили впервые (иначе уже было помечено раньше) */
+    public boolean markSpawnpointGloballyTriggered(int number) {
+        boolean changed = globallyTriggeredSpawnpoints.add(number);
+        if (changed) setDirty();
+        return changed;
+    }
 
     /** Инициализирует состояние спавн-системы (один раз, после постройки замка). */
     public void initCastleSpawnSystem(List<CastleSpawnDefinition> defs) {
@@ -390,6 +507,8 @@ public class SimulationSavedData extends SavedData {
             castleSpawnAlive[def.index()] = def.count();
         }
         castleSpawnSystemInit = true;
+        castleBuildGeneration++;
+        globallyTriggeredSpawnpoints.clear();
         setDirty();
     }
 
@@ -429,11 +548,15 @@ public class SimulationSavedData extends SavedData {
     @Override
     public CompoundTag save(CompoundTag tag) {
         tag.putBoolean("dragonDefeated", dragonDefeated);
+        tag.putBoolean("witherDefeated", witherDefeated);
+        tag.putBoolean("extraDimensionExplored", extraDimensionExplored);
         tag.putBoolean("observerSpawned", observerSpawned);
         tag.putBoolean("hasEnteredNether", hasEnteredNether);
         tag.putBoolean("portalWipUnlocked", portalWipUnlocked);
         tag.putBoolean("exitSceneTriggered", exitSceneTriggered);
         tag.putBoolean("riftsSealed",        riftsSealed);
+        tag.putLongArray("decoratedEndIslandChunks",
+                decoratedEndIslandChunks.stream().mapToLong(Long::longValue).toArray());
         tag.putInt("riftEliteCount",       riftEliteCount);
         tag.putInt("riftNormalInCycle",    riftNormalInCycle);
         tag.putLong("dragonDefeatedAt",    dragonDefeatedAt);
@@ -457,6 +580,9 @@ public class SimulationSavedData extends SavedData {
             tag.putInt("castleAnchorY", castleAnchorPos.getY());
             tag.putInt("castleAnchorZ", castleAnchorPos.getZ());
         }
+        tag.putBoolean("castleInterceptTriggered", castleInterceptTriggered);
+        tag.putBoolean("castleLockdownActive", castleLockdownActive);
+        tag.putBoolean("castleEverEntered", castleEverEntered);
         tag.putBoolean("castleGuardianDefeated", castleGuardianDefeated);
         tag.putBoolean("blueTowerPuzzleSolved", blueTowerPuzzleSolved);
         tag.put("castleMarkers", serializeCastleMarkers(castleMarkers));
@@ -467,6 +593,9 @@ public class SimulationSavedData extends SavedData {
         }
 
         tag.putBoolean("castleSpawnSystemInit", castleSpawnSystemInit);
+        tag.putInt("castleBuildGeneration", castleBuildGeneration);
+        tag.putIntArray("globallyTriggeredSpawnpoints",
+                globallyTriggeredSpawnpoints.stream().mapToInt(Integer::intValue).toArray());
         if (castleSpawnSystemInit) {
             tag.putByteArray("castleSpawnTriggered", boolArrayToByteArray(castleSpawnTriggered));
             tag.putIntArray("castleSpawnAlive", castleSpawnAlive);
@@ -481,6 +610,8 @@ public class SimulationSavedData extends SavedData {
         tag.putBoolean("roofWave1Triggered",  roofWave1Triggered);
         tag.putBoolean("roofWave2Triggered",  roofWave2Triggered);
         tag.putBoolean("roofWave3Triggered",  roofWave3Triggered);
+        tag.putInt("roofCapBlocksTotal",      roofCapBlocksTotal);
+        tag.putInt("roofCapBlocksDestroyed",  roofCapBlocksDestroyed);
 
         return tag;
     }
@@ -488,11 +619,16 @@ public class SimulationSavedData extends SavedData {
     public static SimulationSavedData load(CompoundTag tag) {
         SimulationSavedData data = new SimulationSavedData();
         data.dragonDefeated      = tag.getBoolean("dragonDefeated");
+        data.witherDefeated      = tag.getBoolean("witherDefeated");
+        data.extraDimensionExplored = tag.getBoolean("extraDimensionExplored");
         data.observerSpawned     = tag.getBoolean("observerSpawned");
         data.hasEnteredNether    = tag.getBoolean("hasEnteredNether");
         data.portalWipUnlocked   = tag.getBoolean("portalWipUnlocked");
         data.exitSceneTriggered  = tag.getBoolean("exitSceneTriggered");
         data.riftsSealed         = tag.getBoolean("riftsSealed");
+        for (long chunkKey : tag.getLongArray("decoratedEndIslandChunks")) {
+            data.decoratedEndIslandChunks.add(chunkKey);
+        }
         data.riftEliteCount       = tag.getInt("riftEliteCount");
         data.riftNormalInCycle    = tag.getInt("riftNormalInCycle");
         data.dragonDefeatedAt     = tag.getLong("dragonDefeatedAt");
@@ -519,6 +655,9 @@ public class SimulationSavedData extends SavedData {
                     tag.getInt("castleAnchorY"),
                     tag.getInt("castleAnchorZ"));
         }
+        data.castleInterceptTriggered = tag.getBoolean("castleInterceptTriggered");
+        data.castleLockdownActive = tag.getBoolean("castleLockdownActive");
+        data.castleEverEntered = tag.getBoolean("castleEverEntered");
         data.castleGuardianDefeated = tag.getBoolean("castleGuardianDefeated");
         data.blueTowerPuzzleSolved = tag.getBoolean("blueTowerPuzzleSolved");
         deserializeCastleMarkers(tag.getList("castleMarkers", Tag.TAG_COMPOUND), data.castleMarkers);
@@ -529,6 +668,10 @@ public class SimulationSavedData extends SavedData {
         }
 
         data.castleSpawnSystemInit = tag.getBoolean("castleSpawnSystemInit");
+        data.castleBuildGeneration = tag.getInt("castleBuildGeneration");
+        for (int n : tag.getIntArray("globallyTriggeredSpawnpoints")) {
+            data.globallyTriggeredSpawnpoints.add(n);
+        }
         if (data.castleSpawnSystemInit) {
             data.castleSpawnTriggered = byteArrayToBoolArray(tag.getByteArray("castleSpawnTriggered"));
             data.castleSpawnAlive = tag.getIntArray("castleSpawnAlive");
@@ -543,6 +686,8 @@ public class SimulationSavedData extends SavedData {
         data.roofWave1Triggered  = tag.getBoolean("roofWave1Triggered");
         data.roofWave2Triggered  = tag.getBoolean("roofWave2Triggered");
         data.roofWave3Triggered  = tag.getBoolean("roofWave3Triggered");
+        data.roofCapBlocksTotal     = tag.getInt("roofCapBlocksTotal");
+        data.roofCapBlocksDestroyed = tag.getInt("roofCapBlocksDestroyed");
 
         return data;
     }

@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "endergetic:bolloom_fruit"
+    },
+    "title": {
+      "text": "\u041b\u0435\u0433\u0447\u0435 \u0432\u043e\u0437\u0434\u0443\u0445\u0430"
+    },
+    "description": {
+      "text": "\u0421\u044a\u0435\u0448\u044c\u0442\u0435 \u043f\u043b\u043e\u0434 \u0431\u043e\u043b\u043b\u0443\u043c\u0430."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:end/endergetic/find_poise_forest",
+  "criteria": {
+    "bolloom_fruit": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "endergetic:bolloom_fruit"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bolloom_fruit"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

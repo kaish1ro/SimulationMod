@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "cataclysm:gauntlet_of_guard"
+    },
+    "title": {
+      "text": "Страж цитадели"
+    },
+    "description": {
+      "text": "Победите Ender Guardian."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "cataclysm:ender_guardian"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/cataclysm/kill_ender_golem"
+}

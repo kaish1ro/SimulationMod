@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "cataclysm:burning_ashes"
+    },
+    "title": {
+      "text": "Пепел арены"
+    },
+    "description": {
+      "text": "Победите Ignited Revenant."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "cataclysm:ignited_revenant"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/cataclysm/find_burning_arena"
+}

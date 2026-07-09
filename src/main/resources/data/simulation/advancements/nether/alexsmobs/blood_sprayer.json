@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:blood_sprayer"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.blood_sprayer.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.blood_sprayer.desc"
+    },
+    "announce_to_chat": false,
+    "show_toast": true
+  },
+  "parent": "simulation:nether/alexsmobs/crimson_mosquito",
+  "criteria": {
+    "blood_sprayer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexsmobs:blood_sprayer"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

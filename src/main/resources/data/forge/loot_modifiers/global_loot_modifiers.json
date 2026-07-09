@@ -9,6 +9,8 @@
     "simulation:endrem_fortress_puzzle",
     "simulation:endrem_fortress_beacon",
     "simulation:endrem_fortress_obsidian",
-    "simulation:endrem_fortress_hall"
+    "simulation:endrem_fortress_hall",
+    "simulation:void_blossom_map_fragment_1_catacombs",
+    "simulation:lich_map_fragment_1_catacombs"
   ]
 }

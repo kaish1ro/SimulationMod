@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "simulation:item/void_blossom_map_fragment_4"
+  }
+}

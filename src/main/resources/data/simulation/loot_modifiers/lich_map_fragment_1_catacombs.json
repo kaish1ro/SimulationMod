@@ -1,0 +1,15 @@
+{
+  "type": "endrem:loot_injection",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "divinerpg:chests/iceika/iceika_chest_dungeon"
+    },
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.05
+    }
+  ],
+  "loot_table_id": "simulation:injections/lich_map_fragment_1_catacombs",
+  "allow_recursive_glms": true
+}

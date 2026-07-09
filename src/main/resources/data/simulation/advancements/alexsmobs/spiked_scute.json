@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:spiked_scute"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.spiked_scute.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.spiked_scute.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/alligator_snapping_turtle",
+  "criteria": {
+    "spiked_scute": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexsmobs:spiked_scute"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

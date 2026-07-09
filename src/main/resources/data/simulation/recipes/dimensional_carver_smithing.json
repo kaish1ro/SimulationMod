@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "simulation:dimensional_upgrade_smithing_template"
+  },
+  "base": {
+    "item": "minecraft:netherite_pickaxe"
+  },
+  "addition": {
+    "item": "alexsmobs:void_worm_eye"
+  },
+  "result": {
+    "item": "alexsmobs:dimensional_carver"
+  }
+}

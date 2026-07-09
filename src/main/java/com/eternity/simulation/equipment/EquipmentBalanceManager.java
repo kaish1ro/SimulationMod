@@ -1,7 +1,6 @@
 package com.eternity.simulation.equipment;
 
 import com.eternity.simulation.SimulationMod;
-import com.eternity.simulation.SimulationSavedData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -45,10 +44,6 @@ public class EquipmentBalanceManager {
     private static final UUID ARMOR_UUID            = UUID.fromString("b1c2d3e4-f5a6-7890-bcde-f01234567891");
     private static final UUID TOUGHNESS_UUID        = UUID.fromString("c1d2e3f4-a5b6-7890-cdef-012345678902");
     private static final UUID KNOCKBACK_UUID        = UUID.fromString("d1e2f3a4-b5c6-7890-def0-123456789013");
-    /** Базовый урон оружия Cataclysm (до дракона = 8, устанавливается в ItemAttributeModifierEvent). */
-    private static final UUID CATACLYSM_BASE_UUID    = UUID.fromString("e1f2a3b4-c5d6-7890-ef01-234567890124");
-    /** Бонус урона после убийства дракона (+1, итого 9). */
-    private static final UUID CATACLYSM_STAGE_UUID   = UUID.fromString("f1a2b3c4-d5e6-7890-f012-345678901235");
     /** Корректирующий модификатор брони Cataclysm (только вниз до незеритового уровня). */
     private static final UUID CATACLYSM_ARMOR_UUID   = UUID.fromString("a2b3c4d5-e6f7-8901-bcde-f12345678906");
     private static final UUID CATACLYSM_TOUGH_UUID   = UUID.fromString("b3c4d5e6-f7a8-9012-cdef-012345678907");
@@ -126,26 +121,7 @@ public class EquipmentBalanceManager {
             }
         }
 
-        // ── Cataclysm: cap урона до 7 (= 8 отображаемых) для оружия из боссов ──
-        // Железно-тирные крафтовые предметы (black_steel_*) оставляем нетронутыми.
-        // Стейдж-бонус (+1 после дракона) добавляется через PlayerTickEvent.
-        if (slot == EquipmentSlot.MAINHAND && "cataclysm".equals(ns)
-                && event.getModifiers().containsKey(Attributes.ATTACK_DAMAGE)
-                && !CATACLYSM_IRON_TIER.contains(full)) {
-            // getModifiers() — unmodifiable multimap, removeModifier не работает надёжно.
-            // Вместо удаления считаем сумму существующих ADDITION-модификаторов
-            // и добавляем корректирующий, чтобы итог = 7 (= 8 отображаемых: 1 base + 7).
-            double currentSum = event.getModifiers().get(Attributes.ATTACK_DAMAGE).stream()
-                    .filter(m -> m.getOperation() == AttributeModifier.Operation.ADDITION)
-                    .mapToDouble(AttributeModifier::getAmount)
-                    .sum();
-            double correction = 7.0 - currentSum;
-            if (Math.abs(correction) > 0.001) {
-                event.addModifier(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(CATACLYSM_BASE_UUID, "cataclysm_cap",
-                                correction, AttributeModifier.Operation.ADDITION));
-            }
-        }
+        // Урон оружия Cataclysm теперь считается общей NBT-системой апгрейдов в balance.WeaponBalanceEvents.
 
         // ── Cataclysm броня: кап до незеритового уровня (только вниз) ───────────
         // Незерит: шлем/сапоги=3, нагрудник=8, поножи=6, вязкость=3, кб=0.1 за предмет.
@@ -207,11 +183,8 @@ public class EquipmentBalanceManager {
         if (player.level().isClientSide()) return;
 
         ServerLevel level = (ServerLevel) player.level();
-        SimulationSavedData data = SimulationSavedData.get(level.getServer().overworld());
-
         applySetEffects(player, level);
         tickVoidTrigger(player, level);
-        if (player.tickCount % 20 == 0) tickCataclysmWeaponStage(player, data);
     }
 
     private static void applySetEffects(ServerPlayer player, ServerLevel level) {
@@ -257,39 +230,6 @@ public class EquipmentBalanceManager {
         voidCooldown.put(player.getUUID(), now);
         player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY,   100, 0, false, false));
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 2, false, false));
-    }
-
-    // ── CATACLYSM: стейдж-бонус урона ────────────────────────────────────────
-
-    /**
-     * Каждую секунду проверяет: держит ли игрок оружие Cataclysm, убит ли дракон.
-     * <ul>
-     *   <li>До дракона: базовое значение из ItemAttributeModifierEvent = 8 урона</li>
-     *   <li>После дракона: +1 трансиентный модификатор → 9 урона</li>
-     * </ul>
-     */
-    private static void tickCataclysmWeaponStage(ServerPlayer player, SimulationSavedData data) {
-        ItemStack held = player.getMainHandItem();
-        ResourceLocation heldKey = ForgeRegistries.ITEMS.getKey(held.getItem());
-        String heldFull = heldKey != null ? heldKey.toString() : "";
-        boolean holdingCataclysm = !held.isEmpty()
-                && "cataclysm".equals(heldKey != null ? heldKey.getNamespace() : "")
-                && !CATACLYSM_IRON_TIER.contains(heldFull)
-                && held.getItem().getDefaultAttributeModifiers(net.minecraft.world.entity.EquipmentSlot.MAINHAND)
-                        .containsKey(Attributes.ATTACK_DAMAGE);
-
-        var attackAttr = player.getAttribute(Attributes.ATTACK_DAMAGE);
-        if (attackAttr == null) return;
-
-        if (holdingCataclysm && data.isDragonDefeated()) {
-            if (attackAttr.getModifier(CATACLYSM_STAGE_UUID) == null) {
-                attackAttr.addTransientModifier(new AttributeModifier(
-                        CATACLYSM_STAGE_UUID, "cataclysm_stage_dmg",
-                        1.0, AttributeModifier.Operation.ADDITION));
-            }
-        } else {
-            attackAttr.removeModifier(CATACLYSM_STAGE_UUID);
-        }
     }
 
     // ── БОЕВЫЕ ПАССИВКИ ───────────────────────────────────────────────────────

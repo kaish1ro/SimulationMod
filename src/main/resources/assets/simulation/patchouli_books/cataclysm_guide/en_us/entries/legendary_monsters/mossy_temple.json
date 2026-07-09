@@ -1,0 +1,27 @@
+{
+  "name": "Мховый храм",
+  "category": "simulation:legendary_monsters",
+  "icon": "legendary_monsters:eye_of_moss",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Мховый храм",
+      "text": "Джунгли скрывают его лучше, чем прячут - храм не разрушен, он попросту зарос, будто лес много лет назад решил, что это теперь тоже его часть."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "legendary_monsters:overgrown_colossus",
+      "scale": 0.7,
+      "offset": 0.3,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Заросший Колосс"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Колосс из корней и камня",
+      "text": "Заросший Колосс двигается медленно, но там, где он проходит, земля потом ещё долго ядовита. С ним связаны Mossy Hammer - молот с широким размахом и собственным ядом - и Mossy Chestplate, который лечит носителя облаками той же отравы."
+    }
+  ]
+}

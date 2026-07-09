@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "cataclysm:chiseled_end_stone_bricks"
+    },
+    "title": {
+      "text": "Разрушенная цитадель"
+    },
+    "description": {
+      "text": "Найдите цитадель в измерении Энда."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "cataclysm:ruined_citadel"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/root"
+}

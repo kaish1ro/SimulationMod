@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "midnight_madness:demonic_forge",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 26,
+    "separation": 20,
+    "salt": 1472052322
+  }
+}

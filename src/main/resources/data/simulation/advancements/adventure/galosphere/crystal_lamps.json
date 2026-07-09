@@ -1,0 +1,47 @@
+{
+  "parent": "simulation:adventure/root",
+  "criteria": {
+    "crystal_lamps": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "galosphere:allurite_lamp"
+            ]
+          },
+          {
+            "items": [
+              "galosphere:lumiere_lamp"
+            ]
+          },
+          {
+            "items": [
+              "galosphere:amethyst_lamp"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Соберите в инвентаре сразу три вида кристальных ламп."
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "galosphere:amethyst_lamp"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Как и должно быть, в равновесии"
+    }
+  },
+  "requirements": [
+    [
+      "crystal_lamps"
+    ]
+  ]
+}

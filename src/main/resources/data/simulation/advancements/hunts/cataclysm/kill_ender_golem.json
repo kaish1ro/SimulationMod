@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "cataclysm:void_core"
+    },
+    "title": {
+      "text": "Голем пустоты"
+    },
+    "description": {
+      "text": "Победите Ender Golem."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "cataclysm:ender_golem"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/cataclysm/find_ruined_citadel"
+}

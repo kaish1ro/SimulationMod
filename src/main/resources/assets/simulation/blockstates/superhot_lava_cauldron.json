@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "stage=0": { "model": "simulation:block/superhot_lava_cauldron_stage_0" },
+    "stage=1": { "model": "simulation:block/superhot_lava_cauldron_stage_1" },
+    "stage=2": { "model": "simulation:block/superhot_lava_cauldron_stage_2" },
+    "stage=3": { "model": "simulation:block/superhot_lava_cauldron_stage_3" },
+    "stage=4": { "model": "simulation:block/superhot_lava_cauldron_stage_4" }
+  }
+}

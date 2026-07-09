@@ -1,0 +1,534 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:filled_map"
+    },
+    "title": {
+      "text": "Забытые места"
+    },
+    "description": {
+      "text": "Находите редкие структуры, руины и необычные уголки знакомого мира."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "minecraft:textures/block/chiseled_stone_bricks.png"
+  },
+  "criteria": {
+    "yung_desert_temple": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdeserttemples:desert_temple"
+      }
+    },
+    "yung_desert_temple_clear": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:husk",
+              "location": {
+                "structure": "betterdeserttemples:desert_temple"
+              },
+              "equipment": {
+                "head": {
+                  "nbt": "{\"SkullOwner\": {\"Properties\": {\"textures\": [{\"Value\": \"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTM1MGMwNDk5YTY4YmNkOWM3NWIyNWMxOTIzMTQzOWIxMDhkMDI3NTlmNDM1ZTMzZTRhZWU5ZWQxZGQyNDFhMiJ9fX0=\"}]}}}"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "yung_small_dungeon": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:small_dungeon"
+      }
+    },
+    "yung_zombie_dungeon": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:zombie_dungeon"
+      }
+    },
+    "yung_skeleton_dungeon": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:skeleton_dungeon"
+      }
+    },
+    "yung_spider_dungeon": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:spider_dungeon"
+      }
+    },
+    "yung_small_nether_dungeon": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:small_nether_dungeon"
+      }
+    },
+    "yung_all_dungeons": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:small_dungeon"
+      }
+    },
+    "yung_jungle_temple": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterjungletemples:jungle_temple"
+      }
+    },
+    "yung_mineshaft": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_acacia"
+      }
+    },
+    "yung_nether_fortress": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterfortresses:fortress"
+      }
+    },
+    "yung_ocean_monument": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betteroceanmonuments:ocean_monument"
+      }
+    },
+    "yung_stronghold": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterstrongholds:stronghold"
+      }
+    },
+    "yung_witch_hut": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterwitchhuts:witch_hut"
+      }
+    },
+    "yung_witch_circle": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterwitchhuts:witch_circle"
+      }
+    },
+    "supplementaries_way_sign": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "supplementaries:way_sign"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_ancient_cities": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:ancient_city_ocean"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_bastion_underground": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:bastion_underground"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_city_nether": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:city_nether"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_city_overworld": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:city_overworld"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_fortress_jungle": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:fortress_jungle"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_igloos": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:igloo_grassy"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_mansions": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:mansion_birch"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_mineshafts": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:mineshaft_birch"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_monuments": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:monument_jungle"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_outposts": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:outpost_badlands"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_pyramids": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:pyramid_badlands"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_ruined_portal_end": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:ruined_portal_end"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_ruins": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:ruins_land_hot"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_shipwrecks": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:shipwreck_crimson"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_strongholds": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:stronghold_nether"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_temples": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:temple_nether_basalt"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_villages": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:village_badlands"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "repurposed_witch_huts": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:witch_hut_birch"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "yung_desert_temple"
+    ],
+    [
+      "yung_desert_temple_clear"
+    ],
+    [
+      "yung_small_dungeon"
+    ],
+    [
+      "yung_zombie_dungeon"
+    ],
+    [
+      "yung_skeleton_dungeon"
+    ],
+    [
+      "yung_spider_dungeon"
+    ],
+    [
+      "yung_small_nether_dungeon"
+    ],
+    [
+      "yung_all_dungeons"
+    ],
+    [
+      "yung_jungle_temple"
+    ],
+    [
+      "yung_mineshaft"
+    ],
+    [
+      "yung_nether_fortress"
+    ],
+    [
+      "yung_ocean_monument"
+    ],
+    [
+      "yung_stronghold"
+    ],
+    [
+      "yung_witch_hut"
+    ],
+    [
+      "yung_witch_circle"
+    ],
+    [
+      "supplementaries_way_sign"
+    ],
+    [
+      "repurposed_ancient_cities"
+    ],
+    [
+      "repurposed_bastion_underground"
+    ],
+    [
+      "repurposed_city_nether"
+    ],
+    [
+      "repurposed_city_overworld"
+    ],
+    [
+      "repurposed_fortress_jungle"
+    ],
+    [
+      "repurposed_igloos"
+    ],
+    [
+      "repurposed_mansions"
+    ],
+    [
+      "repurposed_mineshafts"
+    ],
+    [
+      "repurposed_monuments"
+    ],
+    [
+      "repurposed_outposts"
+    ],
+    [
+      "repurposed_pyramids"
+    ],
+    [
+      "repurposed_ruined_portal_end"
+    ],
+    [
+      "repurposed_ruins"
+    ],
+    [
+      "repurposed_shipwrecks"
+    ],
+    [
+      "repurposed_strongholds"
+    ],
+    [
+      "repurposed_temples"
+    ],
+    [
+      "repurposed_villages"
+    ],
+    [
+      "repurposed_witch_huts"
+    ]
+  ]
+}

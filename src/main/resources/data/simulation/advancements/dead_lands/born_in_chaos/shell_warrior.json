@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "born_in_chaos_v1:spiny_shell_armor_chestplate"
+    },
+    "title": {
+      "translate": "advancements.shell_warrior.title"
+    },
+    "description": {
+      "translate": "advancements.shell_warrior.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "shell_warrior_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 20
+  },
+  "parent": "simulation:dead_lands/born_in_chaos/waste_recycler",
+  "sends_telemetry_event": false
+}

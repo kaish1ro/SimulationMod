@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:fish_bones"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.fish_bones.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.fish_bones.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/skelewag",
+  "criteria": {
+    "sopa_de_macaco": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexsmobs:fish_bones"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

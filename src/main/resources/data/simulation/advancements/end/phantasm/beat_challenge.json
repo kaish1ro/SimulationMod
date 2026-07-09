@@ -1,0 +1,35 @@
+{
+    "parent":  "simulation:end/vanilla/find_end_city",
+    "criteria":  {
+                     "beat_challenge":  {
+                                            "conditions":  {
+                                                               "loot_table":  "phantasm:/challenge"
+                                                           },
+                                            "trigger":  "minecraft:player_generates_container_loot"
+                                        }
+                 },
+    "display":  {
+                    "announce_to_chat":  false,
+                    "description":  {
+                                        "text":  "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0439\u0442\u0435 \u0420\u0443\u043d\u0443 \u0438\u0441\u043f\u044b\u0442\u0430\u043d\u0438\u044f \u043a\u0440\u0438\u0441\u0442\u0430\u043b\u043b\u043e\u043c \u042d\u043d\u0434\u0430 \u0438 \u043f\u043e\u0431\u0435\u0434\u0438\u0442\u0435."
+                                    },
+                    "frame":  "challenge",
+                    "hidden":  false,
+                    "icon":  {
+                                 "item":  "phantasm:challenge_rune"
+                             },
+                    "show_toast":  true,
+                    "title":  {
+                                  "text":  "\u041d\u0430\u0441\u0442\u043e\u044f\u0449\u0438\u0439 \u0431\u043e\u0439"
+                              }
+                },
+    "requirements":  [
+                         [
+                             "beat_challenge"
+                         ]
+                     ],
+    "rewards":  {
+                    "experience":  50
+                },
+    "sends_telemetry_event":  false
+}

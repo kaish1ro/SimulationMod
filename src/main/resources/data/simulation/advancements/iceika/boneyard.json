@@ -1,0 +1,36 @@
+{
+  "parent": "simulation:iceika/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:bone_block"
+    },
+    "title": {
+      "text": "Китовое кладбище"
+    },
+    "description": {
+      "text": "Найдите boneyard в Iceika."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "find_boneyard": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "divinerpg:iceika/boneyard"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

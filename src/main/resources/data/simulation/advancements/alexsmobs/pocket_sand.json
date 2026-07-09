@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "citadel:fancy_item",
+      "nbt": "{DisplayItem:\"alexsmobs:pocket_sand\", DisplayBob:0, DisplayZoom:1, DisplayScale:1, DisplaySpin:0, DisplayShake:0}"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.pocket_sand.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.pocket_sand.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/guster",
+  "criteria": {
+    "rat_upgrade_basic": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexsmobs:pocket_sand"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

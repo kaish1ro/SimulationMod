@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "aquamirae:anglers_fang"
+    },
+    "title": {
+      "translate": "advancements.aquamirae.obtain_anglers_fang.title"
+    },
+    "description": {
+      "translate": "advancements.aquamirae.obtain_anglers_fang.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "anglers_fang": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "aquamirae:anglers_fang"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "simulation:alexscaves/aquamirae/obtain_fin",
+  "sends_telemetry_event": false
+}

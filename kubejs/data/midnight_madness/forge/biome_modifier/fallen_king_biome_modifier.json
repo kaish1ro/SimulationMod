@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "minecraft:the_void",
+  "spawners": {
+    "type": "midnight_madness:fallen_king",
+    "weight": 15,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

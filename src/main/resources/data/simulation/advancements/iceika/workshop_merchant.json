@@ -1,0 +1,28 @@
+{
+  "parent": "simulation:iceika/frozen_goods",
+  "display": {
+    "icon": {
+      "item": "divinerpg:snowflake"
+    },
+    "title": {
+      "text": "Небольшой подарок"
+    },
+    "description": {
+      "text": "Поторгуйте с торговцем мастерской."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "talk_to_workshop_merchant": {
+      "trigger": "minecraft:villager_trade",
+      "conditions": {
+        "villager": {
+          "type": "divinerpg:workshop_merchant"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "Космическая станция",
+  "category": "simulation:legendary_monsters",
+  "icon": "legendary_monsters:eye_of_annihilation",
+  "sortnum": 12,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Космическая станция",
+      "text": "Малые острова Края не должны держать на себе постройки такого размера - и всё же станция стоит, ровная и чужая среди рассыпающегося камня. Она не разрушена, как остальные логовища. Она просто выключена.$(br2)Комнаты патрулируют Annihilation Pursuer, Wandering Eye, Flameborn Guard и Flameborn Warrior; Chorusling и Flame Drifter держатся ближе к обшивке, будто боятся заходить вглубь."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "legendary_monsters:annihilation_pursuer",
+      "scale": 0.7,
+      "offset": 0.3,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Annihilation Pursuer"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Ошибка в записях",
+      "text": "Долгое время я считал Annihilation Pursuer хозяином станции - он держится увереннее прочих и бьётся так, будто ему есть что защищать. Это неправда. Он просто первый, кого встречаешь."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "legendary_monsters:the_obliterator",
+      "scale": 0.6,
+      "offset": 0.8,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "The Obliterator"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The Obliterator",
+      "text": "Настоящий хозяин станции глубже, в зале, который сам себя стирает - я видел, как исчезали куски пола там, где он проходил, и не появлялись обратно. The Obliterator не столько сражается, сколько убирает всё, что мешает ему быть единственным здесь.$(br2)Стоя в воздухе над обломками, он неуязвим для прыжков с высоты - проверено на себе, не повторяйте. Это конец станции, и конец записи об аннигиляции."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Поздняя цепочка",
+      "text": "Здесь берут начало материалы аннигиляции: Bottle of Annihilation, Enderitium, The Tesseract, Atom Splitter и вся ветка The Obliterator. Это самый поздний End-контент из освоенного - и потому единственный, кому в балансе разрешены наивысшие ступени апгрейда."
+    }
+  ]
+}

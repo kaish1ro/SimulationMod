@@ -1,0 +1,98 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:chest_minecart"
+    },
+    "title": {
+      "text": "Все старые рельсы"
+    },
+    "description": {
+      "text": "Найдите все 13 типов заброшенных шахт."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "mineshaft_acacia": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_acacia"
+      }
+    },
+    "mineshaft_desert": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_desert"
+      }
+    },
+    "mineshaft_dripstone": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_dripstone"
+      }
+    },
+    "mineshaft_ice": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_ice"
+      }
+    },
+    "mineshaft_jungle": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_jungle"
+      }
+    },
+    "mineshaft_lush": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_lush"
+      }
+    },
+    "mineshaft_mesa": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_mesa"
+      }
+    },
+    "mineshaft_mushroom": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_mushroom"
+      }
+    },
+    "mineshaft_oak": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_oak"
+      }
+    },
+    "mineshaft_overgrown": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_overgrown"
+      }
+    },
+    "mineshaft_red_desert": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_red_desert"
+      }
+    },
+    "mineshaft_spruce": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_spruce"
+      }
+    },
+    "mineshaft_spruce_snowy": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "bettermineshafts:mineshaft_spruce_snowy"
+      }
+    }
+  },
+  "parent": "simulation:places/yung/mineshaft"
+}

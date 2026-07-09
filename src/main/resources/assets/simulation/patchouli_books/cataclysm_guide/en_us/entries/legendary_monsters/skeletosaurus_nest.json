@@ -1,0 +1,27 @@
+{
+  "name": "Гнездо Скелетозавра",
+  "category": "simulation:legendary_monsters",
+  "icon": "legendary_monsters:eye_of_bones",
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Гнездо Скелетозавра",
+      "text": "Долина песка душ и без того выглядит как одна большая могила. Гнездо здесь - просто ещё одна её часть, только с костями, которые до сих пор двигаются."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "legendary_monsters:skeletosaurus",
+      "scale": 0.7,
+      "offset": 0.3,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Скелетозавр"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Кости, которых слишком много",
+      "text": "Скелетозавр крупнее всего, что должно жить в долине песка душ, и после победы оставляет достаточно костей на Dinosaur Bone Club и Dinosaur Bone Shield разом. Неплохая ступень Незера перед тем, как соваться в настоящие крепости душ дальше по коридору."
+    }
+  ]
+}

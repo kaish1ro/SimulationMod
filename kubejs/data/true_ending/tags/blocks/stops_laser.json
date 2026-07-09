@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    { "id": "minecraft:end_stone_bricks", "required": false },
+    { "id": "minecraft:crying_obsidian", "required": false },
+    { "id": "minecraft:tuff", "required": false },
+    { "id": "minecraft:andesite", "required": false },
+    { "id": "minecraft:cobblestone", "required": false },
+    { "id": "minecraft:smooth_basalt", "required": false },
+    { "id": "minecraft:calcite", "required": false },
+    { "id": "minecraft:amethyst_block", "required": false },
+    { "id": "galosphere:allurite_block", "required": false },
+    { "id": "galosphere:smooth_allurite", "required": false },
+    { "id": "galosphere:smooth_amethyst", "required": false }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "parent": "simulation:farming/farmersdelight/get_fd_seed",
+  "criteria": {
+    "get_coffee_beans": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farmersrespite:coffee_beans"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "text": "Кофе плохо приживается в одиночку — посадите его рядом с другими культурами, чтобы дать ему опору для роста."
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "farmersrespite:coffee_beans"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Чужой на грядке"
+    }
+  },
+  "requirements": [
+    [
+      "get_coffee_beans"
+    ]
+  ]
+}

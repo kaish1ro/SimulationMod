@@ -1,5 +1,7 @@
 {
   "item.simulation.simulation_shard": "Simulation Shard",
+  "item.simulation.heart_shard": "Heart Shard",
+  "item.simulation.invoker_face_icon": "Invoker's Mark",
 
   "item.simulation.space_shard_red":    "Space Shard (Red)",
   "item.simulation.space_shard_purple": "Space Shard (Purple)",
@@ -32,11 +34,20 @@
 
   "block.simulation.castle_key_door": "Castle Door",
   "item.simulation.castle_key":      "Castle Door Key",
+  "item.simulation.dimensional_upgrade_smithing_template": "Dimensional Upgrade",
+  "upgrade.simulation.dimensional_upgrade": "Dimensional Upgrade",
+  "item.simulation.smithing_template.dimensional_upgrade.applies_to": "Netherite Pickaxe",
+  "item.simulation.smithing_template.dimensional_upgrade.ingredients": "Void Worm Eye",
+  "item.simulation.smithing_template.dimensional_upgrade.base_slot_description": "Add a netherite pickaxe",
+  "item.simulation.smithing_template.dimensional_upgrade.additions_slot_description": "Add a void worm eye",
 
   "block.simulation.technical_workbench": "Technical Workbench",
   "block.simulation.double_compressed_cobblestone": "Double Compressed Cobblestone",
   "block.simulation.triple_compressed_cobblestone": "Triple Compressed Cobblestone",
   "block.simulation.quadro_compressed_cobblestone": "Quadruple Compressed Cobblestone",
+  "block.simulation.solid_ice": "Solid Ice",
+  "block.simulation.superhot_lava_cauldron": "Superhot Lava Cauldron",
+  "item.simulation.superhot_lava_bucket": "Bucket of Superhot Lava",
   "container.simulation.workbench": "Technical Workbench",
   "container.simulation.blueprint_slot": "Blueprint",
   "itemGroup.simulation.simulation_tab": "Simulation",
@@ -44,9 +55,17 @@
   "death.attack.simulation.divine_punishment": "%1$s was struck down from above",
 
   "block.simulation.herbalists_table": "Herbalist's Table",
-  "item.simulation.ferox_map_fragment_1": "Ferox Map Fragment",
-  "item.simulation.ferox_map_fragment_2": "Ferox Map Fragment",
-  "item.simulation.ferox_map_fragment_3": "Ferox Map Fragment",
-  "item.simulation.ferox_map_fragment_4": "Ferox Map Fragment",
-  "entity.minecraft.villager.simulation.strange_herbalist": "Strange Herbalist"
+  "item.simulation.void_blossom_map_fragment_1": "Void Blossom Map Fragment",
+  "item.simulation.void_blossom_map_fragment_2": "Void Blossom Map Fragment",
+  "item.simulation.void_blossom_map_fragment_3": "Void Blossom Map Fragment",
+  "item.simulation.void_blossom_map_fragment_4": "Void Blossom Map Fragment",
+  "item.simulation.void_blossom_map": "Map of the Void Blossom",
+  "item.simulation.lich_map_fragment_1": "Lich's Lair Map Fragment",
+  "item.simulation.lich_map_fragment_2": "Lich's Lair Map Fragment",
+  "item.simulation.lich_map_fragment_3": "Lich's Lair Map Fragment",
+  "item.simulation.lich_map_fragment_4": "Lich's Lair Map Fragment",
+  "item.simulation.lich_map": "Map of the Lich's Lair",
+  "entity.minecraft.villager.simulation.strange_herbalist": "Strange Herbalist",
+  "key.categories.simulation": "Simulation",
+  "key.simulation.open_quests": "Open Quest Journal"
 }

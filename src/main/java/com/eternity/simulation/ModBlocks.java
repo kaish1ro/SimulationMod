@@ -3,16 +3,21 @@ package com.eternity.simulation;
 import com.eternity.simulation.blocks.CastleKeyDoorBlock;
 import com.eternity.simulation.blocks.CastleKeyDoorBlockEntity;
 import com.eternity.simulation.blocks.DoubleCompressedCobblestone;
+import com.eternity.simulation.blocks.HerbalistsTableBlock;
 import com.eternity.simulation.blocks.QuadroCompressedCobblestone;
 import com.eternity.simulation.blocks.SimulationWorkbenchBlock;
+import com.eternity.simulation.blocks.SolidIceBlock;
+import com.eternity.simulation.blocks.SuperhotLavaCauldronBlock;
 import com.eternity.simulation.blocks.TripleCompressedCobblestone;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -109,12 +114,15 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> HERBALISTS_TABLE = BLOCKS.register(
         "herbalists_table",
-        () -> new Block(
+        () -> new HerbalistsTableBlock(
             BlockBehaviour.Properties.of()
                 .mapColor(MapColor.WOOD)
                 .strength(2.0f)
                 .sound(SoundType.WOOD)
                 .requiresCorrectToolForDrops()
+                // Кастомная (не полнокубовая) модель: без noOcclusion игра считает блок
+                // сплошным и срезает грани соседей → сквозь дыры модели виден x-ray.
+                .noOcclusion()
         )
     );
 
@@ -130,4 +138,46 @@ public class ModBlocks {
                     () -> BlockEntityType.Builder
                             .of(CastleKeyDoorBlockEntity::new, CASTLE_KEY_DOOR.get())
                             .build(null));
+
+    // ── Крепкий лёд — как обычный лёд (полупрозрачный, скользкий), но не тает ──
+
+    public static final RegistryObject<Block> SOLID_ICE = BLOCKS.register(
+        "solid_ice",
+        () -> new SolidIceBlock(
+            BlockBehaviour.Properties.of()
+                .mapColor(MapColor.ICE)
+                // Неломаемый, как бедрок — убрать может только сверхгорячая лава (код).
+                .strength(-1.0F, 3600000.0F)
+                .friction(0.98f)
+                .sound(SoundType.GLASS)
+                .noOcclusion()
+                .randomTicks() // нужно для проверки соседства со сверхгорячей лавой
+        )
+    );
+
+    public static final RegistryObject<Item> SOLID_ICE_ITEM = BLOCK_ITEMS.register(
+        "solid_ice",
+        () -> new BlockItem(SOLID_ICE.get(), new Item.Properties())
+    );
+
+    // ── Котёл со сверхгорячей лавой ────────────────────────────────────────────
+    // Без item-формы — как и ванильный lava_cauldron, появляется только подменой
+    // блока в мире (см. SuperhotLavaListener), вручную поставить его нельзя.
+    public static final RegistryObject<Block> SUPERHOT_LAVA_CAULDRON = BLOCKS.register(
+        "superhot_lava_cauldron",
+        () -> new SuperhotLavaCauldronBlock(
+            BlockBehaviour.Properties.copy(Blocks.CAULDRON)
+                .lightLevel(state -> 15)
+        )
+    );
+
+    // ── Жидкость сверхгорячей лавы (блок в мире) ────────────────────────────────
+    public static final RegistryObject<LiquidBlock> SUPERHOT_LAVA_BLOCK = BLOCKS.register(
+        "superhot_lava",
+        () -> new LiquidBlock(
+            () -> (FlowingFluid) ModFluids.SUPERHOT_LAVA_SOURCE.get(),
+            BlockBehaviour.Properties.copy(Blocks.LAVA)
+                .lightLevel(state -> 15)
+        )
+    );
 }

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:tab_icon",
+      "nbt": "{DisplayEntityType:\"alexsmobs:leafcutter_ant\"}"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.stomp_leafcutter_anthill.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.stomp_leafcutter_anthill.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/root",
+  "criteria": {
+    "ex": {
+      "trigger": "alexsmobs:stomp_leafcutter_anthill"
+    }
+  },
+  "requirements": [
+    [
+      "ex"
+    ]
+  ]
+}

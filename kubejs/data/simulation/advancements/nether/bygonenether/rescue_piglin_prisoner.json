@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "bygonenether:netherite_bell"
+    },
+    "title": {
+      "text": "\u041e\u0441\u0432\u043e\u0431\u043e\u0434\u0438\u0442\u0435\u043b\u044c"
+    },
+    "description": {
+      "text": "\u0421\u043f\u0430\u0441\u0438\u0442\u0435 \u043f\u043b\u0435\u043d\u043d\u043e\u0433\u043e \u043f\u0438\u0433\u043b\u0438\u043d\u0430."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:nether/bygonenether/piglin_manor",
+  "criteria": {
+    "rescue_prisoner": {
+      "trigger": "minecraft:summoned_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "bygonenether:piglin_prisoner"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rescue_prisoner"
+    ]
+  ],
+  "rewards": {
+    "experience": 500
+  },
+  "sends_telemetry_event": false
+}

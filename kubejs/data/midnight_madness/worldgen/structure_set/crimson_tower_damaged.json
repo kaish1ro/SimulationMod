@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "midnight_madness:crimson_tower_damaged",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 17,
+    "separation": 13,
+    "salt": 1461748119
+  }
+}

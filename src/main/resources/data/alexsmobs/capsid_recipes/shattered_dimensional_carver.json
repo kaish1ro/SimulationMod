@@ -1,0 +1,12 @@
+{
+  "ingredients": [
+    {
+      "item": "minecraft:barrier"
+    }
+  ],
+  "result": {
+    "item": "alexsmobs:shattered_dimensional_carver",
+    "count": 1
+  },
+  "time": 200
+}

@@ -1,0 +1,60 @@
+{
+  "parent": "twilightforest:progress_troll",
+  "criteria": {
+    "plateau": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "twilightforest:final_plateau"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "previous_progression": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player",
+                "advancements": {
+                  "twilightforest:progress_troll": true
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": "Выберитесь из странного замка",
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "twilightforest:blue_castle_rune_brick"
+    },
+    "show_toast": true,
+    "title": "Но кто это, чёрт возьми, построил?!"
+  },
+  "requirements": [
+    [
+      "previous_progression"
+    ],
+    [
+      "plateau"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

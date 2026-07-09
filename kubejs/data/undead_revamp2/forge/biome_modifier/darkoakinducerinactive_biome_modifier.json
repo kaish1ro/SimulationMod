@@ -1,0 +1,12 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:the_void",
+  "features": "undead_revamp2:darkoakinducerinactive",
+  "step": "underground_ores",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "simulation:disabled"
+    }
+  ]
+}

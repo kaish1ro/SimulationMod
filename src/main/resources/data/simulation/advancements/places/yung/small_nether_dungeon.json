@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:red_nether_bricks"
+    },
+    "title": {
+      "text": "Адская пристройка"
+    },
+    "description": {
+      "text": "Найдите малое подземелье в Нижнем мире."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:small_nether_dungeon"
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

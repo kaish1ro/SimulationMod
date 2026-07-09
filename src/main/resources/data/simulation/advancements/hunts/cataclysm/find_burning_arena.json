@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "cataclysm:altar_of_fire"
+    },
+    "title": {
+      "text": "Горящая арена"
+    },
+    "description": {
+      "text": "Найдите арену Игниса."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "cataclysm:burning_arena"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/root"
+}

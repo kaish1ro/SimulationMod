@@ -23,6 +23,9 @@ public class ModCreativeTabs {
                         // ── Осколки симуляции ────────────────────────────────
                         output.accept(ModItems.SIMULATION_SHARD.get());
 
+                        // ── Осколок сердца (дроп с боссов, 4 шт. -> Heart Container) ──
+                        output.accept(ModItems.HEART_SHARD.get());
+
                         // ── Осколки пространства (дроп из разломов) ──────────
                         output.accept(ModItems.SPACE_SHARD_RED.get());
                         output.accept(ModItems.SPACE_SHARD_BLUE.get());
@@ -62,17 +65,28 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.DOUBLE_COMPRESSED_COBBLESTONE.get());
                         output.accept(ModBlocks.TRIPLE_COMPRESSED_COBBLESTONE.get());
                         output.accept(ModBlocks.QUADRO_COMPRESSED_COBBLESTONE.get());
+                        output.accept(ModBlocks.SOLID_ICE.get());
+                        output.accept(ModItems.SUPERHOT_LAVA_BUCKET.get());
 
                         // ── Дверь замка ───────────────────────────────────────
                         output.accept(ModBlocks.CASTLE_KEY_DOOR.get());
                         output.accept(ModItems.CASTLE_KEY.get());
+                        output.accept(ModItems.DIMENSIONAL_UPGRADE_SMITHING_TEMPLATE.get());
 
                         // ── Undergarden: стол травника и фрагменты карты ─────
                         output.accept(ModBlocks.HERBALISTS_TABLE.get());
-                        output.accept(ModItems.FEROX_MAP_FRAGMENT_1.get());
-                        output.accept(ModItems.FEROX_MAP_FRAGMENT_2.get());
-                        output.accept(ModItems.FEROX_MAP_FRAGMENT_3.get());
-                        output.accept(ModItems.FEROX_MAP_FRAGMENT_4.get());
+                        output.accept(ModItems.VOID_BLOSSOM_MAP_FRAGMENT_1.get());
+                        output.accept(ModItems.VOID_BLOSSOM_MAP_FRAGMENT_2.get());
+                        output.accept(ModItems.VOID_BLOSSOM_MAP_FRAGMENT_3.get());
+                        output.accept(ModItems.VOID_BLOSSOM_MAP_FRAGMENT_4.get());
+                        output.accept(ModItems.VOID_BLOSSOM_MAP.get());
+
+                        // ── Iceika: фрагменты карты, ведущей к Личу ──────────
+                        output.accept(ModItems.LICH_MAP_FRAGMENT_1.get());
+                        output.accept(ModItems.LICH_MAP_FRAGMENT_2.get());
+                        output.accept(ModItems.LICH_MAP_FRAGMENT_3.get());
+                        output.accept(ModItems.LICH_MAP_FRAGMENT_4.get());
+                        output.accept(ModItems.LICH_MAP.get());
 
                         // ── Книги Patchouli ───────────────────────────────────
                         addPatchouliBook(output, "simulation:wanderers_journal");

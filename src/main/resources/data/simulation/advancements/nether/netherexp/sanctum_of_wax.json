@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "netherexp:ancient_wax"
+    },
+    "title": {
+      "text": "Восковой обман"
+    },
+    "description": {
+      "text": "Создайте ложный труп, покрыв скелет древним воском."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:nether/netherexp/hp_minecraftian",
+  "criteria": {
+    "has_item": {
+      "trigger": "netherexp:make_fake_carcass"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ]
+}

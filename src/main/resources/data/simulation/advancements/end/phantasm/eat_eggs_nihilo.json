@@ -1,0 +1,39 @@
+{
+    "parent":  "simulation:end/vanilla/enter_end_gateway",
+    "criteria":  {
+                     "eat_eggs_nihilo":  {
+                                             "trigger":  "minecraft:consume_item",
+                                             "conditions":  {
+                                                                "item":  {
+                                                                             "items":  [
+                                                                                           "phantasm:eggs_nihilo"
+                                                                                       ]
+                                                                         }
+                                                            }
+                                         }
+                 },
+    "display":  {
+                    "announce_to_chat":  false,
+                    "description":  {
+                                        "text":  "\u041f\u0440\u0438\u0433\u043e\u0442\u043e\u0432\u044c\u0442\u0435 \u044f\u0439\u0446\u0430 \u0438\u0437 \u043d\u0438\u0447\u0435\u0433\u043e."
+                                    },
+                    "frame":  "challenge",
+                    "hidden":  true,
+                    "icon":  {
+                                 "item":  "phantasm:eggs_nihilo"
+                             },
+                    "show_toast":  true,
+                    "title":  {
+                                  "text":  "\u041d\u0438\u0447\u0435\u0433\u043e-\u0431\u0443\u0440\u0433\u0435\u0440"
+                              }
+                },
+    "requirements":  [
+                         [
+                             "eat_eggs_nihilo"
+                         ]
+                     ],
+    "rewards":  {
+                    "experience":  100
+                },
+    "sends_telemetry_event":  false
+}

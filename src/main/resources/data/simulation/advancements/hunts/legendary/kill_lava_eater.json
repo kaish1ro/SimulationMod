@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "legendary_monsters:fiery_jaw"
+    },
+    "title": {
+      "text": "Пожиратель лавы"
+    },
+    "description": {
+      "text": "Победите Lava Eater."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "legendary_monsters:lava_eater"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/legendary/find_lava_eater"
+}

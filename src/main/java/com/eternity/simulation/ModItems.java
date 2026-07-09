@@ -2,12 +2,22 @@ package com.eternity.simulation;
 
 import com.eternity.simulation.items.BlueprintItem;
 import com.eternity.simulation.items.CastleKeyItem;
-import com.eternity.simulation.items.FeroxMapFragmentItem;
+import com.eternity.simulation.items.VoidBlossomMapFragmentItem;
+import com.eternity.simulation.items.VoidBlossomMapItem;
+import com.eternity.simulation.items.LichMapFragmentItem;
+import com.eternity.simulation.items.LichMapItem;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SmithingTemplateItem;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.List;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -16,6 +26,18 @@ public class ModItems {
     public static final RegistryObject<Item> SIMULATION_SHARD = ITEMS.register(
         "simulation_shard",
         () -> new Item(new Item.Properties().rarity(Rarity.EPIC))
+    );
+
+    // ── Осколок сердца (дроп с мировых боссов, 4 шт. -> Heart Container) ──────
+    public static final RegistryObject<Item> HEART_SHARD = ITEMS.register(
+        "heart_shard",
+        () -> new Item(new Item.Properties().rarity(Rarity.RARE))
+    );
+
+    // ── Декоративная иконка-лицо Invoker (замена яйца-спавнера в UI) ──────────
+    public static final RegistryObject<Item> INVOKER_FACE_ICON = ITEMS.register(
+        "invoker_face_icon",
+        () -> new Item(new Item.Properties())
     );
 
     // ── Осколки пространства (дроп из разломов) ───────────────────────────────
@@ -86,23 +108,54 @@ public class ModItems {
         () -> new BlueprintItem(new Item.Properties().stacksTo(16).rarity(Rarity.EPIC), 3)
     );
 
-    // ── Undergarden: фрагменты карты Ферокса (4 штуки, собираются в карту) ──
+    // ── Undergarden: фрагменты карты Цветка пустоты (4 штуки, собираются в карту) ──
 
-    public static final RegistryObject<Item> FEROX_MAP_FRAGMENT_1 = ITEMS.register(
-        "ferox_map_fragment_1",
-        () -> new FeroxMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    public static final RegistryObject<Item> VOID_BLOSSOM_MAP_FRAGMENT_1 = ITEMS.register(
+        "void_blossom_map_fragment_1",
+        () -> new VoidBlossomMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
     );
-    public static final RegistryObject<Item> FEROX_MAP_FRAGMENT_2 = ITEMS.register(
-        "ferox_map_fragment_2",
-        () -> new FeroxMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    public static final RegistryObject<Item> VOID_BLOSSOM_MAP_FRAGMENT_2 = ITEMS.register(
+        "void_blossom_map_fragment_2",
+        () -> new VoidBlossomMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
     );
-    public static final RegistryObject<Item> FEROX_MAP_FRAGMENT_3 = ITEMS.register(
-        "ferox_map_fragment_3",
-        () -> new FeroxMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    public static final RegistryObject<Item> VOID_BLOSSOM_MAP_FRAGMENT_3 = ITEMS.register(
+        "void_blossom_map_fragment_3",
+        () -> new VoidBlossomMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
     );
-    public static final RegistryObject<Item> FEROX_MAP_FRAGMENT_4 = ITEMS.register(
-        "ferox_map_fragment_4",
-        () -> new FeroxMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    public static final RegistryObject<Item> VOID_BLOSSOM_MAP_FRAGMENT_4 = ITEMS.register(
+        "void_blossom_map_fragment_4",
+        () -> new VoidBlossomMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
+
+    public static final RegistryObject<Item> VOID_BLOSSOM_MAP = ITEMS.register(
+        "void_blossom_map",
+        () -> new VoidBlossomMapItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC))
+    );
+
+    // ── Iceika: фрагменты карты, ведущей к Личу (4 штуки, собираются в карту) ──
+    // Пока без функционала — только регистрация + крафт (см. lich_map.json).
+    // Текстуры и источники добычи фрагментов — TODO.
+
+    public static final RegistryObject<Item> LICH_MAP_FRAGMENT_1 = ITEMS.register(
+        "lich_map_fragment_1",
+        () -> new LichMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
+    public static final RegistryObject<Item> LICH_MAP_FRAGMENT_2 = ITEMS.register(
+        "lich_map_fragment_2",
+        () -> new LichMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
+    public static final RegistryObject<Item> LICH_MAP_FRAGMENT_3 = ITEMS.register(
+        "lich_map_fragment_3",
+        () -> new LichMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
+    public static final RegistryObject<Item> LICH_MAP_FRAGMENT_4 = ITEMS.register(
+        "lich_map_fragment_4",
+        () -> new LichMapFragmentItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
+
+    public static final RegistryObject<Item> LICH_MAP = ITEMS.register(
+        "lich_map",
+        () -> new LichMapItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC))
     );
 
     // ── Ключ от замка TF ──────────────────────────────────────────────────────
@@ -116,5 +169,26 @@ public class ModItems {
     public static final RegistryObject<Item> CASTLE_KEY = ITEMS.register(
         "castle_key",
         () -> new CastleKeyItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON))
+    );
+
+    public static final RegistryObject<Item> DIMENSIONAL_UPGRADE_SMITHING_TEMPLATE = ITEMS.register(
+        "dimensional_upgrade_smithing_template",
+        () -> new SmithingTemplateItem(
+            Component.translatable("item.simulation.smithing_template.dimensional_upgrade.applies_to"),
+            Component.translatable("item.simulation.smithing_template.dimensional_upgrade.ingredients"),
+            Component.translatable("upgrade.simulation.dimensional_upgrade"),
+            Component.translatable("item.simulation.smithing_template.dimensional_upgrade.base_slot_description"),
+            Component.translatable("item.simulation.smithing_template.dimensional_upgrade.additions_slot_description"),
+            List.of(new ResourceLocation("minecraft", "item/empty_slot_pickaxe")),
+            List.of(new ResourceLocation("minecraft", "item/empty_slot_ender_eye"))
+        )
+    );
+
+    // ── Ведро сверхгорячей лавы ───────────────────────────────────────────────
+    // Своя жидкость (ModFluids.SUPERHOT_LAVA_SOURCE) — физика как у лавы, своя
+    // голубая текстура. Плавящая способность — отдельная задача вместе с крепким льдом.
+    public static final RegistryObject<Item> SUPERHOT_LAVA_BUCKET = ITEMS.register(
+        "superhot_lava_bucket",
+        () -> new BucketItem(ModFluids.SUPERHOT_LAVA_SOURCE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).rarity(Rarity.RARE))
     );
 }

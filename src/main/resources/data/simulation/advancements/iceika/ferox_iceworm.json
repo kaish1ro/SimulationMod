@@ -1,0 +1,32 @@
+{
+  "parent": "simulation:iceika/workshop_bargain",
+  "display": {
+    "icon": {
+      "item": "simulation:lich_map_fragment_3"
+    },
+    "title": {
+      "text": "Лёд шевелится"
+    },
+    "description": {
+      "text": "Добудьте третий фрагмент карты с ферокс-ледочервя."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_fragment": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "simulation:lich_map_fragment_3"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

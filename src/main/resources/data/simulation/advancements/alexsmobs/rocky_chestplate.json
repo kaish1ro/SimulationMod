@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:rocky_chestplate"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.rocky_chestplate.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.rocky_chestplate.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/rocky_shell",
+  "criteria": {
+    "soul_heart": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexsmobs:rocky_chestplate"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

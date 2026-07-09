@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:chiseled_sandstone"
+    },
+    "title": {
+      "text": "Гробница под песком"
+    },
+    "description": {
+      "text": "Найдите древний пустынный храм."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdeserttemples:desert_temple"
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

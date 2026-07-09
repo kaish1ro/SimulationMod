@@ -1,0 +1,148 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:dark_oak_planks"
+    },
+    "title": {
+      "text": "Особняки без правил"
+    },
+    "description": {
+      "text": "Найдите особняки в разных биомах."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "in_mansion_birch": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:mansion_birch"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_mansion_desert": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:mansion_desert"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_mansion_jungle": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:mansion_jungle"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_mansion_mangrove": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:mansion_mangrove"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_mansion_oak": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:mansion_oak"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_mansion_savanna": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:mansion_savanna"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_mansion_snowy": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:mansion_snowy"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_mansion_taiga": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:mansion_taiga"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

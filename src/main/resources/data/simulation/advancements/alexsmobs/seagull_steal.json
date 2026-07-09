@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:tab_icon",
+      "nbt": "{DisplayEntityType:\"alexsmobs:seagull\"}"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.seagull_steal.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.seagull_steal.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/root",
+  "criteria": {
+    "ex": {
+      "trigger": "alexsmobs:seagull_steal"
+    }
+  },
+  "requirements": [
+    [
+      "ex"
+    ]
+  ]
+}

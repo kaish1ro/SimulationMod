@@ -66,6 +66,10 @@ public final class CastleTerrainFillTask {
 
     private static ArrayDeque<int[]> dirtyColumns;
     private static double[][] height;
+    /** Исходная (до релаксации) высота поверхности — нужна, чтобы перекрасить сам
+     *  верхний "свежий" deadrock/cracked_deadrock блок, даже если под ним нет реальной
+     *  ямы (см. {@link #fillColumn}). */
+    private static int[][] surfaceY;
     private static int originX, originZ;
     private static ServerLevel activeLevel;
     private static ServerPlayer requester;
@@ -109,6 +113,7 @@ public final class CastleTerrainFillTask {
                 surface[i][j] = naturalSurfaceY(level, originX + i, originZ + j);
             }
         }
+        surfaceY = surface;
 
         // Классификация яма/склон — по типу верхнего блока, а не по форме рельефа: природная
         // поверхность (склоны, плато) всегда выветрена сверху (weathered_deadrock), а провал
@@ -178,6 +183,7 @@ public final class CastleTerrainFillTask {
             }
             dirtyColumns = null;
             height = null;
+            surfaceY = null;
             return true;
         }
 
@@ -202,6 +208,7 @@ public final class CastleTerrainFillTask {
         if (dirtyColumns.isEmpty()) {
             dirtyColumns = null;
             height = null;
+            surfaceY = null;
             if (requester != null) {
                 requester.sendSystemMessage(Component.literal(
                     "§a[simcastle] §7Засыпка ям завершена. Поставлено блоков: §f" + filledCount));
@@ -227,6 +234,21 @@ public final class CastleTerrainFillTask {
         int x = originX + i;
         int z = originZ + j;
         int target = (int) Math.round(height[i][j]);
+
+        // Перекрашиваем сам исходный "свежий" deadrock/cracked_deadrock блок поверхности —
+        // независимо от того, реальная это яма или просто голый пятачок без насыпи: он
+        // визуально выделяется на фоне выветренного рельефа вокруг замка. Не завязано на
+        // проверку "открыто к небу" ниже — это косметика одного блока, замуровать нечего.
+        int origY = surfaceY[i][j];
+        if (origY >= 0) {
+            BlockPos origPos = new BlockPos(x, origY, z);
+            BlockState origState = activeLevel.getBlockState(origPos);
+            if (isRawDeadrock(origState)) {
+                activeLevel.setBlock(origPos, weathered.defaultBlockState(),
+                    Block.UPDATE_CLIENTS | Block.UPDATE_SUPPRESS_DROPS);
+                filledCount++;
+            }
+        }
 
         // Открыта ли яма к небу: над target не должно быть твёрдых блоков (шипы не считаются преградой).
         for (int y = target + 1; y <= CastleConstants.TERRAIN_FILL_SCAN_TOP_Y; y++) {

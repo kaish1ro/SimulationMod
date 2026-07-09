@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "legendary_monsters:withered_scythe"
+    },
+    "title": {
+      "text": "Иссохшая мерзость"
+    },
+    "description": {
+      "text": "Победите Withered Abomination."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "legendary_monsters:withered_abomination"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/legendary/find_soul_fortress"
+}

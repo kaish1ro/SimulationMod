@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:tab_icon",
+      "nbt": "{DisplayEntityType:\"alexsmobs:warped_toad\"}"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.tame_warped_toad.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.tame_warped_toad.desc"
+    },
+    "announce_to_chat": false,
+    "show_toast": true
+  },
+  "parent": "simulation:nether/alexsmobs/crimson_mosquito_larva",
+  "criteria": {
+    "tame": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "alexsmobs:warped_toad"
+        }
+      }
+    }
+  }
+}

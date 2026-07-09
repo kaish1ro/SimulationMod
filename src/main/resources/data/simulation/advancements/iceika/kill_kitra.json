@@ -1,0 +1,34 @@
+{
+  "parent": "simulation:iceika/boneyard",
+  "display": {
+    "icon": {
+      "item": "divinerpg:calcified_brain"
+    },
+    "title": {
+      "text": "Бессмертный кит"
+    },
+    "description": {
+      "text": "Победите Kitra у китового черепа."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_kitra": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "divinerpg:kitra"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "type": "simulation:ancient_well",
+  "biomes": "#undergarden:is_undergarden",
+  "step": "top_layer_modification",
+  "spawn_overrides": {},
+  "terrain_adaptation": "beard_thin"
+}

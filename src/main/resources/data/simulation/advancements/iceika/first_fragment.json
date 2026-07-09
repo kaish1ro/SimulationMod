@@ -1,0 +1,32 @@
+{
+  "parent": "simulation:iceika/icy_catacombs",
+  "display": {
+    "icon": {
+      "item": "simulation:lich_map_fragment_1"
+    },
+    "title": {
+      "text": "Первый след"
+    },
+    "description": {
+      "text": "Добудьте первый фрагмент карты логова Лича."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_fragment": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "simulation:lich_map_fragment_1"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

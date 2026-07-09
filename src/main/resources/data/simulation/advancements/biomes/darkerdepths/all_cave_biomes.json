@@ -1,0 +1,82 @@
+{
+  "display": {
+    "icon": {
+      "item": "darkerdepths:glowshroom_cap"
+    },
+    "title": {
+      "text": "Глубины отвечают"
+    },
+    "description": {
+      "text": "Найдите все три редких подземных ландшафта."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "glowshroom_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "darkerdepths:glowshroom_forest"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "molten_cavern": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "darkerdepths:molten_cavern"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "sandy_catacombs": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "darkerdepths:sandy_catacombs"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "glowshroom_forest"
+    ],
+    [
+      "molten_cavern"
+    ],
+    [
+      "sandy_catacombs"
+    ]
+  ],
+  "parent": "simulation:biomes/root",
+  "rewards": {
+    "experience": 75
+  }
+}

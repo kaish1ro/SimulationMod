@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:gongylidia"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.gongylidia.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.gongylidia.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/stomp_leafcutter_anthill",
+  "criteria": {
+    "gongylidia": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexsmobs:gongylidia"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

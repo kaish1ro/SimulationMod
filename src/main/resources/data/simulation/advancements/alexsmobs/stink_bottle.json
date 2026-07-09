@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:stink_bottle"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.stink_bottle.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.stink_bottle.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/skunk",
+  "criteria": {
+    "sopa_de_macaco": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexsmobs:stink_bottle"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

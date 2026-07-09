@@ -147,6 +147,24 @@ dependencies {
     compileOnly files('C:/Users/Alex5/Documents/modpack/Client/mods/jei-1.20.1-forge-15.20.0.130.jar')
     compileOnly files('C:/Users/Alex5/Documents/modpack/Client/mods/Patchouli-1.20.1-85-FORGE.jar')
     compileOnly files('C:/Users/Alex5/Documents/modpack/Client/mods/mcef-forge-2.1.6-1.20.1.jar')
+    // Нужен на classpath для Mixin AP (IceBroodMotherHurtMixin таргетит её класс строкой) —
+    // сама зависимость не деобфусцирована, поэтому из обычного Java-кода её API не вызываем.
+    compileOnly files('C:/Users/Alex5/Documents/modpack/Client/mods/threateningly_mobs-1.1.1-forge-1.20.1.jar')
+    // Нужен на classpath для Mixin AP (EREnderEyeMixin таргетит её класс строкой) —
+    // ловим момент полной активации портала EnderRemastered, чтобы выдать
+    // simulation:end_portal_activated (у самого мода нет для этого триггера).
+    compileOnly files('C:/Users/Alex5/Documents/modpack/Client/mods/endrem_forge-5.3.3-R-1.20.1.jar')
+    // Нужен на classpath для Mixin AP (KitraHurtMixin таргетит её класс строкой) —
+    // пробиваем иммунитет к melee/дальнему урону, пока игроку не доступно
+    // магическое оружие DivineRPG (Arcana), которым её и задумано убивать.
+    compileOnly files('C:/Users/Alex5/Documents/modpack/Client/mods/divinerpg-1.10.7.5-1.20.1.jar')
+    // Нужен на classpath для Mixin AP (LampOfCindersMixin таргетит её класс строкой) —
+    // ловим момент успешного сжигания шипов Лампой Углей, чтобы запустить
+    // перехват игрока и автоматическую перестройку Final Castle.
+    compileOnly files('C:/Users/Alex5/Documents/modpack/Client/mods/twilightforest-1.20.1-4.3.2508-universal.jar')
+    // Нужен на classpath для миксина DimensionalCarverMixin: превращаем
+    // Пространственный резак Alex's Mobs в полноценную незеритовую кирку.
+    compileOnly files('C:/Users/Alex5/Documents/modpack/Client/mods/alexsmobs-1.22.9-1.20.1.jar')
     // ScalingHealth — используем рефлексию, compile dependency не нужна
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

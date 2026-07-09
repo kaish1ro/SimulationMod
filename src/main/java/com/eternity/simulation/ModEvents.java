@@ -1,5 +1,6 @@
 package com.eternity.simulation;
 
+import com.eternity.simulation.network.NetworkHandler;
 import com.eternity.simulation.castle.CastleClearTask;
 import com.eternity.simulation.castle.CastleForceFieldTask;
 import com.eternity.simulation.castle.CastleTerrainTask;
@@ -16,6 +17,7 @@ import com.eternity.simulation.castle.CastlePaintingRestoreTask;
 import com.eternity.simulation.command.CastleCommand;
 import com.eternity.simulation.command.PortalCommand;
 import com.eternity.simulation.command.RiftCommand;
+import com.eternity.simulation.command.SimEndCommand;
 import com.eternity.simulation.villager.VillagerTradeModifier;
 import com.eternity.simulation.command.TestOllamaCommand;
 import com.eternity.simulation.command.WandererCommand;
@@ -64,6 +66,7 @@ import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.level.ChunkEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -305,6 +308,9 @@ public class ModEvents {
             MinecraftServer server = player.getServer();
             if (server != null) {
                 SimulationSavedData.get(server.overworld()).recordPlayerSeen(player.getUUID());
+
+                com.eternity.simulation.quests.QuestSync.syncMainQuestsTo(player);
+                com.eternity.simulation.quests.QuestSync.syncSubQuestsTo(player);
             }
         }
     }
@@ -405,6 +411,9 @@ public class ModEvents {
         RiftCommand.register(event.getDispatcher());
         PortalCommand.register(event.getDispatcher());
         CastleCommand.register(event.getDispatcher());
+        SimEndCommand.register(event.getDispatcher());
+        com.eternity.simulation.command.SimulationQuestCommand.register(event.getDispatcher());
+        com.eternity.simulation.command.BalanceCommand.register(event.getDispatcher());
     }
 
     // ─── Блокировка Midnight разломов в Обычном мире ─────────────────────────────
@@ -524,7 +533,8 @@ public class ModEvents {
     // Исключение: мобы разлома добавляются через addFreshEntity, это событие их не затрагивает.
 
     private static final java.util.Set<String> SUPPRESSED_MOD_SPAWNS =
-            java.util.Set.of("threateningly_mobs", "block_factorys_bosses");
+            java.util.Set.of("threateningly_mobs", "block_factorys_bosses", "midnight_madness");
+    private static final String MIDNIGHT_MADNESS_NAMESPACE = "midnight_madness";
 
     // ─── Born in Chaos: постоянно заблокированные мобы ───────────────────────
     // Навсегда убраны из Обычного мира (и всех измерений через onCheckSpawn):
@@ -573,6 +583,14 @@ public class ModEvents {
         new ResourceLocation("born_in_chaos_v1", "skeleton_thrasher_not_despawn")
     );
 
+    // DivineRPG живёт только в собственном измерении Iceika — везде ещё это
+    // страховка поверх RemoveDivineRPGModifier: тот снимает мобов из спавн-листов
+    // биомов по тегу is_overworld/is_nether/is_end, но модовые биомы (например,
+    // добавленные Aquamirae) не всегда попадают в эти теги, и моб всё равно
+    // может заспавниться. Здесь ловим по namespace независимо от биома/тега.
+    private static final ResourceLocation DIVINERPG_ICEIKA_DIMENSION =
+            new ResourceLocation("divinerpg", "iceika");
+
     @SubscribeEvent
     public static void onCheckSpawn(MobSpawnEvent.PositionCheck event) {
         var key = ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType());
@@ -580,6 +598,12 @@ public class ModEvents {
 
         // Полная блокировка целых пространств имён
         if (SUPPRESSED_MOD_SPAWNS.contains(key.getNamespace())) {
+            event.setResult(net.minecraftforge.eventbus.api.Event.Result.DENY);
+            return;
+        }
+        // DivineRPG — разрешён только в Iceika, везде остальное блокируем
+        if ("divinerpg".equals(key.getNamespace()) && event.getLevel() instanceof ServerLevel sl
+                && !DIVINERPG_ICEIKA_DIMENSION.equals(sl.dimension().location())) {
             event.setResult(net.minecraftforge.eventbus.api.Event.Result.DENY);
             return;
         }
@@ -610,6 +634,54 @@ public class ModEvents {
         if (key != null && BIC_PERMANENT_BAN.contains(key)) {
             event.setCanceled(true);
         }
+    }
+
+    // Midnight Madness uses MCreator procedures that can bypass normal spawn and loot tables.
+    @SubscribeEvent
+    public static void onMidnightMadnessJoin(EntityJoinLevelEvent event) {
+        if (event.getLevel().isClientSide()) return;
+
+        var entityKey = ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType());
+        if (entityKey != null && MIDNIGHT_MADNESS_NAMESPACE.equals(entityKey.getNamespace())) {
+            event.setCanceled(true);
+            return;
+        }
+
+        if (event.getEntity() instanceof ItemEntity itemEntity && isMidnightMadnessStack(itemEntity.getItem())) {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onMidnightMadnessInventoryCleanup(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        if (event.player.level().isClientSide()) return;
+
+        var inventory = event.player.getInventory();
+        boolean changed = clearMidnightMadnessStacks(inventory.items);
+        changed |= clearMidnightMadnessStacks(inventory.armor);
+        changed |= clearMidnightMadnessStacks(inventory.offhand);
+
+        if (changed) {
+            inventory.setChanged();
+        }
+    }
+
+    private static boolean clearMidnightMadnessStacks(java.util.List<ItemStack> stacks) {
+        boolean changed = false;
+        for (ItemStack stack : stacks) {
+            if (isMidnightMadnessStack(stack)) {
+                stack.setCount(0);
+                changed = true;
+            }
+        }
+        return changed;
+    }
+
+    private static boolean isMidnightMadnessStack(ItemStack stack) {
+        if (stack.isEmpty()) return false;
+        var itemKey = ForgeRegistries.ITEMS.getKey(stack.getItem());
+        return itemKey != null && MIDNIGHT_MADNESS_NAMESPACE.equals(itemKey.getNamespace());
     }
 
     // ─── Запечатывающая структура разломов ───────────────────────────────────
@@ -697,7 +769,7 @@ public class ModEvents {
         if (!(event.getLevel() instanceof ServerLevel sl)) return;
 
         SimulationSavedData epData = SimulationSavedData.get(sl.getServer().overworld());
-        if (!epData.isRoofSealActive()) return;
+        if (!epData.isRoofSealActive() && !epData.isCastleLockdownActive()) return;
 
         event.setCanceled(true);
         if (pearl.getOwner() instanceof ServerPlayer player) {
@@ -922,10 +994,19 @@ public class ModEvents {
         if (!(event.getPlayer() instanceof ServerPlayer player)) return;
         if (!(event.getLevel() instanceof ServerLevel serverLevel)) return;
 
-        if (SimulationSavedData.get(serverLevel.getServer().overworld()).isBuildLocked(player.getUUID())) {
+        SimulationSavedData data = SimulationSavedData.get(serverLevel.getServer().overworld());
+
+        if (data.isBuildLocked(player.getUUID())) {
             event.setCanceled(true);
             player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
                 "§8[Система] §7Древняя печать не позволяет ломать блоки здесь."));
+            return;
+        }
+
+        if (data.isCastleLockdownActive() && !isLockdownExempt(event.getState(), data)) {
+            event.setCanceled(true);
+            player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
+                "§7Вы можете добывать только рудные материалы"));
         }
     }
 
@@ -936,18 +1017,70 @@ public class ModEvents {
         if (!(event.getLevel() instanceof ServerLevel serverLevel)) return;
 
         SimulationSavedData data = SimulationSavedData.get(serverLevel.getServer().overworld());
-        if (!data.isBuildLocked(player.getUUID())) return;
 
-        // Разрешаем установку маяка на ожидаемую позицию (для распечатывания поля)
-        BlockPos expectedBeacon = CastleRoofSealTask.getExpectedBeaconPos();
-        if (event.getPlacedBlock().getBlock() == net.minecraft.world.level.block.Blocks.BEACON
-                && expectedBeacon != null && event.getPos().equals(expectedBeacon)) {
-            return; // не отменяем — маяк пройдёт, onBeaconPlaced поймает его
+        if (data.isBuildLocked(player.getUUID())) {
+            // Разрешаем установку маяка на ожидаемую позицию (для распечатывания поля)
+            BlockPos expectedBeacon = CastleRoofSealTask.getExpectedBeaconPos();
+            if (event.getPlacedBlock().getBlock() == net.minecraft.world.level.block.Blocks.BEACON
+                    && expectedBeacon != null && event.getPos().equals(expectedBeacon)) {
+                return; // не отменяем — маяк пройдёт, onBeaconPlaced поймает его
+            }
+
+            event.setCanceled(true);
+            player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
+                "§8[Система] §7Древняя печать не позволяет ставить блоки здесь."));
+            return;
         }
 
-        event.setCanceled(true);
-        player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
-            "§8[Система] §7Древняя печать не позволяет ставить блоки здесь."));
+        if (data.isCastleLockdownActive() && !isLockdownExempt(event.getPlacedBlock(), data)) {
+            event.setCanceled(true);
+            player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
+                "§7Вы можете добывать только рудные материалы"));
+        }
+    }
+
+    /** Ванильные руды/материалы (namespace minecraft) — разрешены всегда во время перестройки. */
+    private static final java.util.Set<String> LOCKDOWN_MATERIAL_BLOCK_IDS = java.util.Set.of(
+        "gold_ore", "deepslate_gold_ore", "nether_gold_ore",
+        "iron_ore", "deepslate_iron_ore",
+        "copper_ore", "deepslate_copper_ore",
+        "diamond_ore", "deepslate_diamond_ore",
+        "emerald_ore", "deepslate_emerald_ore",
+        "lapis_ore", "deepslate_lapis_ore",
+        "redstone_ore", "deepslate_redstone_ore",
+        "coal_ore", "deepslate_coal_ore",
+        "nether_quartz_ore", "ancient_debris",
+        "gold_block", "iron_block", "copper_block", "diamond_block", "emerald_block",
+        "lapis_block", "redstone_block", "coal_block", "netherite_block",
+        "raw_iron_block", "raw_gold_block", "raw_copper_block"
+    );
+
+    /** Модовые рудные блоки (namespace отличается от minecraft) — разрешены всегда во время перестройки. */
+    private static final java.util.Set<net.minecraft.resources.ResourceLocation> LOCKDOWN_MODDED_ORE_IDS = java.util.Set.of(
+        new net.minecraft.resources.ResourceLocation("create", "zinc_ore"),
+        new net.minecraft.resources.ResourceLocation("create", "deepslate_zinc_ore")
+    );
+
+    /**
+     * @return true если блок можно ломать/ставить во время {@code castleLockdownActive}:
+     * любые руды/материалы (ванильные и модовые из {@link #LOCKDOWN_MODDED_ORE_IDS}) — всегда;
+     * маяк — только после победы над Хелваром (bossFightStage == 7 — см.
+     * {@link com.eternity.simulation.castle.CastleBossFightTask}).
+     */
+    private static boolean isLockdownExempt(net.minecraft.world.level.block.state.BlockState state, SimulationSavedData data) {
+        net.minecraft.resources.ResourceLocation id = ForgeRegistries.BLOCKS.getKey(state.getBlock());
+        if (id == null) return false;
+
+        if ("minecraft".equals(id.getNamespace()) && LOCKDOWN_MATERIAL_BLOCK_IDS.contains(id.getPath())) {
+            return true;
+        }
+        if (LOCKDOWN_MODDED_ORE_IDS.contains(id)) {
+            return true;
+        }
+        if (state.getBlock() == net.minecraft.world.level.block.Blocks.BEACON) {
+            return data.getBossFightStage() >= 7;
+        }
+        return false;
     }
 
     private static final org.apache.logging.log4j.Logger BEACON_LOGGER =
@@ -970,6 +1103,7 @@ public class ModEvents {
 
         SimulationSavedData data = SimulationSavedData.get(serverLevel.getServer().overworld());
         CastleRoofSealTask.onBeaconPlaced(serverLevel, data);
+        com.eternity.simulation.castle.CastleSubQuestTask.onBeaconPlaced(serverLevel.getServer());
     }
 
     /** Выпадение castle_key с мобов замка, у точки спавна которых есть keyid. */
@@ -1118,6 +1252,15 @@ public class ModEvents {
         serverLevel.addFreshEntity(shard);
     }
 
+    /** Мировой тир 2 (см. {@code WorldTier}) — Wither ничем не гейтится, доступен с самого начала. */
+    @SubscribeEvent
+    public static void onWitherDeath(LivingDeathEvent event) {
+        if (!(event.getEntity() instanceof net.minecraft.world.entity.boss.wither.WitherBoss)) return;
+        if (!(event.getEntity().level() instanceof ServerLevel serverLevel)) return;
+
+        SimulationSavedData.get(serverLevel.getServer().overworld()).setWitherDefeated(true);
+    }
+
     /** При гибели стража замка снимаем печать строительства с игроков рядом. */
     @SubscribeEvent
     public static void onCastleGuardianDeath(LivingDeathEvent event) {
@@ -1196,6 +1339,7 @@ public class ModEvents {
     // Счётчик для EncounterManager (каждые 100 тиков = 5 сек)
     private static int encounterTickCounter = 0;
     private static int fieldBoundaryTick    = 0;
+    private static int questUiVisibilityTick = 0;
 
     /**
      * Проверяет, не вышел ли кто-то за периметр силового поля.
@@ -1207,19 +1351,33 @@ public class ModEvents {
         if (server == null) return;
 
         SimulationSavedData data = SimulationSavedData.get(server.overworld());
-        if (!data.isRoofSealActive()) return;
+        if (!data.hasCastleAnchor()) return;
+
+        // Геометрия периметра (isOutsideField) завязана только на anchorPos, а не на
+        // конкретные маркеры крыши — держим границу активной с момента постройки
+        // корпуса замка, а не только после /simcastle roof.
+        com.eternity.simulation.castle.CastleRoofSealTask.ensureBoundaryAnchor(data.getCastleAnchorPos());
+
+        if (!data.isRoofSealActive() && !data.isCastleLockdownActive()) return;
+
+        // Задание "castle_escape" ("Выберитесь из замка") уже активно (shield_removal
+        // завершён) — игрока НУЖНО выпустить наружу, а не телепортировать обратно;
+        // без этой проверки границу продолжало держать до самого конца CLEANUP-фазы.
+        if (com.eternity.simulation.quests.SimulationQuestState.get(server.overworld()).isCompleted("shield_removal")) {
+            return;
+        }
 
         net.minecraft.server.level.ServerLevel tfLevel = server.getLevel(com.eternity.simulation.castle.CastleConstants.TWILIGHT_FOREST_DIM);
         if (tfLevel == null) return;
 
-        // Ищем маркер 5spawnpoint
+        // Ищем маркер 5spawnpoint — если лабиринт ещё не поставлен (самое начало перехвата:
+        // clear/terrainfill/towers), маркеров ещё нет — телепортируем на якорь замка.
         net.minecraft.core.BlockPos spawnMarker = null;
         for (com.eternity.simulation.castle.CastleDataMarker marker : data.getCastleMarkers()) {
             if (marker.has("5spawnpoint")) { spawnMarker = marker.pos(); break; }
         }
-        if (spawnMarker == null) return;
+        final net.minecraft.core.BlockPos tp = spawnMarker != null ? spawnMarker : data.getCastleAnchorPos();
 
-        final net.minecraft.core.BlockPos tp = spawnMarker;
         for (ServerPlayer player : tfLevel.players()) {
             if (com.eternity.simulation.castle.CastleRoofSealTask.isOutsideField(player.blockPosition())) {
                 player.teleportTo(tp.getX() + 0.5, tp.getY(), tp.getZ() + 0.5);
@@ -1227,9 +1385,76 @@ public class ModEvents {
         }
     }
 
+    /**
+     * Видимость квестового меню/HUD клиента: скрыты до первого попадания в перестроенный
+     * замок ({@code castleEverEntered}), и снова скрыты после того, как силовое поле снято
+     * ({@code !castleLockdownActive}) и игрок отошёл дальше 100 блоков от маркера маяка
+     * (beacon_particle_effect) — иначе меню/HUD висели бы на игроке вечно даже после
+     * полного прохождения замка и ухода из него.
+     */
+    private static void tickQuestUiVisibility(MinecraftServer server) {
+        SimulationSavedData data = SimulationSavedData.get(server.overworld());
+        boolean unlocked = data.isCastleEverEntered();
+
+        BlockPos beacon = null;
+        if (unlocked) {
+            for (com.eternity.simulation.castle.CastleDataMarker marker : data.getCastleMarkers()) {
+                if (marker.has("beacon_particle_effect")) { beacon = marker.pos().below(); break; }
+            }
+        }
+        boolean fieldGone = unlocked && !data.isCastleLockdownActive();
+
+        com.eternity.simulation.quests.SimulationQuestState questState =
+            com.eternity.simulation.quests.SimulationQuestState.get(server.overworld());
+        boolean escapeAlreadyCompleted = questState.isCompleted("castle_escape");
+
+        for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+            boolean visible = unlocked;
+            boolean escaped = false;
+            if (visible && fieldGone && beacon != null) {
+                double distSqr = player.blockPosition().distSqr(beacon);
+                if (distSqr > 100.0 * 100.0) {
+                    visible = false;
+                    escaped = true;
+                }
+            }
+            NetworkHandler.CHANNEL.send(net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> player),
+                new com.eternity.simulation.network.SyncQuestUiVisibilityPacket(visible));
+
+            // Игрок реально вышел за пределы замка (поле снято, дальше 100 блоков от маяка) —
+            // завершаем последний квест "castle_escape" и выдаём (переименованное) достижение TF.
+            if (escaped && !escapeAlreadyCompleted) {
+                escapeAlreadyCompleted = true;
+                questState.markCompleted("castle_escape");
+                com.eternity.simulation.quests.QuestSync.syncMainQuests(server);
+                awardProgressionEnd(player);
+            }
+        }
+    }
+
+    /** Выдаёт переименованное {@code twilightforest:progression_end} в обход штатных триггеров TF. */
+    private static void awardProgressionEnd(ServerPlayer player) {
+        net.minecraft.advancements.Advancement advancement = player.getServer().getAdvancements()
+            .getAdvancement(new ResourceLocation("twilightforest", "progression_end"));
+        if (advancement == null) return;
+
+        com.eternity.simulation.quests.ProgressionEndGate.allowManualAward = true;
+        try {
+            for (String criterion : advancement.getCriteria().keySet()) {
+                player.getAdvancements().award(advancement, criterion);
+            }
+        } finally {
+            com.eternity.simulation.quests.ProgressionEndGate.allowManualAward = false;
+        }
+    }
+
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
+        com.eternity.simulation.end.EndIslandDecorator.tick();
+
+        // Перехват игрока у шипов + автоматическая перестройка замка (если запущен)
+        com.eternity.simulation.castle.CastleInterceptTask.tick();
 
         // Батчевая зачистка замка (если запущена через /simcastle clear)
         CastleClearTask.tick();
@@ -1261,6 +1486,9 @@ public class ModEvents {
         // Точки возрождения замка (маркеры Nspawnpoint), раз в 20 тиков
         CastleSpawnPointTask.tick();
 
+        // Прогресс промежуточных заданий Симуляции (ключи лабиринта, первый этаж, синяя башня)
+        com.eternity.simulation.castle.CastleSubQuestTask.tick();
+
         // Битва с главным боссом 2-го этажа (underworld_knight, волны boss_fight)
         CastleBossFightTask.tick();
 
@@ -1271,6 +1499,14 @@ public class ModEvents {
         if (++fieldBoundaryTick >= 40) {
             fieldBoundaryTick = 0;
             tickFieldBoundary();
+        }
+
+        // Видимость квестового меню/HUD: скрыты до первого попадания в замок и снова
+        // скрыты, когда поле снято, а игрок отошёл дальше 100 блоков от маяка.
+        if (++questUiVisibilityTick >= 20) {
+            questUiVisibilityTick = 0;
+            var visServer = ServerLifecycleHooks.getCurrentServer();
+            if (visServer != null) tickQuestUiVisibility(visServer);
         }
 
         // Тикаем последовательность запечатывания (каждый тик, она сама отслеживает время)
@@ -1319,5 +1555,14 @@ public class ModEvents {
         // TODO: Задача 3 — раскомментировать после изучения API Gateways to Eternity
         // GatewayEntity gateway = new GatewayEntity(..., overworld, ...);
         // overworld.addFreshEntity(gateway);
+    }
+
+    @SubscribeEvent
+    public static void onEndChunkLoad(ChunkEvent.Load event) {
+        if (!(event.getLevel() instanceof ServerLevel level)) return;
+        if (level.dimension() != Level.END) return;
+
+        level.getServer().execute(() ->
+            com.eternity.simulation.end.EndIslandDecorator.enqueueGeneratedChunk(level, event.getChunk().getPos()));
     }
 }

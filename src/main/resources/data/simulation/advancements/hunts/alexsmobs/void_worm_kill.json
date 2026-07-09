@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:void_worm_beak"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.void_worm_kill.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.void_worm_kill.desc"
+    },
+    "frame": "challenge",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:hunts/alexsmobs/void_worm_summon",
+  "criteria": {
+    "ex": {
+      "trigger": "alexsmobs:void_worm_kill"
+    }
+  },
+  "requirements": [
+    [
+      "ex"
+    ]
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:diamond_sword"
+    },
+    "title": {
+      "text": "Профессиональный подземельщик"
+    },
+    "description": {
+      "text": "Найдите все основные типы подземелий со спавнерами."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "in_better_monster_room": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:small_dungeon"
+      }
+    },
+    "in_better_zombie_dungeon": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:zombie_dungeon"
+      }
+    },
+    "in_better_skeleton_dungeon": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:skeleton_dungeon"
+      }
+    },
+    "in_better_spider_dungeon": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterdungeons:spider_dungeon"
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

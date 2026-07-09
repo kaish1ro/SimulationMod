@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "endergetic:bolloom_balloon"
+    },
+    "title": {
+      "text": "\u0412\u0441\u0435 \u0432\u044b\u0448\u0435 \u0438 \u0432\u044b\u0448\u0435"
+    },
+    "description": {
+      "text": "\u041f\u0440\u0438\u0432\u044f\u0436\u0438\u0442\u0435 \u043a \u0441\u0435\u0431\u0435 \u0447\u0435\u0442\u044b\u0440\u0435 \u0438\u043b\u0438 \u0431\u043e\u043b\u044c\u0448\u0435 \u0448\u0430\u0440\u043e\u0432 \u0431\u043e\u043b\u043b\u0443\u043c\u0430 \u0438 \u043f\u043e\u0434\u043d\u0438\u043c\u0438\u0442\u0435\u0441\u044c \u0432\u0432\u0435\u0440\u0445."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:end/endergetic/eat_bolloom_fruit",
+  "criteria": {
+    "up_up_and_away": {
+      "trigger": "endergetic:up_up_and_away"
+    }
+  },
+  "requirements": [
+    [
+      "up_up_and_away"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:spider_eye"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.tame_tarantula_hawk.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.tame_tarantula_hawk.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/tarantula_hawk",
+  "criteria": {
+    "tame": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "alexsmobs:tarantula_hawk"
+        }
+      }
+    }
+  }
+}

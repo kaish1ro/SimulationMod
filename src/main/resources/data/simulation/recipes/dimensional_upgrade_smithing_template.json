@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MEM",
+    "NTN",
+    "NNN"
+  ],
+  "key": {
+    "M": {
+      "item": "alexsmobs:void_worm_mandible"
+    },
+    "E": {
+      "item": "alexsmobs:void_worm_mandible"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "T": {
+      "item": "minecraft:netherite_upgrade_smithing_template"
+    }
+  },
+  "result": {
+    "item": "simulation:dimensional_upgrade_smithing_template"
+  }
+}

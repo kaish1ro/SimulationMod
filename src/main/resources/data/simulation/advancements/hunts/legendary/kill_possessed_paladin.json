@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "legendary_monsters:soul_great_sword"
+    },
+    "title": {
+      "text": "Паладин под чужой волей"
+    },
+    "description": {
+      "text": "Победите Possessed Paladin."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "legendary_monsters:posessed_paladin"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/legendary/kill_haunted_knight"
+}

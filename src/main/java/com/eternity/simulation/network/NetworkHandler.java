@@ -54,5 +54,41 @@ public class NetworkHandler {
             CinematicLookPacket::encode,
             CinematicLookPacket::decode,
             CinematicLookPacket::handle);
+
+        CHANNEL.registerMessage(nextId++,
+            SyncQuestStatePacket.class,
+            SyncQuestStatePacket::encode,
+            SyncQuestStatePacket::decode,
+            SyncQuestStatePacket::handle);
+
+        CHANNEL.registerMessage(nextId++,
+            SyncActiveSubQuestsPacket.class,
+            SyncActiveSubQuestsPacket::encode,
+            SyncActiveSubQuestsPacket::decode,
+            SyncActiveSubQuestsPacket::handle);
+
+        CHANNEL.registerMessage(nextId++,
+            SyncSubQuestCountsPacket.class,
+            SyncSubQuestCountsPacket::encode,
+            SyncSubQuestCountsPacket::decode,
+            SyncSubQuestCountsPacket::handle);
+
+        CHANNEL.registerMessage(nextId++,
+            OpenCastleLoadingScreenPacket.class,
+            OpenCastleLoadingScreenPacket::encode,
+            OpenCastleLoadingScreenPacket::decode,
+            OpenCastleLoadingScreenPacket::handle);
+
+        CHANNEL.registerMessage(nextId++,
+            CloseCastleLoadingScreenPacket.class,
+            CloseCastleLoadingScreenPacket::encode,
+            CloseCastleLoadingScreenPacket::decode,
+            CloseCastleLoadingScreenPacket::handle);
+
+        CHANNEL.registerMessage(nextId++,
+            SyncQuestUiVisibilityPacket.class,
+            SyncQuestUiVisibilityPacket::encode,
+            SyncQuestUiVisibilityPacket::decode,
+            SyncQuestUiVisibilityPacket::handle);
     }
 }

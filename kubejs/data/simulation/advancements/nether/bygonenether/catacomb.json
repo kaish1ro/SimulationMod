@@ -1,0 +1,42 @@
+{
+  "display": {
+    "icon": {
+      "item": "bygonenether:withered_debris"
+    },
+    "title": {
+      "text": "\u041a\u0430\u0442\u0430\u043a\u043e\u043c\u0431\u044b \u0418\u0441\u0441\u0443\u0448\u0438\u0442\u0435\u043b\u044f"
+    },
+    "description": {
+      "text": "\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u043a\u0430\u0442\u0430\u043a\u043e\u043c\u0431\u044b Bygone Nether."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:nether/root",
+  "criteria": {
+    "in_catacomb": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "bygonenether:catacomb"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "in_catacomb"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

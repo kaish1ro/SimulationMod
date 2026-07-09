@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:ender_eye"
+    },
+    "title": {
+      "text": "Крепость под землей"
+    },
+    "description": {
+      "text": "Найдите крепость Края."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "found": {
+      "trigger": "yungsapi:structure_location",
+      "conditions": {
+        "feature": "betterstrongholds:stronghold"
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

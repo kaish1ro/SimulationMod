@@ -1,0 +1,32 @@
+{
+  "parent": "simulation:iceika/workshop_tinkerer",
+  "display": {
+    "icon": {
+      "item": "simulation:lich_map_fragment_2"
+    },
+    "title": {
+      "text": "Сделка в мастерской"
+    },
+    "description": {
+      "text": "Получите второй фрагмент карты у инженера мастерской."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_fragment": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "simulation:lich_map_fragment_2"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

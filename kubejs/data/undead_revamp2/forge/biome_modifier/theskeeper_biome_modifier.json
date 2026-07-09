@@ -1,0 +1,16 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "minecraft:the_void",
+  "spawners": {
+    "type": "undead_revamp2:theskeeper",
+    "weight": 8,
+    "minCount": 1,
+    "maxCount": 1
+  },
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "simulation:disabled"
+    }
+  ]
+}

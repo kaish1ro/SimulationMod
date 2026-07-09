@@ -1,0 +1,47 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexscaves:abyssal_altar"
+    },
+    "title": {
+      "translate": "advancements.alexscaves.pearl_on_abyssal_altar.title"
+    },
+    "description": {
+      "translate": "advancements.alexscaves.pearl_on_abyssal_altar.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexscaves/abyssal/discover_abyssal_ruins",
+  "criteria": {
+    "use_charcoal": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "alexscaves:pearl"
+              ]
+            }
+          },
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "alexscaves:abyssal_altar"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "requirements": [
+    [
+      "use_charcoal"
+    ]
+  ]
+}

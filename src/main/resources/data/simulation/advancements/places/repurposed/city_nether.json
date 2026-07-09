@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:nether_bricks"
+    },
+    "title": {
+      "text": "Пылающий город"
+    },
+    "description": {
+      "text": "Найдите город в Нижнем мире."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "in_city_nether": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:city_nether"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

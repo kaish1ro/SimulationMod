@@ -1,0 +1,10 @@
+{
+    "criteria":  {
+                     "blocked":  {
+                                     "trigger":  "minecraft:impossible"
+                                 }
+                 },
+    "requirements":  [
+                         "blocked"
+                     ]
+}

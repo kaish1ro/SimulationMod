@@ -28,7 +28,22 @@ public final class CastlePlacementTask {
     public static boolean run(ServerLevel level, BlockPos anchor, ServerPlayer requester) {
         List<CastleDataMarker> allMarkers = new ArrayList<>();
 
-        if (!placeOne(level, anchor, CastleStructures.CASTLE, CastleConstants.CASTLE_OFFSET, allMarkers, requester)) {
+        if (!placeCastlePart(level, anchor, allMarkers, requester)) return false;
+        if (!placeLabyrinthPart(level, anchor, allMarkers, requester)) return false;
+
+        finalizeBuild(level, allMarkers, requester);
+        return true;
+    }
+
+    /**
+     * Ставит основной корпус замка + низ синей башни. Вынесено отдельно от
+     * лабиринта, чтобы {@link com.eternity.simulation.castle.CastleInterceptTask}
+     * могло вклинить {@code /simcastle towers} МЕЖДУ постройкой корпуса и лабиринта
+     * (лестницу в лабиринт достраивает towers, поэтому лабиринт должен появиться позже).
+     */
+    public static boolean placeCastlePart(ServerLevel level, BlockPos anchor,
+                                           List<CastleDataMarker> outMarkers, ServerPlayer requester) {
+        if (!placeOne(level, anchor, CastleStructures.CASTLE, CastleConstants.CASTLE_OFFSET, outMarkers, requester)) {
             return false;
         }
 
@@ -37,16 +52,36 @@ public final class CastlePlacementTask {
             requester.sendSystemMessage(Component.literal(
                 "§a[simcastle] §7Восстановлено записей реестра картин Immersive Paintings: §f" + restoredPaintings));
         }
-        if (!placeOne(level, anchor, CastleStructures.LABYRINTH, CastleConstants.LABYRINTH_OFFSET, allMarkers, requester)) {
-            return false;
-        }
-        if (!placeOne(level, anchor, CastleStructures.BLUE_TOWER_BOTTOM, CastleConstants.BLUE_TOWER_BOTTOM_OFFSET, allMarkers, requester)) {
-            return false;
-        }
 
+        return placeOne(level, anchor, CastleStructures.BLUE_TOWER_BOTTOM, CastleConstants.BLUE_TOWER_BOTTOM_OFFSET, outMarkers, requester);
+    }
+
+    /** Ставит лабиринт — см. {@link #placeCastlePart}. */
+    public static boolean placeLabyrinthPart(ServerLevel level, BlockPos anchor,
+                                              List<CastleDataMarker> outMarkers, ServerPlayer requester) {
+        return placeOne(level, anchor, CastleStructures.LABYRINTH, CastleConstants.LABYRINTH_OFFSET, outMarkers, requester);
+    }
+
+    /**
+     * Финализирует установку: сохраняет маркеры, инициализирует спавн-систему,
+     * сбрасывает квестовую цепочку и ставит сундуки с лутом. Вызывается один раз,
+     * когда ВСЕ маркеры (корпус + лабиринт) уже собраны.
+     */
+    public static void finalizeBuild(ServerLevel level, List<CastleDataMarker> allMarkers, ServerPlayer requester) {
         SimulationSavedData data = SimulationSavedData.get(level.getServer().overworld());
         data.setCastleMarkers(allMarkers);
         data.initCastleSpawnSystem(CastleSpawnDefinition.fromMarkers(allMarkers));
+
+        // Перестройка замка = перезапуск его квестовой цепочки: без сброса
+        // квесты/подзадания остались бы выполненными с прошлого прохождения
+        // и вся прогрессия (чек-пойнты → ключи → этажи) молча не работала бы.
+        com.eternity.simulation.quests.SimulationQuestState.get(level.getServer().overworld())
+            .resetQuests(List.of("labyrinth_exit", "floor1_inspect", "blue_tower_inspect",
+                "castle_exit_search", "outer_towers_inspect", "yellow_towers_enter", "floor2_inspect",
+                "roof_inspect", "shield_removal", "castle_escape"));
+        com.eternity.simulation.quests.SubQuestState.get(level.getServer().overworld()).resetAll();
+        com.eternity.simulation.quests.QuestSync.syncMainQuests(level.getServer());
+        com.eternity.simulation.quests.QuestSync.syncSubQuests(level.getServer());
 
         int chestCount = placeLootChests(level, allMarkers);
 
@@ -55,7 +90,6 @@ public final class CastlePlacementTask {
                 "§a[simcastle] §7Установка завершена. Маркеров найдено: §f" + allMarkers.size()
                     + "§7, сундуков с лутом: §f" + chestCount));
         }
-        return true;
     }
 
     /**

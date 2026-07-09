@@ -1,0 +1,56 @@
+{
+  "parent": "simulation:adventure/galosphere/silver_ingot",
+  "display": {
+    "icon": {
+      "item": "galosphere:sterling_helmet",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "text": "Хорош, напарник!"
+    },
+    "description": {
+      "text": "Наденьте полный набор стерлинговой брони."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "sterling_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "galosphere:sterling_helmet"
+            ]
+          },
+          {
+            "items": [
+              "galosphere:sterling_chestplate"
+            ]
+          },
+          {
+            "items": [
+              "galosphere:sterling_leggings"
+            ]
+          },
+          {
+            "items": [
+              "galosphere:sterling_boots"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "sterling_armor"
+    ]
+  ]
+}

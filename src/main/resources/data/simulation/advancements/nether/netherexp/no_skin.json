@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "netherexp:treacherous_flame"
+    },
+    "title": {
+      "text": "Бессмертие мне ни к чему — мне нужна кожа"
+    },
+    "description": {
+      "text": "Верните трупу бессмертие."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:nether/netherexp/hp_minecraftian",
+  "criteria": {
+    "has_item": {
+      "trigger": "netherexp:immortal_carcass"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ]
+}

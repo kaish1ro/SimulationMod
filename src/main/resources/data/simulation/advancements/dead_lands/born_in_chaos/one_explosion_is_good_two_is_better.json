@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+      "item": "born_in_chaos_v1:phantom_bomb"
+    },
+    "title": {
+      "translate": "advancements.one_explosion_is_good_two_is_better.title"
+    },
+    "description": {
+      "translate": "advancements.one_explosion_is_good_two_is_better.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "one_explosion_is_good_two_is_better_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "simulation:dead_lands/born_in_chaos/double_trouble",
+  "sends_telemetry_event": false
+}

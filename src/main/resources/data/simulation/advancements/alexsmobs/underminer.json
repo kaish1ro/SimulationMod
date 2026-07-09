@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:tab_icon",
+      "nbt": "{DisplayEntityType:\"alexsmobs:underminer\"}"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.underminer.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.underminer.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/root",
+  "criteria": {
+    "ex": {
+      "trigger": "alexsmobs:undermine_underminer"
+    }
+  },
+  "requirements": [
+    [
+      "ex"
+    ]
+  ]
+}

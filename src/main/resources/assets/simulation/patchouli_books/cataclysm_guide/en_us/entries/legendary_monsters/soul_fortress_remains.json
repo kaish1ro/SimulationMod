@@ -1,0 +1,27 @@
+{
+  "name": "Останки крепости душ",
+  "category": "simulation:legendary_monsters",
+  "icon": "legendary_monsters:eye_of_soul",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Останки крепости душ",
+      "text": "Между песком душ и пустошами Незера стоит то, что осталось от крепости - стены обвалились внутрь, будто что-то давило изнутри годами, пока не проломило камень."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "legendary_monsters:withered_abomination",
+      "scale": 0.7,
+      "offset": 0.3,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Визер-Мерзость"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "То, что проломило стены",
+      "text": "Визер-Мерзость и есть причина обвала - иссушает на расстоянии, добивает вблизи. Это тяжелее обычного Nether-фарма: одного лечения от иссушения тут мало, возьмите что-нибудь про запас.$(br2)Награда - материалы Withered Scythe и связанных предметов."
+    }
+  ]
+}

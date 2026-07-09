@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "netherexp:wisp_bottle"
+    },
+    "title": {
+      "translate": "advancements.nether.exorcism.title"
+    },
+    "description": {
+      "translate": "advancements.nether.exorcism.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:nether/netherexp/ghost_mucus",
+  "criteria": {
+    "has_item": {
+      "trigger": "netherexp:exorcism"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ]
+}

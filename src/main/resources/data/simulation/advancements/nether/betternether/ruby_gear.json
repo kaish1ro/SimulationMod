@@ -1,0 +1,84 @@
+{
+  "parent": "simulation:nether/betternether/ruby_tools",
+  "criteria": {
+    "nether_ruby_EquipmentSlot[name=boots, category=COMBAT]": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:nether_ruby_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "nether_ruby_EquipmentSlot[name=chestplate, category=COMBAT]": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:nether_ruby_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "nether_ruby_EquipmentSlot[name=helmet, category=COMBAT]": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:nether_ruby_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "nether_ruby_EquipmentSlot[name=leggings, category=COMBAT]": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:nether_ruby_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betternether.ruby_gear.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betternether:nether_ruby_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.betternether.ruby_gear.title"
+    }
+  },
+  "requirements": [
+    [
+      "nether_ruby_EquipmentSlot[name=helmet, category=COMBAT]"
+    ],
+    [
+      "nether_ruby_EquipmentSlot[name=chestplate, category=COMBAT]"
+    ],
+    [
+      "nether_ruby_EquipmentSlot[name=leggings, category=COMBAT]"
+    ],
+    [
+      "nether_ruby_EquipmentSlot[name=boots, category=COMBAT]"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,208 @@
+{
+  "parent": "simulation:nether/root",
+  "criteria": {
+    "got_anchor_tree": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:anchor_tree_planks",
+              "betternether:anchor_tree_log",
+              "betternether:anchor_tree_bark"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_crimson": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:crimson_planks",
+              "minecraft:crimson_hyphae",
+              "minecraft:crimson_stem"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_mushroom_fir": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:mushroom_fir_planks",
+              "betternether:mushroom_fir_bark",
+              "betternether:mushroom_fir_log"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_nether_mushroom": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:nether_mushroom_planks",
+              "betternether:nether_mushroom_stem"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_nether_reed": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:nether_reed_planks",
+              "betternether:nether_reed_stem"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_nether_sakura": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:nether_sakura_planks",
+              "betternether:nether_sakura_bark",
+              "betternether:nether_sakura_log"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_rubeus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:rubeus_log",
+              "betternether:rubeus_planks",
+              "betternether:rubeus_bark"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_stalagnate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:stalagnate_log",
+              "betternether:stalagnate_planks",
+              "betternether:stalagnate_bark"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_warped": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:warped_hyphae",
+              "minecraft:warped_planks",
+              "minecraft:warped_stem"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_wart": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:wart_log",
+              "betternether:wart_planks",
+              "betternether:wart_bark"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_willow": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betternether:willow_log",
+              "betternether:willow_bark",
+              "betternether:willow_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betternether.nether_wood.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betternether:willow_log"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.betternether.nether_wood.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_willow"
+    ],
+    [
+      "got_stalagnate"
+    ],
+    [
+      "got_rubeus"
+    ],
+    [
+      "got_wart"
+    ],
+    [
+      "got_mushroom_fir"
+    ],
+    [
+      "got_anchor_tree"
+    ],
+    [
+      "got_nether_sakura"
+    ],
+    [
+      "got_nether_reed"
+    ],
+    [
+      "got_nether_mushroom"
+    ],
+    [
+      "got_crimson"
+    ],
+    [
+      "got_warped"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

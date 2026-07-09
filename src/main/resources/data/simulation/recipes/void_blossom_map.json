@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "simulation:void_blossom_map_fragment_1" },
+    { "item": "simulation:void_blossom_map_fragment_2" },
+    { "item": "simulation:void_blossom_map_fragment_3" },
+    { "item": "simulation:void_blossom_map_fragment_4" }
+  ],
+  "result": {
+    "item": "simulation:void_blossom_map",
+    "count": 1
+  }
+}

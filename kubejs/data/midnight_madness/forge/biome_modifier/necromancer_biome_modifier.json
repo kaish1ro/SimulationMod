@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "minecraft:the_void",
+  "spawners": {
+    "type": "midnight_madness:necromancer",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

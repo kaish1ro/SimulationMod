@@ -1,0 +1,47 @@
+{
+  "display": {
+    "icon": {
+      "item": "netherexp:verdant_frogmist"
+    },
+    "title": {
+      "translate": "advancements.nether.froghorn.title"
+    },
+    "description": {
+      "translate": "advancements.nether.froghorn.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:nether/netherexp/blind_shot",
+  "criteria": {
+    "froglights": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "netherexp:ochre_frogmist"
+            ]
+          },
+          {
+            "items": [
+              "netherexp:pearlescent_frogmist"
+            ]
+          },
+          {
+            "items": [
+              "netherexp:verdant_frogmist"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "froglights"
+    ]
+  ]
+}

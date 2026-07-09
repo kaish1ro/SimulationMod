@@ -1,7 +1,7 @@
 {
   "type": "simulation:herbalists_house",
   "biomes": "#simulation:herbalists_house",
-  "step": "underground_structures",
+  "step": "top_layer_modification",
   "spawn_overrides": {},
-  "terrain_adaptation": "none"
+  "terrain_adaptation": "beard_thin"
 }

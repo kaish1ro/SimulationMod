@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:tab_icon",
+      "nbt": "{DisplayEntityType:\"alexsmobs:laviathan\"}"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.laviathan_four_passengers.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.laviathan_four_passengers.desc"
+    },
+    "announce_to_chat": false,
+    "show_toast": true
+  },
+  "parent": "simulation:nether/alexsmobs/straddle_saddle",
+  "criteria": {
+    "ex": {
+      "trigger": "alexsmobs:laviathan_four_passengers"
+    }
+  },
+  "requirements": [
+    [
+      "ex"
+    ]
+  ]
+}

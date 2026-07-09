@@ -1,0 +1,84 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:netherite_boots",
+      "nbt": "{Trim:{material:gold,pattern:sentry}}"
+    },
+    "title": {
+      "text": "\u0421\u043b\u0435\u0434\u044b \u0443\u0448\u0435\u0434\u0448\u0435\u0433\u043e \u041d\u0435\u0437\u0435\u0440\u0430"
+    },
+    "description": {
+      "text": "\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u043a\u0430\u0442\u0430\u043a\u043e\u043c\u0431\u044b, \u0446\u0438\u0442\u0430\u0434\u0435\u043b\u044c \u0438 \u043f\u043e\u043c\u0435\u0441\u0442\u044c\u0435 \u043f\u0438\u0433\u043b\u0438\u043d\u043e\u0432."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:nether/root",
+  "criteria": {
+    "in_catacomb": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "bygonenether:catacomb"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_citadel": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "bygonenether:citadel"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_piglin_manor": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "bygonenether:piglin_manor"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "in_catacomb"
+    ],
+    [
+      "in_citadel"
+    ],
+    [
+      "in_piglin_manor"
+    ]
+  ],
+  "rewards": {
+    "experience": 500
+  },
+  "sends_telemetry_event": false
+}

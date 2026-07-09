@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:animal_dictionary"
+    },
+    "title": {
+      "text": "Иная фауна"
+    },
+    "description": {
+      "text": "Понаблюдайте за существами, каких не встретишь в учебниках."
+    },
+    "background": "alexsmobs:textures/advancement_background.png",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "useitem": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "alexsmobs:animal_dictionary"
+          ]
+        }
+      }
+    }
+  }
+}

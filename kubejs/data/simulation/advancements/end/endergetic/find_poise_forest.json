@@ -1,0 +1,42 @@
+{
+  "display": {
+    "icon": {
+      "item": "endergetic:poismoss"
+    },
+    "title": {
+      "text": "\u0420\u0430\u0432\u043d\u043e\u0432\u0435\u0441\u043d\u0430\u044f \u0440\u043e\u0449\u0430"
+    },
+    "description": {
+      "text": "\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u043f\u0443\u0430\u0437\u043e\u0432\u044b\u0439 \u043b\u0435\u0441 \u043d\u0430 \u0434\u0430\u043b\u044c\u043d\u0438\u0445 \u043e\u0441\u0442\u0440\u043e\u0432\u0430\u0445 \u042d\u043d\u0434\u0430."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "simulation:end/vanilla/enter_end_gateway",
+  "criteria": {
+    "in_poise_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "endergetic:poise_forest"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "in_poise_forest"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model": "simulation:block/herbalists_table" }
+    "facing=north": { "model": "simulation:block/herbalists_table", "y": 90 },
+    "facing=east":  { "model": "simulation:block/herbalists_table", "y": 180 },
+    "facing=south": { "model": "simulation:block/herbalists_table", "y": 270 },
+    "facing=west":  { "model": "simulation:block/herbalists_table" }
   }
 }

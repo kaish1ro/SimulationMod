@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:sculk_boomer"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.sculk_boomer.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.sculk_boomer.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/skreecher",
+  "criteria": {
+    "capsid": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexsmobs:sculk_boomer"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

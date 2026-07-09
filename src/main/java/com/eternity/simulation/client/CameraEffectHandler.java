@@ -4,6 +4,7 @@ import com.eternity.simulation.SimulationMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,6 +15,16 @@ import net.minecraftforge.fml.common.Mod;
  */
 @Mod.EventBusSubscriber(modid = SimulationMod.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class CameraEffectHandler {
+
+    // CEF-браузер главного меню (CustomMenuScreen) — синглтон, который раньше НИКОГДА
+    // не закрывался: висел с собственным Chromium-подпроцессом и GPU-буферами до самого
+    // выхода из игры, даже когда игрок давно в мире. Освобождаем его в момент фактического
+    // входа в мир — второй (наш экран заданий) браузер к этому моменту уже не конкурирует
+    // с ним за память.
+    @SubscribeEvent
+    public static void onPlayerLoggingIn(ClientPlayerNetworkEvent.LoggingIn event) {
+        CustomMenuScreen.disposeBrowser();
+    }
 
     private static volatile long   shakeEndMs    = 0;
     private static volatile float  shakeIntensity = 0f;

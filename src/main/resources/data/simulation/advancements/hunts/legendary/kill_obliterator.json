@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "legendary_monsters:portal_shard"
+    },
+    "title": {
+      "text": "Последняя аннигиляция"
+    },
+    "description": {
+      "text": "Победите The Obliterator."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "legendary_monsters:the_obliterator"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:hunts/legendary/kill_wandering_eye"
+}

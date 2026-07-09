@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:the_void",
+  "features": "midnight_madness:horror_valley_features",
+  "step": "surface_structures"
+}

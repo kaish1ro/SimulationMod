@@ -1,0 +1,116 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:brewing_stand"
+    },
+    "title": {
+      "text": "Хижины и проклятия"
+    },
+    "description": {
+      "text": "Найдите ведьмины хижины в разных биомах."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "in_witch_hut_birch": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:witch_hut_birch"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_witch_hut_dark_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:witch_hut_dark_forest"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_witch_hut_giant_tree_taiga": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:witch_hut_giant_tree_taiga"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_witch_hut_mangrove": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:witch_hut_mangrove"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_witch_hut_oak": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:witch_hut_oak"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "in_witch_hut_taiga": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "repurposed_structures:witch_hut_taiga"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "simulation:places/root"
+}

@@ -1,0 +1,7 @@
+{
+  "type": "simulation:frozen_broodmother",
+  "biomes": "undergarden:frostfields",
+  "step": "top_layer_modification",
+  "spawn_overrides": {},
+  "terrain_adaptation": "beard_thin"
+}

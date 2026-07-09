@@ -1,0 +1,42 @@
+{
+  "display": {
+    "icon": {
+      "item": "endergetic:end_corrock_block"
+    },
+    "title": {
+      "text": "\u0416\u0443\u0447\u0438\u043d\u043e\u0435 \u0433\u043d\u0435\u0437\u0434\u043e"
+    },
+    "description": {
+      "text": "\u041e\u0442\u044b\u0449\u0438\u0442\u0435 \u0433\u043d\u0435\u0437\u0434\u043e \u0438\u0442\u043b\u043e\u0432 \u0432 \u042d\u043d\u0434\u0435."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "parent": "simulation:end/vanilla/enter_end_gateway",
+  "criteria": {
+    "in_eetle_nest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "endergetic:eetle_nest"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "in_eetle_nest"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "aquamirae:poseidons_breakfast"
+    },
+    "title": {
+      "translate": "advancements.aquamirae.consume_poseidons_breakfast.title"
+    },
+    "description": {
+      "translate": "advancements.aquamirae.consume_poseidons_breakfast.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "poseidons_breakfast": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "aquamirae:poseidons_breakfast"
+          ]
+        }
+      }
+    }
+  },
+  "rewards": {
+    "experience": 20
+  },
+  "parent": "simulation:alexscaves/aquamirae/consume_sea_stew",
+  "sends_telemetry_event": false
+}

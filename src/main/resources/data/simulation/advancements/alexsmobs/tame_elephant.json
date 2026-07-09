@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "alexsmobs:tab_icon",
+      "nbt": "{DisplayEntityType:\"alexsmobs:elephant\"}"
+    },
+    "title": {
+      "translate": "advancements.alexsmobs.tame_elephant.title"
+    },
+    "description": {
+      "translate": "advancements.alexsmobs.tame_elephant.desc"
+    },
+    "announce_to_chat": false
+  },
+  "parent": "simulation:alexsmobs/acacia_blossom",
+  "criteria": {
+    "tame": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "alexsmobs:elephant"
+        }
+      }
+    }
+  }
+}

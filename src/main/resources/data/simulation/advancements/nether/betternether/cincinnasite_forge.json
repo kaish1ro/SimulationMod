@@ -1,0 +1,30 @@
+{
+  "parent": "simulation:nether/betternether/cincinnasite_ore",
+  "criteria": {
+    "use_forge": {
+      "conditions": {},
+      "trigger": "betternether:used_forge"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betternether.cincinnasite_forge.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "betternether:cincinnasite_forge"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.betternether.cincinnasite_forge.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_forge"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

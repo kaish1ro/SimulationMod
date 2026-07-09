@@ -134,8 +134,10 @@ public final class CastleSpawnManager {
         if ("blue_tower_boss".equals(g)) return "id=blue_tower_last_floor_second_wave";
 
         // Вторая волна последнего этажа синей башни зависит от гибели первой волны
-        // той же комнаты (маркер с искажённым groupId "id=outside_blue_towerblue_tower_last_floor").
-        if ("id=blue_tower_last_floor_second_wave".equals(g)) return "id=outside_blue_towerblue_tower_last_floor";
+        // той же комнаты. В актуальном castle.nbt id первой волны чистый —
+        // "blue_tower_last_floor" (раньше здесь стоял битый id из старой версии
+        // структуры, из-за чего зависимость никогда не выполнялась и волна не спавнилась).
+        if ("id=blue_tower_last_floor_second_wave".equals(g)) return "blue_tower_last_floor";
 
         // Волны крыши (roof_wave1/2/3) не имеют авто-зависимости — они только вручную.
         if (g != null && (g.startsWith("roof_wave") || g.startsWith("id=roof_")
@@ -159,7 +161,7 @@ public final class CastleSpawnManager {
     }
 
     /** @return true если есть хотя бы одна точка спавна с данным keyDoorId и все они триггернуты и полностью мёртвы. */
-    private static boolean keyDoorCleared(List<CastleSpawnDefinition> defs, SimulationSavedData data, String keyDoorId) {
+    public static boolean keyDoorCleared(List<CastleSpawnDefinition> defs, SimulationSavedData data, String keyDoorId) {
         boolean any = false;
         for (CastleSpawnDefinition d : defs) {
             if (!keyDoorId.equals(d.keyDoorId())) continue;
@@ -167,6 +169,28 @@ public final class CastleSpawnManager {
             if (!data.isSpawnTriggered(d.index()) || data.getSpawnAlive(d.index()) > 0) return false;
         }
         return any;
+    }
+
+    /** @return true если хотя бы одна точка спавна с данным groupId уже триггернута (появилась в мире). */
+    public static boolean groupTriggered(List<CastleSpawnDefinition> defs, SimulationSavedData data, String groupId) {
+        for (CastleSpawnDefinition d : defs) {
+            if (groupId.equals(d.groupId()) && data.isSpawnTriggered(d.index())) return true;
+        }
+        return false;
+    }
+
+    /** @return суммарное число живых мобов по всем точкам спавна с любым из указанных groupId. */
+    public static int countAlive(List<CastleSpawnDefinition> defs, SimulationSavedData data, String... groupIds) {
+        int total = 0;
+        for (CastleSpawnDefinition d : defs) {
+            for (String groupId : groupIds) {
+                if (groupId.equals(d.groupId())) {
+                    total += data.getSpawnAlive(d.index());
+                    break;
+                }
+            }
+        }
+        return total;
     }
 
     /**
@@ -261,7 +285,7 @@ public final class CastleSpawnManager {
                 ? def.pos() : def.pos().below();
 
         for (int i = 0; i < def.count(); i++) {
-            BlockPos spawnPos = randomPosInRadius(level, basePos, def.radius() + 1);
+            BlockPos spawnPos = findFreeSpawnPos(level, basePos, def.radius() + 1);
 
             spawnSmokeColumn(level, spawnPos, SPAWN_DELAY_TICKS);
             pendingSpawns.add(new PendingSpawn(level, spawnPos, def, extra, SPAWN_DELAY_TICKS));
@@ -301,6 +325,12 @@ public final class CastleSpawnManager {
 
         Entity entity = type.create(level);
         if (entity == null) return;
+
+        // За SPAWN_DELAY_TICKS позиция могла стать занятой (упавший блок, другой моб
+        // поставил блок и т.п.) — перепроверяем прямо перед созданием сущности.
+        if (!isSpawnPosFree(level, spawnPos)) {
+            spawnPos = findFreeSpawnPos(level, spawnPos, 2);
+        }
 
         entity.moveTo(spawnPos.getX() + 0.5, spawnPos.getY(), spawnPos.getZ() + 0.5,
                 level.random.nextFloat() * 360f, 0f);
@@ -343,11 +373,37 @@ public final class CastleSpawnManager {
         }
     }
 
-    private static BlockPos randomPosInRadius(ServerLevel level, BlockPos center, int radius) {
-        if (radius <= 0) return center;
-        int dx = level.random.nextInt(radius * 2 + 1) - radius;
-        int dz = level.random.nextInt(radius * 2 + 1) - radius;
-        return center.offset(dx, 0, dz);
+    /** Свободна ли колонка из 2 блоков (ноги + голова обычного хитбокса) для спавна. */
+    private static boolean isSpawnPosFree(ServerLevel level, BlockPos pos) {
+        return level.getBlockState(pos).getCollisionShape(level, pos).isEmpty()
+                && level.getBlockState(pos.above()).getCollisionShape(level, pos.above()).isEmpty();
+    }
+
+    /**
+     * Случайная СВОБОДНАЯ точка в радиусе вокруг центра: до 16 случайных попыток,
+     * затем сам центр, затем 8 его соседей. Раньше точка бралась без проверки
+     * коллизий вообще — мобы иногда спавнились внутри стен и задыхались насмерть.
+     * Если свободного места нет совсем — возвращаем центр (лучше задохнувшийся моб,
+     * чем невыполнимая волна: счётчик alive сверится через reconcileAliveCounts).
+     */
+    private static BlockPos findFreeSpawnPos(ServerLevel level, BlockPos center, int radius) {
+        if (radius > 0) {
+            for (int attempt = 0; attempt < 16; attempt++) {
+                int dx = level.random.nextInt(radius * 2 + 1) - radius;
+                int dz = level.random.nextInt(radius * 2 + 1) - radius;
+                BlockPos candidate = center.offset(dx, 0, dz);
+                if (isSpawnPosFree(level, candidate)) return candidate;
+            }
+        }
+        if (isSpawnPosFree(level, center)) return center;
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dz = -1; dz <= 1; dz++) {
+                if (dx == 0 && dz == 0) continue;
+                BlockPos candidate = center.offset(dx, 0, dz);
+                if (isSpawnPosFree(level, candidate)) return candidate;
+            }
+        }
+        return center;
     }
 
     /** Дроп {@code castle_key} при смерти последнего моба точки спавна с {@code keyid}. */
@@ -372,6 +428,10 @@ public final class CastleSpawnManager {
             key.setTag(tag);
 
             level.addFreshEntity(new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), key));
+        }
+
+        if (remaining == 0 && "blue_tower_boss".equals(def.groupId())) {
+            CastleSubQuestTask.onBlueTowerGuardianDefeated(level.getServer());
         }
     }
 }

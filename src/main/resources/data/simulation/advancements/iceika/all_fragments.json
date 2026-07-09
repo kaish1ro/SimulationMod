@@ -1,0 +1,47 @@
+{
+  "parent": "simulation:iceika/kill_kitra",
+  "display": {
+    "icon": {
+      "item": "simulation:lich_map_fragment_4"
+    },
+    "title": {
+      "text": "Карта почти цела"
+    },
+    "description": {
+      "text": "Соберите все четыре фрагмента карты логова Лича."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_all_fragments": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "simulation:lich_map_fragment_1"
+            ]
+          },
+          {
+            "items": [
+              "simulation:lich_map_fragment_2"
+            ]
+          },
+          {
+            "items": [
+              "simulation:lich_map_fragment_3"
+            ]
+          },
+          {
+            "items": [
+              "simulation:lich_map_fragment_4"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

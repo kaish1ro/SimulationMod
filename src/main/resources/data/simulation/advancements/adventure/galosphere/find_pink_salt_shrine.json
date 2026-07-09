@@ -1,0 +1,42 @@
+{
+  "parent": "simulation:adventure/root",
+  "criteria": {
+    "pink_salt_shrine": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "galosphere:pink_salt_chamber"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Войдите в святилище розовой соли."
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "galosphere:pink_salt_bricks"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Мирная революция"
+    }
+  },
+  "requirements": [
+    [
+      "pink_salt_shrine"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,48 @@
+{
+    "display":  {
+                    "icon":  {
+                                 "item":  "minecraft:lava_bucket"
+                             },
+                    "title":  {
+                                  "translate":  "advancements.nether.stayin_frosty.title"
+                              },
+                    "description":  {
+                                        "translate":  "advancements.nether.stayin_frosty.description"
+                                    },
+                    "frame":  "task",
+                    "show_toast":  true,
+                    "announce_to_chat":  false,
+                    "hidden":  false
+                },
+    "parent":  "simulation:adventure/vanilla/brew_potion",
+    "criteria":  {
+                     "c1":  {
+                                "trigger":  "minecraft:location",
+                                "conditions":  {
+                                                   "player":  {
+                                                                  "type":  "minecraft:player",
+                                                                  "location":  {
+                                                                                   "block":  {
+                                                                                                 "blocks":  [
+                                                                                                                "minecraft:lava"
+                                                                                                            ]
+                                                                                             }
+                                                                               },
+                                                                  "effects":  {
+                                                                                  "minecraft:fire_resistance":  {
+
+                                                                                                                }
+                                                                              }
+                                                              }
+                                               }
+                            }
+                 },
+    "requirements":  [
+                         [
+                             "c1"
+                         ]
+                     ],
+    "rewards":  {
+
+                }
+}

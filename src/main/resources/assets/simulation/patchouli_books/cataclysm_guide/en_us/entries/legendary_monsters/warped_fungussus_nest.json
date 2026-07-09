@@ -1,0 +1,27 @@
+{
+  "name": "Гнездо искаженного грибка",
+  "category": "simulation:legendary_monsters",
+  "icon": "minecraft:warped_fungus",
+  "sortnum": 13,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Гнездо искаженного грибка",
+      "text": "В искажённом лесу таких гнёзд больше, чем троп между ними - настолько частые, что перестаёшь считать их находкой уже после второго раза."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "legendary_monsters:warped_fungussus",
+      "scale": 0.7,
+      "offset": 0.3,
+      "rotate": true,
+      "default_rotation": -20,
+      "name": "Искаженный Грибок"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Не босс, но и не пустяк",
+      "text": "Искажённый Грибок не тянет на полноценного хозяина логова - скорее на объяснение, почему лес вообще ведёт себя так странно. Записал его сюда именно за это: чтобы не удивляться при встрече."
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+	id: "000000000000100E"
+	group: ""
+	order_index: 0
+	filename: "chapter1"
+	title: "Глава I: Первый день"
+	icon: "minecraft:oak_log"
+	default_quest_shape: ""
+	default_hide_dependency_lines: 0B
+	quests: [
+		{
+			x: 0d
+			y: 0d
+			shape: ""
+			title: "Инициализация"
+			description: [
+				"Субъект активирован."
+				"Ресурсы ограничены. Это норма."
+				"Начни с малого."
+			]
+			dependencies: []
+			id: "0000000000001002"
+			tasks: [
+				{
+					id: "0000000000001001"
+					type: "advancement"
+					advancement: "minecraft:story/mine_stone"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 2d
+			y: 0d
+			shape: ""
+			title: "Первый инструмент"
+			description: [
+				"Верстак — первый шаг к управлению миром."
+				"Примитивно. Но функционально."
+			]
+			dependencies: ["0000000000001002"]
+			id: "0000000000001004"
+			tasks: [
+				{
+					id: "0000000000001003"
+					type: "advancement"
+					advancement: "minecraft:story/craft_workbench"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 4d
+			y: 0d
+			shape: ""
+			title: "Добыча"
+			description: [
+				"Камень — основа. Всего остального."
+				"Собери его достаточно."
+			]
+			dependencies: ["0000000000001004"]
+			id: "0000000000001006"
+			tasks: [
+				{
+					id: "0000000000001005"
+					type: "item"
+					item: "minecraft:cobblestone"
+					count: "16L"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 6d
+			y: 0d
+			shape: ""
+			title: "Огонь"
+			description: [
+				"Тепло — это контроль."
+				"Построй печь. Плавь. Трансформируй."
+			]
+			dependencies: ["0000000000001006"]
+			id: "0000000000001008"
+			tasks: [
+				{
+					id: "0000000000001007"
+					type: "item"
+					item: "minecraft:furnace"
+					count: "1L"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 8d
+			y: 0d
+			shape: ""
+			title: "Первая ночь"
+			description: [
+				"Мир не останавливается, когда темнеет."
+				"Выживи. Это условие первого теста."
+			]
+			dependencies: ["0000000000001008"]
+			id: "000000000000100D"
+			tasks: [
+				{
+					id: "0000000000001009"
+					type: "advancement"
+					advancement: "minecraft:story/sleep_in_bed"
+				}
+			]
+			rewards: [
+				{
+					id: "000000000000100A"
+					type: "item"
+					item: "minecraft:bread"
+					count: 16
+				}
+				{
+					id: "000000000000100B"
+					type: "item"
+					item: "minecraft:cooked_porkchop"
+					count: 8
+				}
+				{
+					id: "000000000000100C"
+					type: "item"
+					item: "minecraft:apple"
+					count: 5
+				}
+			]
+		}
+	]
+}

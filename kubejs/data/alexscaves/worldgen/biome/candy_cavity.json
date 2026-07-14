@@ -1,0 +1,53 @@
+{
+  "carvers": {},
+  "downfall": 0.0,
+  "has_precipitation": false,
+  "effects": {
+    "ambient_sound": "alexscaves:candy_cavity_ambience",
+    "additions_sound": {
+      "sound": "alexscaves:candy_cavity_ambience_additions",
+      "tick_chance": 0.0111
+    },
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "alexscaves:candy_cavity_ambience_mood",
+      "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "alexscaves:candy_cavity_music"
+    },
+    "particle": {
+      "options": {
+        "type": "alexscaves:sugar_flake"
+      },
+      "probability": 0.0015
+    },
+    "sky_color": 15696819,
+    "fog_color": 16171727,
+    "water_color": 16402936,
+    "water_fog_color": 16402936,
+    "grass_color": 16748219,
+    "foliage_color": 15877048
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
+  "precipitation": "rain",
+  "spawn_costs": {},
+  "creature_spawn_probability": 0.04,
+  "spawners": {},
+  "temperature": 0.7
+}

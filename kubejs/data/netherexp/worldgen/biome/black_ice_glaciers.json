@@ -1,0 +1,54 @@
+{
+  "carvers": {
+    "air": "minecraft:nether_cave"
+  },
+  "downfall": 0,
+  "effects": {
+    "additions_sound": {
+      "sound": "minecraft:ambient.soul_sand_valley.additions",
+      "tick_chance": 0.0111
+    },
+    "ambient_sound": {
+      "sound_id": "netherexp:ambient.soul_sand_valley.black_ice_glaciers.loop"
+    },
+    "fog_color": 1645602,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2,
+      "sound": "minecraft:ambient.soul_sand_valley.mood",
+      "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 20000,
+      "min_delay": 10000,
+      "replace_current_music": false,
+      "sound": {
+        "sound_id": "netherexp:music.nether.soul_sand_valley.black_ice_glaciers"
+      }
+    },
+    "particle": {
+      "options": {
+        "type": "netherexp:black_flake"
+      },
+      "probability": 0.0191
+    },
+    "sky_color": 7254527,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {},
+  "temperature": 2
+}

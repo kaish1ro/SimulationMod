@@ -1,0 +1,17 @@
+{
+  "type": "forge:remove_features",
+  "biomes": {
+    "type": "forge:any"
+  },
+  "features": [
+    "apotheosis:boss_dungeon_deep",
+    "apotheosis:boss_dungeon_2_deep",
+    "apotheosis:rogue_spawner_deep"
+  ],
+  "steps": [
+    "underground_structures",
+    "underground_decoration",
+    "vegetal_decoration",
+    "surface_structures"
+  ]
+}

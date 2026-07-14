@@ -1,0 +1,29 @@
+{
+  "parent": "undergarden:undergarden/slingshot",
+  "criteria": {
+    "blocked": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.undergarden.shoot_slingshot_rotten_blisterberry.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "undergarden:rotten_blisterberry"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.undergarden.shoot_slingshot_rotten_blisterberry.title"
+    }
+  },
+  "requirements": [
+    [
+      "blocked"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "undergarden:undergarden/mine_ore",
+  "criteria": {
+    "blocked": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.undergarden.cloggrum_armor.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "undergarden:cloggrum_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.undergarden.cloggrum_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "blocked"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,12 @@
+{
+  "type": "divinerpg:abandoned_mineshaft_modifier",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "simulation:disabled"
+    }
+  ],
+  "min": 0,
+  "max": 0,
+  "chance": 0
+}

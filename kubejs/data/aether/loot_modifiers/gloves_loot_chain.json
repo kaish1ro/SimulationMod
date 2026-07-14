@@ -1,0 +1,17 @@
+{
+  "type": "aether:gloves_loot",
+  "armor_material": "chainmail",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "simulation:disabled"
+    }
+  ],
+  "gloves": {
+    "Count": 1,
+    "id": "aether:chainmail_gloves",
+    "tag": {
+      "Damage": 0
+    }
+  }
+}

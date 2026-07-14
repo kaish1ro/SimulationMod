@@ -1,0 +1,9 @@
+{
+  "type": "repurposed_structures:import_modded_loot",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "simulation:disabled"
+    }
+  ]
+}

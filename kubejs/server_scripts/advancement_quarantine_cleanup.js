@@ -8,6 +8,7 @@ const QUARANTINED_ADVANCEMENT_ROOTS = [
   'sons_of_sins:to_dust_you_shall_return',
   'midnight_madness:midnight_madness_advancement',
   'darkerdepths:story/root',
+  'undergarden:undergarden/root',
   'biomesoplenty:biomesoplenty/root',
   'yungscavebiomes:root',
   'legendary_monsters:legendary_monsters_root',

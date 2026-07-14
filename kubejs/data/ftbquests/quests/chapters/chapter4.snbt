@@ -1,0 +1,143 @@
+{
+	id: "000000000000103E"
+	group: ""
+	order_index: 3
+	filename: "chapter4"
+	title: "Глава IV: Охота за глазами"
+	icon: "minecraft:ender_eye"
+	default_quest_shape: ""
+	default_hide_dependency_lines: 0B
+	quests: [
+		{
+			x: 0d
+			y: 0d
+			shape: ""
+			title: "Древняя крепость"
+			description: [
+				"Она была построена с целью."
+				"Цель — ты. Точнее, то, куда ты должен попасть."
+			]
+			dependencies: ["000000000000102E"]
+			id: "0000000000001031"
+			tasks: [
+				{
+					id: "0000000000001030"
+					type: "advancement"
+					advancement: "minecraft:story/follow_ender_eye"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 2d
+			y: 0d
+			shape: ""
+			title: "Глаза: Обычные"
+			description: [
+				"Портал не откроется без них."
+				"Часть хранится в сундуках. Часть — у мобов."
+				"Часть требует путешествий."
+				"Некоторые нужно создать самому."
+			]
+			dependencies: ["0000000000001031"]
+			id: "0000000000001033"
+			tasks: [
+				{
+					id: "0000000000001032"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 4d
+			y: 0d
+			shape: ""
+			title: "Глаза: Из измерений"
+			description: [
+				"Другие миры хранят то, чего нет здесь."
+				"Исследуй. Возвращайся."
+			]
+			dependencies: ["0000000000001033"]
+			id: "0000000000001035"
+			tasks: [
+				{
+					id: "0000000000001034"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 6d
+			y: 0d
+			shape: ""
+			title: "Незеритовое снаряжение"
+			description: [
+				"За порталом тебя ждёт не монстр."
+				"За порталом тебя ждёт испытание."
+				"Будь готов."
+			]
+			dependencies: ["0000000000001035"]
+			id: "0000000000001037"
+			tasks: [
+				{
+					id: "0000000000001036"
+					type: "item"
+					item: "minecraft:netherite_chestplate"
+					count: "1L"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 8d
+			y: 0d
+			shape: ""
+			title: "Порог открыт"
+			description: [
+				"Все глаза на месте."
+				"Портал активирован."
+				"Что дальше — ты уже знаешь."
+			]
+			dependencies: ["0000000000001037"]
+			id: "000000000000103D"
+			tasks: [
+				{
+					id: "0000000000001038"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "0000000000001039"
+					type: "item"
+					item: "minecraft:strength"
+					count: 3
+				}
+				{
+					id: "000000000000103A"
+					type: "item"
+					item: "minecraft:regeneration"
+					count: 3
+				}
+				{
+					id: "000000000000103B"
+					type: "item"
+					item: "minecraft:golden_apple"
+					count: 5
+				}
+				{
+					id: "000000000000103C"
+					type: "item"
+					item: "minecraft:ender_chest"
+					count: 1
+				}
+			]
+		}
+	]
+}

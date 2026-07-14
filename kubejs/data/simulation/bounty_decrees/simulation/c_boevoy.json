@@ -1,0 +1,8 @@
+{
+	"objectives": [
+		"sim_c_boevoy_objs"
+	],
+	"rewards": [
+		"sim_c_boevoy_rews"
+	]
+}

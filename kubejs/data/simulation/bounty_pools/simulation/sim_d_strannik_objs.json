@@ -1,0 +1,69 @@
+{
+	"content": {
+		"obj_wool": {
+			"type": "item",
+			"content": "minecraft:white_wool",
+			"amount": {
+				"min": 8,
+				"max": 32
+			},
+			"unitWorth": 300
+		},
+		"obj_leather": {
+			"type": "item",
+			"content": "minecraft:leather",
+			"amount": {
+				"min": 16,
+				"max": 48
+			},
+			"unitWorth": 200
+		},
+		"obj_string": {
+			"type": "item",
+			"content": "minecraft:string",
+			"amount": {
+				"min": 16,
+				"max": 48
+			},
+			"unitWorth": 200
+		},
+		"obj_feather": {
+			"type": "item",
+			"content": "minecraft:feather",
+			"amount": {
+				"min": 16,
+				"max": 48
+			},
+			"unitWorth": 200
+		},
+		"obj_oak_log": {
+			"type": "item",
+			"content": "minecraft:oak_log",
+			"amount": {
+				"min": 16,
+				"max": 48
+			},
+			"unitWorth": 200
+		},
+		"obj_cow": {
+			"type": "entity",
+			"content": "minecraft:cow",
+			"amount": {
+				"min": 5,
+				"max": 20
+			},
+			"unitWorth": 450,
+			"timeMult": 5.0
+		},
+		"obj_spider": {
+			"type": "entity",
+			"content": "minecraft:spider",
+			"amount": {
+				"min": 8,
+				"max": 30
+			},
+			"unitWorth": 300,
+			"timeMult": 4.0
+		}
+	}
+}

@@ -1,0 +1,59 @@
+{
+	"content": {
+		"obj_emerald": {
+			"type": "item",
+			"content": "minecraft:emerald",
+			"amount": {
+				"min": 4,
+				"max": 12
+			},
+			"unitWorth": 800
+		},
+		"obj_gold_ingot": {
+			"type": "item",
+			"content": "minecraft:gold_ingot",
+			"amount": {
+				"min": 12,
+				"max": 32
+			},
+			"unitWorth": 300
+		},
+		"obj_paper": {
+			"type": "item",
+			"content": "minecraft:paper",
+			"amount": {
+				"min": 16,
+				"max": 48
+			},
+			"unitWorth": 200
+		},
+		"obj_book": {
+			"type": "item",
+			"content": "minecraft:book",
+			"amount": {
+				"min": 4,
+				"max": 12
+			},
+			"unitWorth": 800
+		},
+		"obj_apple": {
+			"type": "item",
+			"content": "minecraft:apple",
+			"amount": {
+				"min": 16,
+				"max": 48
+			},
+			"unitWorth": 200
+		},
+		"obj_villager_z": {
+			"type": "entity",
+			"content": "minecraft:zombie_villager",
+			"amount": {
+				"min": 2,
+				"max": 8
+			},
+			"unitWorth": 1200,
+			"timeMult": 6.0
+		}
+	}
+}

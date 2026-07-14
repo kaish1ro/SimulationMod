@@ -1,0 +1,13 @@
+{
+"type": "minecraft:crafting_shaped",
+"pattern": [
+"DDD",
+"GGG",
+"DDD"
+],
+"key": {
+"D": { "item": "minecraft:netherite_block" },
+"G": { "item": "cyclic:mattock" }
+},
+"result": { "item": "cyclic:mattock_nether", "count": 1 }
+}

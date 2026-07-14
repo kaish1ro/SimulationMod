@@ -1,0 +1,30 @@
+{
+  "parent": "undergarden:undergarden/kill_rotling",
+  "criteria": {
+    "blocked": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.undergarden.kill_all_rotspawn.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "undergarden:utherium_sword",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.undergarden.kill_all_rotspawn.title"
+    }
+  },
+  "requirements": [
+    [
+      "blocked"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

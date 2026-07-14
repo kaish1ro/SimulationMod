@@ -1,0 +1,8 @@
+{
+	"objectives": [
+		"sim_c_sledopyt_objs"
+	],
+	"rewards": [
+		"sim_c_sledopyt_rews"
+	]
+}

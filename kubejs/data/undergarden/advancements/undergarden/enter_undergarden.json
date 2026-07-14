@@ -1,0 +1,29 @@
+{
+  "parent": "undergarden:undergarden/catalyst",
+  "criteria": {
+    "blocked": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.undergarden.enter_undergarden.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "undergarden:deepturf_block"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.undergarden.enter_undergarden.title"
+    }
+  },
+  "requirements": [
+    [
+      "blocked"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

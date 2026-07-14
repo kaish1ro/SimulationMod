@@ -1,0 +1,70 @@
+{
+	"content": {
+		"obj_blaze_rod": {
+			"type": "item",
+			"content": "minecraft:blaze_rod",
+			"amount": {
+				"min": 4,
+				"max": 8
+			},
+			"unitWorth": 2400
+		},
+		"obj_ender_pearl": {
+			"type": "item",
+			"content": "minecraft:ender_pearl",
+			"amount": {
+				"min": 4,
+				"max": 10
+			},
+			"unitWorth": 2000
+		},
+		"obj_gold_block": {
+			"type": "item",
+			"content": "minecraft:gold_block",
+			"amount": {
+				"min": 2,
+				"max": 4
+			},
+			"unitWorth": 5000
+		},
+		"obj_diamond": {
+			"type": "item",
+			"content": "minecraft:diamond",
+			"amount": {
+				"min": 2,
+				"max": 4
+			},
+			"unitWorth": 5000
+		},
+		"obj_creeper": {
+			"type": "entity",
+			"content": "minecraft:creeper",
+			"amount": {
+				"min": 4,
+				"max": 12
+			},
+			"unitWorth": 1600,
+			"timeMult": 5.0
+		},
+		"obj_witch": {
+			"type": "entity",
+			"content": "minecraft:witch",
+			"amount": {
+				"min": 3,
+				"max": 8
+			},
+			"unitWorth": 2500,
+			"timeMult": 6.0
+		},
+		"obj_wither_skel": {
+			"type": "entity",
+			"content": "minecraft:wither_skeleton",
+			"amount": {
+				"min": 2,
+				"max": 6
+			},
+			"unitWorth": 3200,
+			"timeMult": 7.0
+		}
+	}
+}

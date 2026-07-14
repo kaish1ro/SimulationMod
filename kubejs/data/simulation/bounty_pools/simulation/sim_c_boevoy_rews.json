@@ -1,0 +1,121 @@
+{
+	"content": {
+		"rew_ice_breaker": {
+			"type": "item",
+			"content": "relics:ice_breaker",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_drowned_belt": {
+			"type": "item",
+			"content": "relics:drowned_belt",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_hunter_belt": {
+			"type": "item",
+			"content": "relics:hunter_belt",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_jellyfish_necklace": {
+			"type": "item",
+			"content": "relics:jellyfish_necklace",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_spore_sack": {
+			"type": "item",
+			"content": "relics:spore_sack",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_rooted_boots": {
+			"type": "item",
+			"content": "artifacts:rooted_boots",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_thorn_pendant": {
+			"type": "item",
+			"content": "artifacts:thorn_pendant",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_flame_pendant": {
+			"type": "item",
+			"content": "artifacts:flame_pendant",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_cloud_in_a_bottle": {
+			"type": "item",
+			"content": "artifacts:cloud_in_a_bottle",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_charm_longfall": {
+			"type": "item",
+			"content": "cyclic:charm_longfall",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_charm_magicdefense": {
+			"type": "item",
+			"content": "cyclic:charm_magicdefense",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_charm_fire": {
+			"type": "item",
+			"content": "cyclic:charm_fire",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_charm_knockback_resistance": {
+			"type": "item",
+			"content": "cyclic:charm_knockback_resistance",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		}
+	}
+}

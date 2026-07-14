@@ -1,0 +1,177 @@
+{
+	id: "0000000000001051"
+	group: ""
+	order_index: 4
+	filename: "chapter5"
+	title: "Глава V: Конец"
+	icon: "minecraft:dragon_egg"
+	default_quest_shape: ""
+	default_hide_dependency_lines: 0B
+	quests: [
+		{
+			x: 0d
+			y: 0d
+			shape: ""
+			title: "За порогом"
+			description: [
+				"Это место создавалось не для тебя."
+				"И всё же ты здесь."
+			]
+			dependencies: ["000000000000103D"]
+			id: "0000000000001041"
+			tasks: [
+				{
+					id: "000000000000103F"
+					type: "advancement"
+					advancement: "minecraft:story/enter_the_end"
+				}
+			]
+			rewards: [
+				{
+					id: "0000000000001040"
+					type: "item"
+					item: "minecraft:golden_apple"
+					count: 3
+				}
+			]
+		}
+		{
+			x: 2d
+			y: 0d
+			shape: ""
+			title: "Источники силы"
+			description: [
+				"Кристаллы питают его."
+				"Отрежь питание — и он станет уязвим."
+				"Уничтожь все восемь."
+			]
+			dependencies: ["0000000000001041"]
+			id: "0000000000001043"
+			tasks: [
+				{
+					id: "0000000000001042"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 4d
+			y: 0d
+			shape: ""
+			title: "Дракон Края"
+			description: [
+				"Он охраняет выход."
+				"Или он и есть выход."
+				"Убей его. Узнаешь."
+			]
+			dependencies: ["0000000000001043"]
+			id: "0000000000001047"
+			tasks: [
+				{
+					id: "0000000000001044"
+					type: "advancement"
+					advancement: "minecraft:end/kill_dragon"
+				}
+			]
+			rewards: [
+				{
+					id: "0000000000001045"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 32
+				}
+				{
+					id: "0000000000001046"
+					type: "xp_levels"
+					xp_levels: 10
+				}
+			]
+		}
+		{
+			x: 6d
+			y: 0d
+			shape: ""
+			title: "Осколок Симуляции"
+			description: [
+				"Он упал вместе с ним."
+				"Возьми. Это не просто предмет."
+				"Это первая трещина в картине мира."
+			]
+			dependencies: ["0000000000001047"]
+			id: "0000000000001049"
+			tasks: [
+				{
+					id: "0000000000001048"
+					type: "item"
+					item: "simulation:simulation_shard"
+					count: "1L"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 8d
+			y: 0d
+			shape: ""
+			title: "Встреча"
+			description: [
+				"Ты вышел из Края."
+				"Кто-то ждал тебя снаружи."
+				"Он знал, что ты придёшь."
+				"Он всегда знал."
+			]
+			dependencies: ["0000000000001049"]
+			id: "000000000000104C"
+			tasks: [
+				{
+					id: "000000000000104A"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "000000000000104B"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 16
+				}
+			]
+		}
+		{
+			x: 10d
+			y: 0d
+			shape: ""
+			title: "Книга Странника"
+			description: [
+				"Записи. Годы странствий."
+				"Возможно — подсказка. Возможно — предупреждение."
+				"Читай внимательно."
+				"Второй этап начался."
+			]
+			dependencies: ["000000000000104C"]
+			id: "0000000000001050"
+			tasks: [
+				{
+					id: "000000000000104D"
+					type: "checkmark"
+				}
+			]
+			rewards: [
+				{
+					id: "000000000000104E"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 32
+				}
+				{
+					id: "000000000000104F"
+					type: "xp_levels"
+					xp_levels: 15
+				}
+			]
+		}
+	]
+}

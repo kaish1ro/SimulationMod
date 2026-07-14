@@ -1,0 +1,29 @@
+{
+  "parent": "undergarden:undergarden/root",
+  "criteria": {
+    "blocked": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.undergarden.catalyst.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "undergarden:catalyst"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.undergarden.catalyst.title"
+    }
+  },
+  "requirements": [
+    [
+      "blocked"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

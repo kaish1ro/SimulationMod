@@ -1,0 +1,29 @@
+{
+  "parent": "undergarden:undergarden/kill_rotling",
+  "criteria": {
+    "blocked": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.undergarden.shard_torch.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "undergarden:shard_torch"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.undergarden.shard_torch.title"
+    }
+  },
+  "requirements": [
+    [
+      "blocked"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

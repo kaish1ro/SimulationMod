@@ -1,0 +1,186 @@
+{
+	id: "000000000000102F"
+	group: ""
+	order_index: 2
+	filename: "chapter3"
+	title: "Глава III: Нижний мир"
+	icon: "minecraft:nether_brick"
+	default_quest_shape: ""
+	default_hide_dependency_lines: 0B
+	quests: [
+		{
+			x: 0d
+			y: 0d
+			shape: ""
+			title: "Зажигалка"
+			description: [
+				"За этой рамой — другой мир."
+				"Ты пойдёшь туда. Это не вопрос."
+			]
+			dependencies: ["000000000000101B"]
+			id: "000000000000101E"
+			tasks: [
+				{
+					id: "000000000000101D"
+					type: "item"
+					item: "minecraft:flint_and_steel"
+					count: "1L"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 2d
+			y: 0d
+			shape: ""
+			title: "За порталом"
+			description: [
+				"Нижний мир существовал до тебя."
+				"Он существовал до многих."
+			]
+			dependencies: ["000000000000101E"]
+			id: "0000000000001021"
+			tasks: [
+				{
+					id: "000000000000101F"
+					type: "advancement"
+					advancement: "minecraft:story/enter_the_nether"
+				}
+			]
+			rewards: [
+				{
+					id: "0000000000001020"
+					type: "item"
+					item: "minecraft:fire_resistance"
+					count: 3
+				}
+			]
+		}
+		{
+			x: 4d
+			y: 0d
+			shape: ""
+			title: "Крепость"
+			description: [
+				"Здесь жили когда-то. Или что-то жило."
+				"Найди следы."
+			]
+			dependencies: ["0000000000001021"]
+			id: "0000000000001023"
+			tasks: [
+				{
+					id: "0000000000001022"
+					type: "advancement"
+					advancement: "minecraft:nether/find_fortress"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 6d
+			y: 0d
+			shape: ""
+			title: "Визер-скелеты"
+			description: [
+				"Три жизни. В обмен на одну важную вещь."
+				"Цена приемлема."
+			]
+			dependencies: ["0000000000001023"]
+			id: "0000000000001025"
+			tasks: [
+				{
+					id: "0000000000001024"
+					type: "kill"
+					entity: "minecraft:wither_skeleton"
+					value: "3L"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 8d
+			y: 0d
+			shape: ""
+			title: "Бастион"
+			description: [
+				"Пиглины торгуют. У них есть то, что нужно тебе."
+				"Найди их дом."
+			]
+			dependencies: ["0000000000001025"]
+			id: "0000000000001027"
+			tasks: [
+				{
+					id: "0000000000001026"
+					type: "advancement"
+					advancement: "minecraft:nether/find_bastion"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 10d
+			y: 0d
+			shape: ""
+			title: "Жемчуг"
+			description: [
+				"Телепортация — первый признак понимания пространства."
+				"Собери четыре."
+			]
+			dependencies: ["0000000000001027"]
+			id: "0000000000001029"
+			tasks: [
+				{
+					id: "0000000000001028"
+					type: "item"
+					item: "minecraft:ender_pearl"
+					count: "4L"
+				}
+			]
+			rewards: [
+			]
+		}
+		{
+			x: 12d
+			y: 0d
+			shape: ""
+			title: "Возвращение"
+			description: [
+				"Нижний мир даёт. Нижний мир берёт."
+				"Ты взял достаточно. Уходи."
+			]
+			dependencies: ["0000000000001029"]
+			id: "000000000000102E"
+			tasks: [
+				{
+					id: "000000000000102A"
+					type: "item"
+					item: "minecraft:blaze_rod"
+					count: "12L"
+				}
+			]
+			rewards: [
+				{
+					id: "000000000000102B"
+					type: "item"
+					item: "minecraft:enchanted_book"
+					count: 1
+				}
+				{
+					id: "000000000000102C"
+					type: "item"
+					item: "minecraft:experience_bottle"
+					count: 16
+				}
+				{
+					id: "000000000000102D"
+					type: "xp_levels"
+					xp_levels: 5
+				}
+			]
+		}
+	]
+}

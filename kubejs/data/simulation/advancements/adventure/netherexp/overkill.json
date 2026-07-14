@@ -1,0 +1,46 @@
+{
+    "display":  {
+                    "icon":  {
+                                 "item":  "minecraft:golden_sword"
+                             },
+                    "title":  {
+                                  "translate":  "advancements.nether.overkill.title"
+                              },
+                    "description":  {
+                                        "translate":  "advancements.nether.overkill.description"
+                                    },
+                    "frame":  "challenge",
+                    "show_toast":  true,
+                    "announce_to_chat":  false,
+                    "hidden":  false
+                },
+    "parent":  "simulation:adventure/root",
+    "criteria":  {
+                     "overkill":  {
+                                      "trigger":  "minecraft:player_hurt_entity",
+                                      "conditions":  {
+                                                         "damage":  {
+                                                                        "dealt":  {
+                                                                                      "min":  20
+                                                                                  },
+                                                                        "type":  {
+                                                                                     "tags":  [
+                                                                                                  {
+                                                                                                      "id":  "netherexp:overkill_valid",
+                                                                                                      "expected":  true
+                                                                                                  }
+                                                                                              ]
+                                                                                 }
+                                                                    },
+                                                         "entity":  [
+
+                                                                    ]
+                                                     }
+                                  }
+                 },
+    "requirements":  [
+                         [
+                             "overkill"
+                         ]
+                     ]
+}

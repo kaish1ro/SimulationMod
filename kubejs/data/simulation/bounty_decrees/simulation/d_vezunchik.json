@@ -1,0 +1,8 @@
+{
+	"objectives": [
+		"sim_d_vezunchik_objs"
+	],
+	"rewards": [
+		"sim_d_vezunchik_rews"
+	]
+}

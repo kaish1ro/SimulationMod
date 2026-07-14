@@ -1,0 +1,57 @@
+{
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "downfall": 0.4,
+  "has_precipitation": true,
+  "effects": {
+    "ambient_sound": "alexscaves:toxic_caves_ambience",
+    "additions_sound": {
+      "sound": "alexscaves:toxic_caves_ambience_additions",
+      "tick_chance": 0.0111
+    },
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "alexscaves:toxic_caves_ambience_mood",
+      "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "alexscaves:toxic_caves_music"
+    },
+    "particle": {
+      "options": {
+        "type": "alexscaves:fallout"
+      },
+      "probability": 0.001
+    },
+    "fog_color": 8781312,
+    "sky_color": 582913,
+    "water_color": 4944498,
+    "water_fog_color": 4944498
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
+  "precipitation": "rain",
+  "spawn_costs": {},
+  "creature_spawn_probability": 0.01,
+  "spawners": {},
+  "temperature": 0.5
+}

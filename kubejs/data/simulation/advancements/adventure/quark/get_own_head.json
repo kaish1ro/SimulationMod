@@ -1,0 +1,37 @@
+{
+  "parent": "simulation:adventure/vanilla/kill_a_mob",
+  "criteria": {
+    "get_own_head": {
+      "trigger": "quark:own_head"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.quark.get_own_head.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:player_head"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.quark.get_own_head.title"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "requirements": [
+    [
+      "get_own_head"
+    ]
+  ],
+  "conditions": [
+    {
+      "type": "quark:advancement_flag",
+      "flag": "snow_golem_player_heads"
+    }
+  ]
+}

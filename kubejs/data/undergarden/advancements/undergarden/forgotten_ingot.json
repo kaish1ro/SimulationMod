@@ -1,0 +1,29 @@
+{
+  "parent": "undergarden:undergarden/kill_forgotten_guardian",
+  "criteria": {
+    "blocked": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.undergarden.forgotten_ingot.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "undergarden:forgotten_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.undergarden.forgotten_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "blocked"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

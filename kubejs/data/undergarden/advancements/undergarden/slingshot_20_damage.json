@@ -1,0 +1,29 @@
+{
+  "parent": "undergarden:undergarden/shoot_slingshot",
+  "criteria": {
+    "blocked": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.undergarden.slingshot_20_damage.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "undergarden:depthrock_pebble"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.undergarden.slingshot_20_damage.title"
+    }
+  },
+  "requirements": [
+    [
+      "blocked"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

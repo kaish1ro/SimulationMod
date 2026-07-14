@@ -1,0 +1,69 @@
+{
+	"content": {
+		"obj_bread": {
+			"type": "item",
+			"content": "minecraft:bread",
+			"amount": {
+				"min": 16,
+				"max": 48
+			},
+			"unitWorth": 200
+		},
+		"obj_cooked_beef": {
+			"type": "item",
+			"content": "minecraft:cooked_beef",
+			"amount": {
+				"min": 8,
+				"max": 24
+			},
+			"unitWorth": 400
+		},
+		"obj_iron_ingot": {
+			"type": "item",
+			"content": "minecraft:iron_ingot",
+			"amount": {
+				"min": 16,
+				"max": 40
+			},
+			"unitWorth": 250
+		},
+		"obj_coal": {
+			"type": "item",
+			"content": "minecraft:coal",
+			"amount": {
+				"min": 16,
+				"max": 48
+			},
+			"unitWorth": 200
+		},
+		"obj_wheat": {
+			"type": "item",
+			"content": "minecraft:wheat",
+			"amount": {
+				"min": 32,
+				"max": 64
+			},
+			"unitWorth": 150
+		},
+		"obj_zombie": {
+			"type": "entity",
+			"content": "minecraft:zombie",
+			"amount": {
+				"min": 8,
+				"max": 30
+			},
+			"unitWorth": 300,
+			"timeMult": 4.0
+		},
+		"obj_skeleton": {
+			"type": "entity",
+			"content": "minecraft:skeleton",
+			"amount": {
+				"min": 8,
+				"max": 30
+			},
+			"unitWorth": 320,
+			"timeMult": 4.0
+		}
+	}
+}

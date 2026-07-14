@@ -1,0 +1,29 @@
+{
+  "parent": "undergarden:undergarden/plant_gloomgourd",
+  "criteria": {
+    "blocked": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.undergarden.stack_of_gloomgourds.desc"
+    },
+    "frame": "goal",
+    "hidden": true,
+    "icon": {
+      "item": "undergarden:gloomgourd"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.undergarden.stack_of_gloomgourds.title"
+    }
+  },
+  "requirements": [
+    [
+      "blocked"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

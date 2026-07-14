@@ -4,10 +4,10 @@
       "item": "biomesoplenty:bop_icon"
     },
     "title": {
-      "text": "Цветущий атлас"
+      "text": "Картограф диких земель"
     },
     "description": {
-      "text": "Найдите все основные биомы Biomes O' Plenty в обычном мире и Нижнем мире."
+      "text": "Посетите все неизведанные края Верхнего мира."
     },
     "frame": "challenge",
     "show_toast": true,
@@ -24,7 +24,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:aspen_glade"
+                "biome": "biomesoplenty:aspen_glade",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -40,7 +41,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:auroral_garden"
+                "biome": "biomesoplenty:auroral_garden",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -56,7 +58,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:bayou"
+                "biome": "biomesoplenty:bayou",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -72,7 +75,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:bog"
+                "biome": "biomesoplenty:bog",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -88,7 +92,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:cold_desert"
+                "biome": "biomesoplenty:cold_desert",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -104,7 +109,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:coniferous_forest"
+                "biome": "biomesoplenty:coniferous_forest",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -120,23 +126,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:crag"
-              }
-            }
-          }
-        ]
-      }
-    },
-    "crystalline_chasm": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "biome": "biomesoplenty:crystalline_chasm"
+                "biome": "biomesoplenty:crag",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -152,7 +143,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:dead_forest"
+                "biome": "biomesoplenty:dead_forest",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -168,7 +160,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:dryland"
+                "biome": "biomesoplenty:dryland",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -184,23 +177,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:dune_beach"
-              }
-            }
-          }
-        ]
-      }
-    },
-    "erupting_inferno": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "biome": "biomesoplenty:erupting_inferno"
+                "biome": "biomesoplenty:dune_beach",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -216,7 +194,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:field"
+                "biome": "biomesoplenty:field",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -232,7 +211,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:fir_clearing"
+                "biome": "biomesoplenty:fir_clearing",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -248,7 +228,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:floodplain"
+                "biome": "biomesoplenty:floodplain",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -264,7 +245,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:forested_field"
+                "biome": "biomesoplenty:forested_field",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -280,7 +262,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:fungal_jungle"
+                "biome": "biomesoplenty:fungal_jungle",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -296,7 +279,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:glowing_grotto"
+                "biome": "biomesoplenty:glowing_grotto",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -312,7 +296,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:grassland"
+                "biome": "biomesoplenty:grassland",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -328,7 +313,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:gravel_beach"
+                "biome": "biomesoplenty:gravel_beach",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -344,7 +330,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:highland"
+                "biome": "biomesoplenty:highland",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -360,7 +347,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:hot_springs"
+                "biome": "biomesoplenty:hot_springs",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -376,7 +364,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:jacaranda_glade"
+                "biome": "biomesoplenty:jacaranda_glade",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -392,7 +381,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:jade_cliffs"
+                "biome": "biomesoplenty:jade_cliffs",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -408,7 +398,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:lavender_field"
+                "biome": "biomesoplenty:lavender_field",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -424,7 +415,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:lush_desert"
+                "biome": "biomesoplenty:lush_desert",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -440,7 +432,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:lush_savanna"
+                "biome": "biomesoplenty:lush_savanna",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -456,7 +449,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:maple_woods"
+                "biome": "biomesoplenty:maple_woods",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -472,7 +466,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:marsh"
+                "biome": "biomesoplenty:marsh",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -488,7 +483,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:mediterranean_forest"
+                "biome": "biomesoplenty:mediterranean_forest",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -504,7 +500,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:moor"
+                "biome": "biomesoplenty:moor",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -520,7 +517,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:muskeg"
+                "biome": "biomesoplenty:muskeg",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -536,7 +534,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:mystic_grove"
+                "biome": "biomesoplenty:mystic_grove",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -552,7 +551,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:old_growth_dead_forest"
+                "biome": "biomesoplenty:old_growth_dead_forest",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -568,7 +568,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:old_growth_woodland"
+                "biome": "biomesoplenty:old_growth_woodland",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -584,7 +585,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:ominous_woods"
+                "biome": "biomesoplenty:ominous_woods",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -600,7 +602,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:orchard"
+                "biome": "biomesoplenty:orchard",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -616,7 +619,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:origin_valley"
+                "biome": "biomesoplenty:origin_valley",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -632,7 +636,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:overgrown_greens"
+                "biome": "biomesoplenty:overgrown_greens",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -648,7 +653,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:pasture"
+                "biome": "biomesoplenty:pasture",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -664,7 +670,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:prairie"
+                "biome": "biomesoplenty:prairie",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -680,7 +687,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:pumpkin_patch"
+                "biome": "biomesoplenty:pumpkin_patch",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -696,7 +704,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:rainforest"
+                "biome": "biomesoplenty:rainforest",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -712,7 +721,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:redwood_forest"
+                "biome": "biomesoplenty:redwood_forest",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -728,7 +738,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:rocky_rainforest"
+                "biome": "biomesoplenty:rocky_rainforest",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -744,7 +755,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:rocky_shrubland"
+                "biome": "biomesoplenty:rocky_shrubland",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -760,7 +772,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:scrubland"
+                "biome": "biomesoplenty:scrubland",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -776,7 +789,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:seasonal_forest"
+                "biome": "biomesoplenty:seasonal_forest",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -792,7 +806,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:shrubland"
+                "biome": "biomesoplenty:shrubland",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -808,7 +823,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:snowblossom_grove"
+                "biome": "biomesoplenty:snowblossom_grove",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -824,7 +840,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:snowy_coniferous_forest"
+                "biome": "biomesoplenty:snowy_coniferous_forest",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -840,7 +857,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:snowy_fir_clearing"
+                "biome": "biomesoplenty:snowy_fir_clearing",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -856,7 +874,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:snowy_maple_woods"
+                "biome": "biomesoplenty:snowy_maple_woods",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -872,7 +891,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:spider_nest"
+                "biome": "biomesoplenty:spider_nest",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -888,7 +908,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:tropics"
+                "biome": "biomesoplenty:tropics",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -904,39 +925,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:tundra"
-              }
-            }
-          }
-        ]
-      }
-    },
-    "undergrowth": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "biome": "biomesoplenty:undergrowth"
-              }
-            }
-          }
-        ]
-      }
-    },
-    "visceral_heap": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "biome": "biomesoplenty:visceral_heap"
+                "biome": "biomesoplenty:tundra",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -952,7 +942,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:volcanic_plains"
+                "biome": "biomesoplenty:volcanic_plains",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -968,7 +959,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:volcano"
+                "biome": "biomesoplenty:volcano",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -984,7 +976,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:wasteland"
+                "biome": "biomesoplenty:wasteland",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -1000,7 +993,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:wasteland_steppe"
+                "biome": "biomesoplenty:wasteland_steppe",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -1016,7 +1010,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:wetland"
+                "biome": "biomesoplenty:wetland",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -1032,23 +1027,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:wintry_origin_valley"
-              }
-            }
-          }
-        ]
-      }
-    },
-    "withered_abyss": {
-      "trigger": "minecraft:location",
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "biome": "biomesoplenty:withered_abyss"
+                "biome": "biomesoplenty:wintry_origin_valley",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -1064,7 +1044,8 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "biomesoplenty:woodland"
+                "biome": "biomesoplenty:woodland",
+                "dimension": "minecraft:overworld"
               }
             }
           }
@@ -1095,9 +1076,6 @@
       "crag"
     ],
     [
-      "crystalline_chasm"
-    ],
-    [
       "dead_forest"
     ],
     [
@@ -1105,9 +1083,6 @@
     ],
     [
       "dune_beach"
-    ],
-    [
-      "erupting_inferno"
     ],
     [
       "field"
@@ -1242,12 +1217,6 @@
       "tundra"
     ],
     [
-      "undergrowth"
-    ],
-    [
-      "visceral_heap"
-    ],
-    [
       "volcanic_plains"
     ],
     [
@@ -1264,9 +1233,6 @@
     ],
     [
       "wintry_origin_valley"
-    ],
-    [
-      "withered_abyss"
     ],
     [
       "woodland"

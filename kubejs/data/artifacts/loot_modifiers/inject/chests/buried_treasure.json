@@ -1,0 +1,10 @@
+{
+  "type": "artifacts:roll_loot_table",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "simulation:disabled"
+    }
+  ],
+  "lootTable": "artifacts:inject/chests/buried_treasure"
+}

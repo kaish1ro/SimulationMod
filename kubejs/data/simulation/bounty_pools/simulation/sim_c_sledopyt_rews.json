@@ -1,0 +1,94 @@
+{
+	"content": {
+		"rew_magic_mirror": {
+			"type": "item",
+			"content": "relics:magic_mirror",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_enders_hand": {
+			"type": "item",
+			"content": "relics:enders_hand",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_blazing_flask": {
+			"type": "item",
+			"content": "relics:blazing_flask",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_chorus_inhibitor": {
+			"type": "item",
+			"content": "relics:chorus_inhibitor",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_night_vision_goggles": {
+			"type": "item",
+			"content": "artifacts:night_vision_goggles",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_digging_claws": {
+			"type": "item",
+			"content": "artifacts:digging_claws",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_charm_xp_speed": {
+			"type": "item",
+			"content": "cyclic:charm_xp_speed",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_charm_antidote": {
+			"type": "item",
+			"content": "cyclic:charm_antidote",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_charm_invisible": {
+			"type": "item",
+			"content": "cyclic:charm_invisible",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		},
+		"rew_charm_boostpotion": {
+			"type": "item",
+			"content": "cyclic:charm_boostpotion",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 20000
+		}
+	}
+}

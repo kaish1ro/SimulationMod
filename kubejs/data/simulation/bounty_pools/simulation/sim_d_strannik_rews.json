@@ -1,0 +1,85 @@
+{
+	"content": {
+		"rew_roller_skates": {
+			"type": "item",
+			"content": "relics:roller_skates",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 10000
+		},
+		"rew_ice_skates": {
+			"type": "item",
+			"content": "relics:ice_skates",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 10000
+		},
+		"rew_aqua_walker": {
+			"type": "item",
+			"content": "relics:aqua_walker",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 10000
+		},
+		"rew_magma_walker": {
+			"type": "item",
+			"content": "relics:magma_walker",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 10000
+		},
+		"rew_amphibian_boot": {
+			"type": "item",
+			"content": "relics:amphibian_boot",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 10000
+		},
+		"rew_snowshoes": {
+			"type": "item",
+			"content": "artifacts:snowshoes",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 10000
+		},
+		"rew_flippers": {
+			"type": "item",
+			"content": "artifacts:flippers",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 10000
+		},
+		"rew_aqua_dashers": {
+			"type": "item",
+			"content": "artifacts:aqua_dashers",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 10000
+		},
+		"rew_charm_stone": {
+			"type": "item",
+			"content": "cyclic:charm_stone",
+			"amount": {
+				"min": 1,
+				"max": 1
+			},
+			"unitWorth": 10000
+		}
+	}
+}
